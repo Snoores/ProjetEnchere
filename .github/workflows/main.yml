@@ -1,0 +1,28 @@
+
+name: CI
+
+# Controls when the action will run. 
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  build:
+    # The type of runner that the job will run on
+    runs-on: [ self-hosted, maven ]
+    steps:
+    - uses: actions/checkout@v1
+    - name: Build the project
+      run: mvn war:war
+
+  deploy:
+    needs: build
+    runs-on: [ self-hosted, maven ]
+    steps:
+    - name: Deploy the project
+      run: cp -r /home/github/actions-runner/_work/projet-enchere/projet-enchere/target/ProjetEnchere-0.0.1 /root/Tomcat/webapps/ProjetEnchere
