@@ -14,6 +14,6 @@ public interface DAOCategorie {
 
     List<Categorie> SelectAllCategorie();
     void InsertCategorie(Categorie categorie);
-    Enchere UpdateCategorie(Categorie categorie);
+    Categorie UpdateCategorie(Categorie categorie);
     void DeleteCategorie(Categorie categorie);
 }
