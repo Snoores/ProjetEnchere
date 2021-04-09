@@ -1,0 +1,87 @@
+/*!
+ * Start Bootstrap - 4 Col Portfolio (https://startbootstrap.com/template-overviews/4-col-portfolio)
+ * Copyright 2013-2017 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-4-col-portfolio/blob/master/LICENSE)
+ */
+
+body{
+	margin: 0 auto;
+	width:100%;
+}
+
+.col-center {
+	text-align: center;
+}
+
+.bloc-home .nav-center {
+	margin-bottom:50px; 
+	text-align: center;
+}
+
+.bloc-home .h1-accueil {
+	margin-bottom:40px
+}
+
+.bloc-connection {
+	min-height: 100vh;
+    background-color: white;
+}
+
+.login-form-.login-container{
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+.login-form{
+	top: 30vh;
+    margin: 0 auto;
+    padding: 5%;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+}
+.login-form h3{
+    text-align: center;
+    color: #333;
+    margin-bottom: 35px;
+    font-size: 35px;
+}
+
+.login-container form{
+    padding: 10%;
+}
+
+.btnSubmit
+{
+    width: 50%;
+    border-radius: 1rem;
+    padding: 1.5%;
+    border: none;
+    cursor: pointer;
+}
+
+.login-form .btnSubmit{
+    font-weight: 600;
+    color: #fff;
+    background-color: #0062cc;
+}2 .btnSubmit{
+    font-weight: 600;
+    color: #0062cc;
+    background-color: #fff;
+}
+
+.login-form .ForgetPwd{
+    color: #0062cc;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.forgot-remember {
+	display: inline-flex;
+}
+
+.forgot-password {
+	padding-left: 20px;
+}
+
+.remember-me {
+	padding-left: 50px;
+}
+
