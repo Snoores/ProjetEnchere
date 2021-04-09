@@ -14,14 +14,13 @@ public class Utilisateur {
     private String ville;
     private String motDePasse;
     private int credit;
-    private List<ArticleVendu> listeArticleVendu;
     private List<Enchere> listeEnchere;
     private boolean administrateur;
 
     public Utilisateur() {
     }
 
-    public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue, String codePostal, String ville, String motDePasse, int credit, List<ArticleVendu> listeArticleVendu, List<Enchere> listeEnchere, boolean administrateur) {
+    public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue, String codePostal, String ville, String motDePasse, int credit, List<Enchere> listeEnchere, boolean administrateur) {
         this.pseudo = pseudo;
         this.nom = nom;
         this.prenom = prenom;
@@ -32,12 +31,11 @@ public class Utilisateur {
         this.ville = ville;
         this.motDePasse = motDePasse;
         this.credit = credit;
-        this.listeArticleVendu = listeArticleVendu;
         this.listeEnchere = listeEnchere;
         this.administrateur = administrateur;
     }
 
-    public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, String email, String telephone, String rue, String codePostal, String ville, String motDePasse, int credit, List<ArticleVendu> listeArticleVendu, List<Enchere> listeEnchere, boolean administrateur) {
+    public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, String email, String telephone, String rue, String codePostal, String ville, String motDePasse, int credit, List<Enchere> listeEnchere, boolean administrateur) {
         this.noUtilisateur = noUtilisateur;
         this.pseudo = pseudo;
         this.nom = nom;
@@ -49,7 +47,6 @@ public class Utilisateur {
         this.ville = ville;
         this.motDePasse = motDePasse;
         this.credit = credit;
-        this.listeArticleVendu = listeArticleVendu;
         this.listeEnchere = listeEnchere;
         this.administrateur = administrateur;
     }
@@ -157,14 +154,6 @@ public class Utilisateur {
 		this.credit = credit;
 	}
 
-	public List<ArticleVendu> getListeArticleVendu() {
-		return listeArticleVendu;
-	}
-
-	public void setListeArticleVendu(List<ArticleVendu> listeArticleVendu) {
-		this.listeArticleVendu = listeArticleVendu;
-	}
-
 	public List<Enchere> getListeEnchere() {
 		return listeEnchere;
 	}
@@ -186,7 +175,7 @@ public class Utilisateur {
 		return "Utilisateur [noUtilisateur=" + noUtilisateur + ", pseudo=" + pseudo + ", nom=" + nom + ", prenom="
 				+ prenom + ", email=" + email + ", telephone=" + telephone + ", rue=" + rue + ", codePostal="
 				+ codePostal + ", ville=" + ville + ", motDePasse=" + motDePasse + ", credit=" + credit
-				+ ", listeArticleVendu=" + listeArticleVendu + ", listeEnchere=" + listeEnchere + ", administrateur="
+				+ ", listeEnchere=" + listeEnchere + ", administrateur="
 				+ administrateur + "]";
 	}
 

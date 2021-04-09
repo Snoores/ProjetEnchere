@@ -1,44 +1,44 @@
 package projetenchere.bo;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Enchere {
-    private Utilisateur utilisateur;
-    private ArticleVendu articleVendu;
-    private Date dateEnchere;
+    private int no_utilisateur;
+    private int no_article;
+    private LocalDate dateEnchere;
     private int montantEnchere;
 
     public Enchere() {
     }
 
-    public Enchere(Utilisateur utilisateur, ArticleVendu articleVendu, Date dateEnchere, int montantEnchere) {
-        this.utilisateur = utilisateur;
-        this.articleVendu = articleVendu;
+    public Enchere(int no_utilisateur, int no_articleVendu, LocalDate dateEnchere, int montantEnchere) {
+        this.no_utilisateur = no_utilisateur;
+        this.no_article = no_articleVendu;
         this.dateEnchere = dateEnchere;
         this.montantEnchere = montantEnchere;
     }
 
-    public Utilisateur getUtilisateur() {
-        return utilisateur;
+    public int getNoUtilisateur() {
+        return no_utilisateur;
     }
 
-    public void setUtilisateur(Utilisateur utilisateur) {
-        this.utilisateur = utilisateur;
+    public void setNoUtilisateur(int no_utilisateur) {
+        this.no_utilisateur = no_utilisateur;
     }
 
-    public ArticleVendu getArticleVendu() {
-        return articleVendu;
+    public int getNoArticle() {
+        return no_article;
     }
 
-    public void setArticleVendu(ArticleVendu articleVendu) {
-        this.articleVendu = articleVendu;
+    public void setNoArticle(int no_article) {
+        this.no_article = no_article;
     }
 
-    public Date getDateEnchere() {
+    public LocalDate getDateEnchere() {
         return dateEnchere;
     }
 
-    public void setDateEnchere(Date dateEnchere) {
+    public void setDateEnchere(LocalDate dateEnchere) {
         this.dateEnchere = dateEnchere;
     }
 
@@ -48,5 +48,15 @@ public class Enchere {
 
     public void setMontantEnchere(int montantEnchere) {
         this.montantEnchere = montantEnchere;
+    }
+
+    @Override
+    public String toString() {
+        return "Enchere{" +
+                "utilisateur=" + no_utilisateur +
+                ", articleVendu=" + no_article +
+                ", dateEnchere=" + dateEnchere +
+                ", montantEnchere=" + montantEnchere +
+                '}';
     }
 }

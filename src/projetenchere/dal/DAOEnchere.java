@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface DAOEnchere {
 
+    Enchere SelectEnchereByNoArticle(int noArticle);
     List<Enchere> SelectEnchereByUtilisateur(Utilisateur utilisateur);
     Enchere SelectEnchereByArticle(ArticleVendu article);
 

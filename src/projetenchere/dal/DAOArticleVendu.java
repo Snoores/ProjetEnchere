@@ -16,7 +16,7 @@ public interface DAOArticleVendu {
     List<ArticleVendu> SelectArticleVenduByEtat(String etat);
 
     List<ArticleVendu> SelectAllArticleVendu();
-    void InsertArticleVendu(ArticleVendu categorie);
-    ArticleVendu UpdateArticleVendu(ArticleVendu categorie);
-    void DeleteArticleVendu(ArticleVendu categorie);
+    void InsertArticleVendu(ArticleVendu articleVendu);
+    ArticleVendu UpdateArticleVendu(ArticleVendu articleVendu);
+    void DeleteArticleVendu(ArticleVendu articleVendu);
 }
