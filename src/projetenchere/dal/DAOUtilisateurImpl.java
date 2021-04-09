@@ -79,9 +79,7 @@ public class DAOUtilisateurImpl implements DAOUtilisateur{
 				utilisateur.setVille(rs.getString("ville"));
 				utilisateur.setMotDePasse(rs.getString("mot_de_passe"));
 				utilisateur.setCredit(rs.getInt("credit"));
-				List<ArticleVendu> lsta = new ArrayList<>();
 				List<Enchere> lste = new ArrayList<>();
-				utilisateur.setListeArticleVendu(lsta);
 				utilisateur.setListeEnchere(lste);
 				utilisateur.setAdministrateur(rs.getBoolean("administrateur"));
 			}
@@ -111,9 +109,7 @@ public class DAOUtilisateurImpl implements DAOUtilisateur{
 				utilisateur.setVille(rs.getString("ville"));
 				utilisateur.setMotDePasse(rs.getString("mot_de_passe"));
 				utilisateur.setCredit(rs.getInt("credit"));
-				List<ArticleVendu> lsta = new ArrayList<>();
 				List<Enchere> lste = new ArrayList<>();
-				utilisateur.setListeArticleVendu(lsta);
 				utilisateur.setListeEnchere(lste);
 				utilisateur.setAdministrateur(rs.getBoolean("administrateur"));
 			}
@@ -143,9 +139,8 @@ public class DAOUtilisateurImpl implements DAOUtilisateur{
 				utilisateur.setVille(rs.getString("ville"));
 				utilisateur.setMotDePasse(rs.getString("mot_de_passe"));
 				utilisateur.setCredit(rs.getInt("credit"));
-				List<ArticleVendu> lsta = new ArrayList<>();
 				List<Enchere> lste = new ArrayList<>();
-				utilisateur.setListeArticleVendu(lsta);
+
 				utilisateur.setListeEnchere(lste);
 				utilisateur.setAdministrateur(rs.getBoolean("administrateur"));
 			}

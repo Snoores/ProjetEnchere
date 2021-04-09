@@ -43,6 +43,8 @@ public class DAOEnchereImpl implements DAOEnchere{
             System.err.println(e.getMessage());
         }
 
+        System.out.println(enchere.toString());
+
         return enchere;
     }
 
@@ -135,7 +137,7 @@ public class DAOEnchereImpl implements DAOEnchere{
             PreparedStatement pStmt = cnx.prepareStatement(INSERT);
 
             pStmt.setInt(1, enchere.getNoUtilisateur()); //nom_article
-            pStmt.setInt(2, enchere.getNoUtilisateur()); //description
+            pStmt.setInt(2, enchere.getNoArticle()); //description
             pStmt.setDate(3, java.sql.Date.valueOf(enchere.getDateEnchere())); //date_debut_enchere
             pStmt.setInt(4, enchere.getMontantEnchere()); //date_debut_enchere
             pStmt.executeUpdate();
@@ -154,8 +156,8 @@ public class DAOEnchereImpl implements DAOEnchere{
             pStmt.setInt(2, enchere.getNoArticle());
             pStmt.setDate(3, java.sql.Date.valueOf(enchere.getDateEnchere()));
             pStmt.setInt(4, enchere.getMontantEnchere());
-            pStmt.setInt(1, enchere.getNoUtilisateur());
-            pStmt.setInt(2, enchere.getNoArticle());
+            pStmt.setInt(5, enchere.getNoUtilisateur());
+            pStmt.setInt(6, enchere.getNoArticle());
 
 
             pStmt.executeUpdate();

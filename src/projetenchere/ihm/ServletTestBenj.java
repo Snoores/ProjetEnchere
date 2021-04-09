@@ -21,9 +21,8 @@ public class ServletTestBenj extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 
-	// TODO Auto-generated method stub
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Utilisateur utilisateur = new Utilisateur (1,"azer","reg","vrve","tert@erigei.com","0101010101","azer","32568","zefaz","aaaaaa",2000, null, null, false);
+		Utilisateur utilisateur = new Utilisateur (1,"azer","reg","vrve","tert@erigei.com","0101010101","azer","32568","zefaz","aaaaaa",2000, null, false);
 		Categorie categorie = new Categorie (2, "Vetements");
 
 		ArticleVendu articleVendu = new ArticleVendu(
@@ -40,41 +39,42 @@ public class ServletTestBenj extends HttpServlet {
 		new Retrait(),
 		new Enchere());
 
-		Enchere enchere = new Enchere(utilisateur.getNoUtilisateur(), articleVendu.getNoArticle(), LocalDate.of(2021, 04, 9), 9000);
+		Enchere enchere = new Enchere(utilisateur.getNoUtilisateur(), articleVendu.getNoArticle(), LocalDate.of(2021, 04, 9), 12000);
 
-		DAOArticleVendu daoArticleVendu = DAOFactory.getDAOArticleVendu();
-/*		System.out.println("ArticleVendu By No Article");
+		/*DAOArticleVendu daoArticleVendu = DAOFactory.getDAOArticleVendu();
+		System.out.println("ArticleVendu By No Article");
 		daoArticleVendu.SelectArticleVenduByNoArticle(1);
 		System.out.println("ArticleVendu By categorie");
-		daoArticleVendu.SelectArticleVenduByCategorie(categorie);*/
+		daoArticleVendu.SelectArticleVenduByCategorie(categorie);
 		System.out.println("ArticleVendu By User");
 		daoArticleVendu.SelectArticleVenduByUtilisateur(utilisateur);
-/*
+
 		System.out.println("ArticleVendu By User and State");
 		daoArticleVendu.SelectArticleVenduByUtilisateurAndEtat(utilisateur, "EC");
 		System.out.println("ArticleVendu By State");
 		daoArticleVendu.SelectArticleVenduByEtat("EC");
 		System.out.println("ArticleVendu All");
-		daoArticleVendu.SelectAllArticleVendu();
-*/
+		daoArticleVendu.SelectAllArticleVendu();*/
 
-/*
+
+
 		DAOEnchere daoEnchere = DAOFactory.getDAOEnchere();
-		System.out.println("Enchere by NoArticle");
-		daoEnchere.SelectEnchereByNoArticle(1);
+/*		System.out.println("Enchere by NoArticle");
+		daoEnchere.SelectEnchereByNoArticle(2);
 		System.out.println("Enchere All");
 		daoEnchere.SelectAllEnchere();
 		System.out.println("Enchere by Article");
 		daoEnchere.SelectEnchereByArticle(articleVendu);
 		System.out.println("Enchere by Utilisateur");
-		daoEnchere.SelectEnchereByUtilisateur(utilisateur);*/
+		daoEnchere.SelectEnchereByUtilisateur(utilisateur);
+		daoEnchere.InsertEnchere(enchere)*/
+
+		daoEnchere.UpdateEnchere(enchere);
+
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

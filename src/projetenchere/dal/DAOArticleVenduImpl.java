@@ -17,12 +17,16 @@ import java.util.List;
 
 public class DAOArticleVenduImpl implements DAOArticleVendu {
 
-    private final static String SELECT_ALL = "SELECT * FROM ARTICLES_VENDUS AV INNER JOIN UTILISATEURS U ON AV.no_utilisateur = U.no_utilisateur INNER JOIN CATEGORIES C ON AV.no_categorie = C.no_categorie INNER JOIN ENCHERES E ON E.no_article = AV.no_article ORDER BY date_debut_encheres";
-    private final static String SELECT_BY_UTILISATEUR = "SELECT * FROM ARTICLES_VENDUS AV INNER JOIN UTILISATEURS U ON AV.no_utilisateur = U.no_utilisateur INNER JOIN CATEGORIES C ON AV.no_categorie = C.no_categorie INNER JOIN ENCHERES E ON E.no_article = AV.no_article WHERE AV.no_utilisateur = ? ORDER BY date_debut_encheres";
-    private final static String SELECT_BY_UTILISATEUR_AND_ETAT = "SELECT * FROM ARTICLES_VENDUS AV INNER JOIN UTILISATEURS U ON AV.no_utilisateur = U.no_utilisateur INNER JOIN CATEGORIES C ON AV.no_categorie = C.no_categorie INNER JOIN ENCHERES E ON E.no_article = AV.no_article WHERE AV.no_utilisateur = ? AND etat_vente = ? ORDER BY date_debut_encheres";
-    private final static String SELECT_BY_ETAT = "SELECT * FROM ARTICLES_VENDUS AV INNER JOIN UTILISATEURS U ON AV.no_utilisateur = U.no_utilisateur INNER JOIN CATEGORIES C ON AV.no_categorie = C.no_categorie INNER JOIN ENCHERES E ON E.no_article = AV.no_article WHERE etat_vente = ? ORDER BY date_debut_encheres";
-    private final static String SELECT_BY_NUMERO_ARTICLE = "SELECT * FROM ARTICLES_VENDUS AV INNER JOIN UTILISATEURS U ON AV.no_utilisateur = U.no_utilisateur INNER JOIN CATEGORIES C ON AV.no_categorie = C.no_categorie INNER JOIN ENCHERES E ON E.no_article = AV.no_article WHERE AV.no_article = ?";
-    private final static String SELECT_BY_CATEGORIE = "SELECT * FROM ARTICLES_VENDUS AV INNER JOIN UTILISATEURS U ON AV.no_utilisateur = U.no_utilisateur INNER JOIN CATEGORIES C ON AV.no_categorie = C.no_categorie INNER JOIN ENCHERES E ON E.no_article = AV.no_article WHERE AV.no_categorie = ? ORDER BY date_debut_encheres";
+    DAOCategorie daoCategorie = new DAOCategorieImpl();
+    DAOEnchere daoEnchere = new DAOEnchereImpl();
+    DAOUtilisateur daoUtilisateur = new DAOUtilisateurImpl();
+
+    private final static String SELECT_ALL = "SELECT * FROM ARTICLES_VENDUS ORDER BY date_debut_encheres";
+    private final static String SELECT_BY_UTILISATEUR = "SELECT * FROM ARTICLES_VENDUS WHERE no_utilisateur = ? ORDER BY date_debut_encheres";
+    private final static String SELECT_BY_UTILISATEUR_AND_ETAT = "SELECT * FROM ARTICLES_VENDUS WHERE no_utilisateur = ? AND etat_vente = ? ORDER BY date_debut_encheres";
+    private final static String SELECT_BY_ETAT = "SELECT * FROM ARTICLES_VENDUS WHERE etat_vente = ? ORDER BY date_debut_encheres";
+    private final static String SELECT_BY_NUMERO_ARTICLE = "SELECT * FROM ARTICLES_VENDUS WHERE no_article = ?";
+    private final static String SELECT_BY_CATEGORIE = "SELECT * FROM ARTICLES_VENDUS WHERE no_categorie = ? ORDER BY date_debut_encheres";
 
     private final static String INSERT = "INSERT INTO ARTICLES_VENDUS (nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,no_utilisateur,no_categorie,etat_vente) VALUES(?,?,?,?,?,?,?,?,?)";
 
@@ -30,8 +34,6 @@ public class DAOArticleVenduImpl implements DAOArticleVendu {
 
     private final static String UPDATE = "UPDATE ARTICLES_VENDUS Set nom_article=?, description=?, date_debut_encheres=? ,date_fin_encheres=? ,prix_initial=?, prix_vente=?, no_utilisateur=?, no_categorie=?, etat_vente=? WHERE no_article=?";
 
-
-    //rs.getInt("E.no_utilisateur"), rs.getString("E.pseudo"), rs.getString("E.prenom"), rs.getString("E.nom"), rs.getString("E.email"), rs.getString("telephone"), rs.getString("rue"), rs.getString("code_postal"), rs.getString("ville"), rs.getString("mot_de_passe"), rs.getInt("credit"), rs.getBoolean("administrateur")
 
     @Override
     public List<ArticleVendu> SelectArticleVenduByUtilisateur(Utilisateur utilisateur) {
@@ -51,10 +53,10 @@ public class DAOArticleVenduImpl implements DAOArticleVendu {
                 articleVendu.setDateFinEncheres(rs.getDate("date_fin_encheres").toLocalDate());
                 articleVendu.setMiseAPrix(rs.getInt("prix_initial"));
                 articleVendu.setPrixVente(rs.getInt("prix_vente"));
-                articleVendu.setCategorie(new Categorie());
+                articleVendu.setCategorie(daoCategorie.SelectCategorieByNoCategorie(rs.getInt("no_categorie")));
                 articleVendu.setEtatVente(rs.getString("etat_vente"));
-                articleVendu.setEnchere(new Enchere());
-                articleVendu.setUtilisateur(new Utilisateur());
+                articleVendu.setEnchere(daoEnchere.SelectEnchereByNoArticle(rs.getInt("no_article")));
+                articleVendu.setUtilisateur(daoUtilisateur.SelectUserByNoUtilisateur(rs.getInt("no_utilisateur")));
 
                 listeArticleVendu.add(articleVendu);
 
@@ -89,10 +91,10 @@ public class DAOArticleVenduImpl implements DAOArticleVendu {
                 articleVendu.setDateFinEncheres(rs.getDate("date_fin_encheres").toLocalDate());
                 articleVendu.setMiseAPrix(rs.getInt("prix_initial"));
                 articleVendu.setPrixVente(rs.getInt("prix_vente"));
-                articleVendu.setUtilisateur(new Utilisateur());
-                articleVendu.setCategorie(new Categorie());
+                articleVendu.setCategorie(daoCategorie.SelectCategorieByNoCategorie(rs.getInt("no_categorie")));
                 articleVendu.setEtatVente(rs.getString("etat_vente"));
-                articleVendu.setEnchere(new Enchere());
+                articleVendu.setEnchere(daoEnchere.SelectEnchereByNoArticle(rs.getInt("no_article")));
+                articleVendu.setUtilisateur(daoUtilisateur.SelectUserByNoUtilisateur(rs.getInt("no_utilisateur")));
             }
 
         } catch (SQLException e) {
@@ -122,10 +124,10 @@ public class DAOArticleVenduImpl implements DAOArticleVendu {
                 articleVendu.setDateFinEncheres(rs.getDate("date_fin_encheres").toLocalDate());
                 articleVendu.setMiseAPrix(rs.getInt("prix_initial"));
                 articleVendu.setPrixVente(rs.getInt("prix_vente"));
-                articleVendu.setUtilisateur(new Utilisateur());
-                articleVendu.setCategorie(new Categorie());
+                articleVendu.setCategorie(daoCategorie.SelectCategorieByNoCategorie(rs.getInt("no_categorie")));
                 articleVendu.setEtatVente(rs.getString("etat_vente"));
-                articleVendu.setEnchere(new Enchere());
+                articleVendu.setEnchere(daoEnchere.SelectEnchereByNoArticle(rs.getInt("no_article")));
+                articleVendu.setUtilisateur(daoUtilisateur.SelectUserByNoUtilisateur(rs.getInt("no_utilisateur")));
 
                 listeArticleVendu.add(articleVendu);
             }
@@ -161,10 +163,10 @@ public class DAOArticleVenduImpl implements DAOArticleVendu {
                 articleVendu.setDateFinEncheres(rs.getDate("date_fin_encheres").toLocalDate());
                 articleVendu.setMiseAPrix(rs.getInt("prix_initial"));
                 articleVendu.setPrixVente(rs.getInt("prix_vente"));
-                articleVendu.setUtilisateur(new Utilisateur());
-                articleVendu.setCategorie(new Categorie());
+                articleVendu.setCategorie(daoCategorie.SelectCategorieByNoCategorie(rs.getInt("no_categorie")));
                 articleVendu.setEtatVente(rs.getString("etat_vente"));
-                articleVendu.setEnchere(new Enchere());
+                articleVendu.setEnchere(daoEnchere.SelectEnchereByNoArticle(rs.getInt("no_article")));
+                articleVendu.setUtilisateur(daoUtilisateur.SelectUserByNoUtilisateur(rs.getInt("no_utilisateur")));
 
                 listeArticleVendu.add(articleVendu);
             }
@@ -199,10 +201,10 @@ public class DAOArticleVenduImpl implements DAOArticleVendu {
                 articleVendu.setDateFinEncheres(rs.getDate("date_fin_encheres").toLocalDate());
                 articleVendu.setMiseAPrix(rs.getInt("prix_initial"));
                 articleVendu.setPrixVente(rs.getInt("prix_vente"));
-                articleVendu.setUtilisateur(new Utilisateur());
-                articleVendu.setCategorie(new Categorie());
+                articleVendu.setCategorie(daoCategorie.SelectCategorieByNoCategorie(rs.getInt("no_categorie")));
                 articleVendu.setEtatVente(rs.getString("etat_vente"));
-                articleVendu.setEnchere(new Enchere());
+                articleVendu.setEnchere(daoEnchere.SelectEnchereByNoArticle(rs.getInt("no_article")));
+                articleVendu.setUtilisateur(daoUtilisateur.SelectUserByNoUtilisateur(rs.getInt("no_utilisateur")));
 
                 listeArticleVendu.add(articleVendu);
             }
@@ -235,10 +237,10 @@ public class DAOArticleVenduImpl implements DAOArticleVendu {
                 articleVendu.setDateFinEncheres(rs.getDate("date_fin_encheres").toLocalDate());
                 articleVendu.setMiseAPrix(rs.getInt("prix_initial"));
                 articleVendu.setPrixVente(rs.getInt("prix_vente"));
-                articleVendu.setUtilisateur(new Utilisateur());
-                articleVendu.setCategorie(new Categorie());
+                articleVendu.setCategorie(daoCategorie.SelectCategorieByNoCategorie(rs.getInt("no_categorie")));
                 articleVendu.setEtatVente(rs.getString("etat_vente"));
-                articleVendu.setEnchere(new Enchere());
+                articleVendu.setEnchere(daoEnchere.SelectEnchereByNoArticle(rs.getInt("no_article")));
+                articleVendu.setUtilisateur(daoUtilisateur.SelectUserByNoUtilisateur(rs.getInt("no_utilisateur")));
 
                 listeArticleVendu.add(articleVendu);
             }
