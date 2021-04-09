@@ -16,6 +16,7 @@ public interface DAOUtilisateur {
     Utilisateur SelectUserByNoUtilisateur(int noUtilisateur);
 
     Utilisateur UpdateUtilisateur(Utilisateur utilisateur);
+    Utilisateur UpdateCreditUtilisateur(Utilisateur utilisateur, int newCredit);
 
     void InsertUtilisateur(Utilisateur utilisateur);
     void DeleteUtilisateur(Utilisateur utilisateur);

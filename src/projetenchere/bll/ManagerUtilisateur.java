@@ -17,4 +17,5 @@ public interface ManagerUtilisateur {
     public void CreateUtilisateur(Utilisateur utilisateur);
     public void DeleteUtilisateur(Utilisateur utilisateur);
     public void UpdateUtilisateur(Utilisateur utilisateur);
+    public void UpdateCreditUtilisateur(Utilisateur utilisateur, int newCredit);
 }

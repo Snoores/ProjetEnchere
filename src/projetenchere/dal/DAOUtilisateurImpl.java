@@ -20,6 +20,7 @@ public class DAOUtilisateurImpl implements DAOUtilisateur{
 	private final static String SELECTBYEMAIL = "SELECT no_utilisateur,pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur FROM UTILISATEURS WHERE email=?";
 	private final static String DELETE = "DELETE FROM UTILISATEURS WHERE no_utilisateur=?";
 	private final static String UPDATE = "UPDATE UTILISATEURS set pseudo=?, nom=?, prenom=?, email=?, telephone=?, rue=?, code_postal=?, ville=?, mot_de_passe=?, credit=?, administrateur=? WHERE no_utilisateur=?";
+	private final static String UPDATECREDIT = "UPDATE UTILISATEURS set credit=? WHERE no_utilisateur=?";
 	
 	@Override
     public Utilisateur UtilisateurConnectionByEmail(String email, String password) {
@@ -171,6 +172,21 @@ public class DAOUtilisateurImpl implements DAOUtilisateur{
 			pStmt.setString(9, utilisateur.getMotDePasse());
 			pStmt.setInt(10, utilisateur.getCredit());
 			pStmt.setBoolean(11, utilisateur.isAdministrateur());
+			pStmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    	
+		return utilisateur;
+    }
+    
+    @Override
+    public Utilisateur UpdateCreditUtilisateur(Utilisateur utilisateur, int newCredit) {
+    	try (Connection cnx = ConnectionProvider.getConnection()) {
+			PreparedStatement pStmt = cnx.prepareStatement(UPDATECREDIT);
+			pStmt.setInt(1, newCredit);
+			pStmt.setInt(2, utilisateur.getNoUtilisateur());
 			pStmt.executeUpdate();
 			
 		} catch (Exception e) {
