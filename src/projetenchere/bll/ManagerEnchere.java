@@ -9,7 +9,7 @@ import java.util.List;
 public interface ManagerEnchere {
 
     Utilisateur GetGagnantEnchere(Enchere enchere);
-    Enchere CheckMeilleureOffre(Enchere enchere, int offre);
+    Enchere CheckMeilleureOffre(Enchere oldEnchere, Enchere newEnchere);
 
     public List<Enchere> GetAllEnchere();
     public void CreateEnchere(Enchere enchere);

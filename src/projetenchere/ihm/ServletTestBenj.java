@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import projetenchere.bll.ManagerArticleVendu;
+import projetenchere.bll.ManagerFactory;
+import projetenchere.bll.ManagerRetrait;
 import projetenchere.bo.*;
 import projetenchere.dal.DAOArticleVendu;
 import projetenchere.dal.DAOEnchere;
@@ -25,16 +28,16 @@ public class ServletTestBenj extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Utilisateur utilisateur = new Utilisateur(1, "azer", "reg", "vrve", "tert@erigei.com", "0101010101", "azer", "32568", "zefaz", "aaaaaa", 2000, null, false);
         Categorie categorie = new Categorie(2, "Vetements");
-        Retrait retrait = new Retrait(1, "rue du fou", "13000", "Marseille");
+        Retrait retrait = new Retrait(12, "Rue du ballec", "43210", "Paris");
 
         ArticleVendu articleVendu = new ArticleVendu(
-                12,
-                "Chaussure 2",
-                "UPDATED La deuxieme chaussure du padre",
-                LocalDate.of(2020, 11, 1),
-                LocalDate.of(2020, 12, 1),
-                600,
-                900,
+                13,
+                "Chaussure 3",
+                "Qui a trois pied ?",
+                LocalDate.of(2021, 1, 1),
+                LocalDate.of(2021, 1, 3),
+                6200,
+                1000244,
                 utilisateur,
                 categorie,
                 "EC",
@@ -47,7 +50,7 @@ public class ServletTestBenj extends HttpServlet {
                 LocalDate.of(2021, 04, 9),
                 12000);
 
-/*      DAOArticleVendu daoArticleVendu = DAOFactory.getDAOArticleVendu();
+        /*DAOArticleVendu daoArticleVendu = DAOFactory.getDAOArticleVendu();
 		daoArticleVendu.SelectArticleVenduByNoArticle(1);
 		daoArticleVendu.SelectArticleVenduByCategorie(categorie);
 		daoArticleVendu.SelectArticleVenduByUtilisateur(utilisateur);
@@ -56,7 +59,7 @@ public class ServletTestBenj extends HttpServlet {
 		daoArticleVendu.SelectAllArticleVendu();*/
 
 
-/*      DAOEnchere daoEnchere = DAOFactory.getDAOEnchere();
+        /*DAOEnchere daoEnchere = DAOFactory.getDAOEnchere();
 		System.out.println("Enchere by NoArticle");
 		daoEnchere.SelectEnchereByNoArticle(2);
 		System.out.println("Enchere All");
@@ -69,12 +72,32 @@ public class ServletTestBenj extends HttpServlet {
 		daoEnchere.UpdateEnchere(enchere);
         daoEnchere.DeleteEnchere(enchere);*/
 
-/*        DAORetrait daoRetrait = DAOFactory.getDAORetrait();
+        /*DAORetrait daoRetrait = DAOFactory.getDAORetrait();
         daoRetrait.SelectAllRetrait();
         daoRetrait.SelectByNoArticle(article);
         daoRetrait.InsertRetrait(retrait);
         daoRetrait.UpdateRetrait(retrait);
         daoRetrait.DeleteRetrait(retrait);*/
+
+        /*ManagerRetrait managerRetrait = ManagerFactory.getManagerRetrait();
+        managerRetrait.CreateRetrait(retrait);
+        for (Retrait ret : managerRetrait.GetAllRetrait()) ret.toString();
+        managerRetrait.GetRetraitByNoArticle(articleVendu.getNoArticle()).toString();
+        managerRetrait.UpdateRetrait(retrait);
+        managerRetrait.DeleteRetrait(retrait);*/
+
+        /*ManagerArticleVendu managerArticleVendu = ManagerFactory.getManagerArticleVendu();
+        managerArticleVendu.GetAllArticleVendu();
+        managerArticleVendu.GetArticleVenduByNoArticle(1);
+        managerArticleVendu.GetArticleVenduByEtat("EC");
+        managerArticleVendu.GetArticleVenduByCategorie(categorie);
+        managerArticleVendu.GetArticleVenduByUtilisateur(utilisateur);
+        managerArticleVendu.GetArticleVenduByUtilisateurAndEtat(utilisateur, "EC");
+        managerArticleVendu.CreateArticleVendu(articleVendu);
+        managerArticleVendu.UpdateArticleVendu(articleVendu);
+        managerArticleVendu.DeleteArticleVendu(articleVendu);*/
+
+        //TODO: Test ManagerEnchere
     }
 
 
