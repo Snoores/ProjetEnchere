@@ -9,13 +9,7 @@ public class Retrait {
     public Retrait() {
     }
 
-    public Retrait(String rue, String codePostal, String ville) {
-        this.rue = rue;
-        this.codePostal = codePostal;
-        this.ville = ville;
-    }
-
-    public Retrait(String rue, String codePostal, String ville, int no_article) {
+    public Retrait(int no_article, String rue, String codePostal, String ville) {
         this.rue = rue;
         this.codePostal = codePostal;
         this.ville = ville;
@@ -50,7 +44,17 @@ public class Retrait {
         return no_article;
     }
 
-    public void setArticleVendu(ArticleVendu articleVendu) {
+    public void setNoArticle(int no_article) {
         this.no_article = no_article;
+    }
+
+    @Override
+    public String toString() {
+        return "Retrait{" +
+                "rue='" + rue + '\'' +
+                ", codePostal='" + codePostal + '\'' +
+                ", ville='" + ville + '\'' +
+                ", no_article=" + no_article +
+                '}';
     }
 }

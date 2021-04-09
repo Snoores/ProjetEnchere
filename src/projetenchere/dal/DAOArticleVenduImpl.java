@@ -2,8 +2,6 @@ package projetenchere.dal;
 
 import projetenchere.bo.ArticleVendu;
 import projetenchere.bo.Categorie;
-import projetenchere.bo.Enchere;
-import projetenchere.bo.Retrait;
 import projetenchere.bo.Utilisateur;
 
 

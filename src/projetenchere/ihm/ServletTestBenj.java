@@ -12,54 +12,52 @@ import projetenchere.bo.*;
 import projetenchere.dal.DAOArticleVendu;
 import projetenchere.dal.DAOEnchere;
 import projetenchere.dal.DAOFactory;
+import projetenchere.dal.DAORetrait;
 
 /**
  * Servlet implementation class ServletTestBenj
  */
 @WebServlet("/ServletTestBenj")
 public class ServletTestBenj extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Utilisateur utilisateur = new Utilisateur (1,"azer","reg","vrve","tert@erigei.com","0101010101","azer","32568","zefaz","aaaaaa",2000, null, false);
-		Categorie categorie = new Categorie (2, "Vetements");
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Utilisateur utilisateur = new Utilisateur(1, "azer", "reg", "vrve", "tert@erigei.com", "0101010101", "azer", "32568", "zefaz", "aaaaaa", 2000, null, false);
+        Categorie categorie = new Categorie(2, "Vetements");
+        Retrait retrait = new Retrait(1, "rue du fou", "13000", "Marseille");
 
-		ArticleVendu articleVendu = new ArticleVendu(
-		12,
-		"Chaussure 2",
-		"UPDATED La deuxieme chaussure du padre",
-		LocalDate.of(2020, 11, 1),
-		LocalDate.of(2020, 12, 1),
-		600,
-		900,
-		utilisateur,
-		categorie,
-		"EC",
-		new Retrait(),
-		new Enchere());
+        ArticleVendu articleVendu = new ArticleVendu(
+                12,
+                "Chaussure 2",
+                "UPDATED La deuxieme chaussure du padre",
+                LocalDate.of(2020, 11, 1),
+                LocalDate.of(2020, 12, 1),
+                600,
+                900,
+                utilisateur,
+                categorie,
+                "EC",
+                new Retrait(),
+                new Enchere());
 
-		Enchere enchere = new Enchere(utilisateur.getNoUtilisateur(), articleVendu.getNoArticle(), LocalDate.of(2021, 04, 9), 12000);
+        Enchere enchere = new Enchere(
+                utilisateur.getNoUtilisateur(),
+                articleVendu.getNoArticle(),
+                LocalDate.of(2021, 04, 9),
+                12000);
 
-		/*DAOArticleVendu daoArticleVendu = DAOFactory.getDAOArticleVendu();
-		System.out.println("ArticleVendu By No Article");
+/*      DAOArticleVendu daoArticleVendu = DAOFactory.getDAOArticleVendu();
 		daoArticleVendu.SelectArticleVenduByNoArticle(1);
-		System.out.println("ArticleVendu By categorie");
 		daoArticleVendu.SelectArticleVenduByCategorie(categorie);
-		System.out.println("ArticleVendu By User");
 		daoArticleVendu.SelectArticleVenduByUtilisateur(utilisateur);
-
-		System.out.println("ArticleVendu By User and State");
 		daoArticleVendu.SelectArticleVenduByUtilisateurAndEtat(utilisateur, "EC");
-		System.out.println("ArticleVendu By State");
 		daoArticleVendu.SelectArticleVenduByEtat("EC");
-		System.out.println("ArticleVendu All");
 		daoArticleVendu.SelectAllArticleVendu();*/
 
 
-
-		DAOEnchere daoEnchere = DAOFactory.getDAOEnchere();
-/*		System.out.println("Enchere by NoArticle");
+/*      DAOEnchere daoEnchere = DAOFactory.getDAOEnchere();
+		System.out.println("Enchere by NoArticle");
 		daoEnchere.SelectEnchereByNoArticle(2);
 		System.out.println("Enchere All");
 		daoEnchere.SelectAllEnchere();
@@ -67,15 +65,21 @@ public class ServletTestBenj extends HttpServlet {
 		daoEnchere.SelectEnchereByArticle(articleVendu);
 		System.out.println("Enchere by Utilisateur");
 		daoEnchere.SelectEnchereByUtilisateur(utilisateur);
-		daoEnchere.InsertEnchere(enchere)*/
-
+		daoEnchere.InsertEnchere(enchere);
 		daoEnchere.UpdateEnchere(enchere);
+        daoEnchere.DeleteEnchere(enchere);*/
 
-	}
+/*        DAORetrait daoRetrait = DAOFactory.getDAORetrait();
+        daoRetrait.SelectAllRetrait();
+        daoRetrait.SelectByNoArticle(article);
+        daoRetrait.InsertRetrait(retrait);
+        daoRetrait.UpdateRetrait(retrait);
+        daoRetrait.DeleteRetrait(retrait);*/
+    }
 
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
-	}
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doGet(request, response);
+    }
 
 }
