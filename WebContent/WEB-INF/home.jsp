@@ -17,7 +17,7 @@
 						<h2>Listes des enchères :</h2>
 					</div>
 					<div class="connection-btn">
-						<a class="btn btn-primary" href="${pageContext.request.contextPath}/connection">Connexion</a>
+						<a class="btn btn-primary" href="${pageContext.request.contextPath}/connexion">Connexion</a>
 						<a class="btn btn-secondary">Déconnexion</a>
 					</div>
 				</div>

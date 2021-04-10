@@ -18,15 +18,15 @@ import projetenchere.dal.DAORetrait;
 /**
  * Servlet implementation class ServletHome
  */
-@WebServlet(urlPatterns = {"/connection"})
-public class ServletConnection extends HttpServlet {
+@WebServlet(urlPatterns = {"/connexion"})
+public class ServletConnexion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/pages/connection.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/pages/connexion.jsp");
 		rd.forward(request, response);
 	}
 
