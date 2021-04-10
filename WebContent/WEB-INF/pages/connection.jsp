@@ -52,4 +52,4 @@
 </div>
 </body>
 </html>
-<style><%@include file="/css/style.css"%></style>
+<style><%@include file="/resources/css/style.css"%></style>
