@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import projetenchere.bll.ManagerArticleVendu;
+import projetenchere.bll.ManagerEnchere;
 import projetenchere.bll.ManagerFactory;
 import projetenchere.bll.ManagerRetrait;
 import projetenchere.bo.*;
@@ -45,10 +46,10 @@ public class ServletTestBenj extends HttpServlet {
                 new Enchere());
 
         Enchere enchere = new Enchere(
-                utilisateur.getNoUtilisateur(),
-                articleVendu.getNoArticle(),
+                3,
+                3,
                 LocalDate.of(2021, 04, 9),
-                12000);
+                25000);
 
         /*DAOArticleVendu daoArticleVendu = DAOFactory.getDAOArticleVendu();
 		daoArticleVendu.SelectArticleVenduByNoArticle(1);
@@ -97,7 +98,15 @@ public class ServletTestBenj extends HttpServlet {
         managerArticleVendu.UpdateArticleVendu(articleVendu);
         managerArticleVendu.DeleteArticleVendu(articleVendu);*/
 
-        //TODO: Test ManagerEnchere
+        /*ManagerEnchere managerEnchere = ManagerFactory.getManagerEnchere();
+        managerEnchere.CreateEnchere(enchere);
+        managerEnchere.GetAllEnchere();
+        managerEnchere.GetGagnantEnchere(enchere);
+        managerEnchere.GetEnchereByArticle(articleVendu);
+        managerEnchere.GetEnchereByNoArticle(1);
+        managerEnchere.GetEnchereByUtilisateur(utilisateur);
+        managerEnchere.UpdateEnchere(enchere);
+        managerEnchere.DeleteEnchere(enchere);*/
     }
 
 

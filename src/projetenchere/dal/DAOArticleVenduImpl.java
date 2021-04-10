@@ -65,10 +65,6 @@ public class DAOArticleVenduImpl implements DAOArticleVendu {
             System.err.println(e.getMessage());
         }
 
-        for (ArticleVendu artVendu : listeArticleVendu) {
-            System.out.println(artVendu.toString());
-        }
-
         return listeArticleVendu;
     }
 
@@ -98,8 +94,6 @@ public class DAOArticleVenduImpl implements DAOArticleVendu {
         } catch (SQLException e) {
             System.err.println(e.getMessage());
         }
-
-        System.out.println(articleVendu.toString());
 
         return articleVendu;
     }
@@ -133,10 +127,6 @@ public class DAOArticleVenduImpl implements DAOArticleVendu {
 
         } catch (SQLException e) {
             System.err.println(e.getMessage());
-        }
-
-        for (ArticleVendu artVendu : listeArticleVendu) {
-            System.out.println(artVendu.toString());
         }
 
         return listeArticleVendu;
@@ -212,10 +202,6 @@ public class DAOArticleVenduImpl implements DAOArticleVendu {
             System.err.println(e.getMessage());
         }
 
-        for (ArticleVendu artVendu : listeArticleVendu) {
-            System.out.println(artVendu.toString());
-        }
-
         return listeArticleVendu;
     }
 
@@ -246,10 +232,6 @@ public class DAOArticleVenduImpl implements DAOArticleVendu {
 
         } catch (SQLException e) {
             System.err.println(e.getMessage());
-        }
-
-        for (ArticleVendu artVendu : listeArticleVendu) {
-            System.out.println(artVendu.toString());
         }
 
         return listeArticleVendu;

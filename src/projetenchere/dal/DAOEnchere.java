@@ -14,6 +14,6 @@ public interface DAOEnchere {
 
     List<Enchere> SelectAllEnchere();
     void InsertEnchere(Enchere enchere);
-    Enchere UpdateEnchere(Enchere enchere);
+    void UpdateEnchere(Enchere enchere);
     void DeleteEnchere(Enchere enchere);
 }

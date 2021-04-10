@@ -21,7 +21,7 @@ public class DAOEnchereImpl implements DAOEnchere{
 
     private final static String INSERT = "INSERT INTO ENCHERES (no_utilisateur,no_article,date_enchere,montant_enchere) VALUES(?,?,?,?)";
 
-    private final static String UPDATE = "UPDATE ENCHERES SET no_utilisateur=?,no_article=?,date_enchere=?,montant_enchere=? WHERE no_utilisateur=? AND no_article=?";
+    private final static String UPDATE = "UPDATE ENCHERES SET no_utilisateur=?,no_article=?,date_enchere=?,montant_enchere=? WHERE no_article=?";
 
     private final static String DELETE = "DELETE FROM ENCHERES WHERE no_utilisateur=? AND no_article=?";
 
@@ -42,8 +42,6 @@ public class DAOEnchereImpl implements DAOEnchere{
         } catch (SQLException e) {
             System.err.println(e.getMessage());
         }
-
-        System.out.println(enchere.toString());
 
         return enchere;
     }
@@ -70,10 +68,6 @@ public class DAOEnchereImpl implements DAOEnchere{
             System.err.println(e.getMessage());
         }
 
-        for(Enchere ench : listeEnchere){
-            System.out.println(ench.toString());
-        }
-
         return listeEnchere;
     }
 
@@ -97,8 +91,6 @@ public class DAOEnchereImpl implements DAOEnchere{
         } catch (SQLException e) {
             System.err.println(e.getMessage());
         }
-
-        System.out.println(enchere.toString());
 
         return enchere;
     }
@@ -124,10 +116,6 @@ public class DAOEnchereImpl implements DAOEnchere{
             System.err.println(e.getMessage());
         }
 
-        for (Enchere enchere : listeEnchere) {
-            System.out.println(enchere.toString());
-        }
-
         return listeEnchere;
     }
 
@@ -148,7 +136,7 @@ public class DAOEnchereImpl implements DAOEnchere{
     }
 
     @Override
-    public Enchere UpdateEnchere(Enchere enchere) {
+    public void UpdateEnchere(Enchere enchere) {
 
         try(Connection cnx = ConnectionProvider.getConnection()) {
             PreparedStatement pStmt = cnx.prepareStatement(UPDATE);
@@ -156,19 +144,13 @@ public class DAOEnchereImpl implements DAOEnchere{
             pStmt.setInt(2, enchere.getNoArticle());
             pStmt.setDate(3, java.sql.Date.valueOf(enchere.getDateEnchere()));
             pStmt.setInt(4, enchere.getMontantEnchere());
-            pStmt.setInt(5, enchere.getNoUtilisateur());
-            pStmt.setInt(6, enchere.getNoArticle());
-
+            pStmt.setInt(5, enchere.getNoArticle());
 
             pStmt.executeUpdate();
-
 
         } catch (SQLException e) {
             System.err.println(e.getMessage());
         }
-
-
-        return enchere; //TODO: Utilité ? Je crois qu'il y'en a pas. J'ai regardé les autres tps, y'en a aucun qui retourne d'objet (pas de resultset sur un update)
     }
 
     @Override

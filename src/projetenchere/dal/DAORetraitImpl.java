@@ -42,10 +42,6 @@ public class DAORetraitImpl implements DAORetrait{
             System.err.println(e.getMessage());
         }
 
-        for (Retrait retr : listeRetrait) {
-            System.out.println(retr.toString());
-        }
-
         return listeRetrait;
     }
 
