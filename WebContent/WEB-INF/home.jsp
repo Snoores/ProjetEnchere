@@ -9,7 +9,7 @@
 			<!-- <div class="container"> -->
 				<div class="nav-center">
 					<h1 class="h1-accueil">Enchères</h1>
-					<img src="https://www.legalia.fr/wp-content/uploads/sites/2084/2016/12/enchere.png" height="300" width="300">
+					<img src="${pageContext.request.contextPath}/resources/img/testimg.png">
 				</div>
 					
 				<div class="col-md-12 col-center">
@@ -18,11 +18,11 @@
 					</div>
 					<div class="connection-btn">
 						<a class="btn btn-primary" href="${pageContext.request.contextPath}/connection">Connexion</a>
-						<a class="btn btn-secondary">Déconnection</a>
+						<a class="btn btn-secondary">Déconnexion</a>
 					</div>
 				</div>
 <!-- 		</div>
  -->		</div>
 	</body>
 </html>
-<style><%@include file="/css/style.css"%></style>
+<style><%@include file="/resources/css/style.css"%></style>
