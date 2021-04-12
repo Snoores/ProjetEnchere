@@ -9,12 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import projetenchere.bo.Categorie;
-import projetenchere.bo.Retrait;
-import projetenchere.dal.DAOCategorie;
-import projetenchere.dal.DAOFactory;
-import projetenchere.dal.DAORetrait;
-
 /**
  * Servlet implementation class ServletHome
  */

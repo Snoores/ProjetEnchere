@@ -3,35 +3,35 @@ package projetenchere.bo;
 import java.time.LocalDate;
 
 public class Enchere {
-    private int no_utilisateur;
-    private int no_article;
+    private Utilisateur utilisateur;
+    private ArticleVendu articleVendu;
     private LocalDate dateEnchere;
     private int montantEnchere;
 
     public Enchere() {
     }
 
-    public Enchere(int no_utilisateur, int no_articleVendu, LocalDate dateEnchere, int montantEnchere) {
-        this.no_utilisateur = no_utilisateur;
-        this.no_article = no_articleVendu;
+    public Enchere(Utilisateur utilisateur, ArticleVendu articleVendu, LocalDate dateEnchere, int montantEnchere) {
+        this.utilisateur = utilisateur;
+        this.articleVendu = articleVendu;
         this.dateEnchere = dateEnchere;
         this.montantEnchere = montantEnchere;
     }
 
-    public int getNoUtilisateur() {
-        return no_utilisateur;
+    public Utilisateur getUtilisateur() {
+        return utilisateur;
     }
 
-    public void setNoUtilisateur(int no_utilisateur) {
-        this.no_utilisateur = no_utilisateur;
+    public void setUtilisateur(Utilisateur utilisateur) {
+        this.utilisateur = utilisateur;
     }
 
-    public int getNoArticle() {
-        return no_article;
+    public ArticleVendu getArticleVendu() {
+        return articleVendu;
     }
 
-    public void setNoArticle(int no_article) {
-        this.no_article = no_article;
+    public void setArticleVendu(ArticleVendu articleVendu) {
+        this.articleVendu = articleVendu;
     }
 
     public LocalDate getDateEnchere() {
@@ -53,8 +53,8 @@ public class Enchere {
     @Override
     public String toString() {
         return "Enchere{" +
-                "utilisateur=" + no_utilisateur +
-                ", articleVendu=" + no_article +
+                "utilisateur=" + utilisateur +
+                ", articleVendu=" + articleVendu +
                 ", dateEnchere=" + dateEnchere +
                 ", montantEnchere=" + montantEnchere +
                 '}';

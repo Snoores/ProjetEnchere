@@ -5,24 +5,24 @@ import projetenchere.bo.Enchere;
 import projetenchere.bo.Utilisateur;
 import projetenchere.dal.DAOArticleVendu;
 import projetenchere.dal.DAOEnchere;
-import projetenchere.dal.DAOFactory;
+import projetenchere.dal.DAOSingleton;
 import projetenchere.dal.DAOUtilisateur;
 
 import java.time.LocalDate;
 import java.util.List;
 
 public class ManagerEnchereImpl implements ManagerEnchere{
-    DAOEnchere daoEnchere = DAOFactory.getDAOEnchere();
-    DAOArticleVendu daoArticleVendu = DAOFactory.getDAOArticleVendu();
-    DAOUtilisateur daoUtilisateur = DAOFactory.getDAOUtilisateur();
+    DAOEnchere daoEnchere = DAOSingleton.getDAOEnchere();
+    DAOArticleVendu daoArticleVendu = DAOSingleton.getDAOArticleVendu();
+    DAOUtilisateur daoUtilisateur = DAOSingleton.getDAOUtilisateur();
 
     @Override
     public Utilisateur GetGagnantEnchere(Enchere enchere) {
-        ArticleVendu article = daoArticleVendu.SelectArticleVenduByNoArticle(enchere.getNoArticle());
+        ArticleVendu article = daoArticleVendu.SelectArticleVenduByNoArticle(enchere.getArticleVendu().getNoArticle());
         if (LocalDate.now().isAfter(article.getDateFinEncheres())){
-            Utilisateur utilisateur = daoUtilisateur.SelectUserByNoUtilisateur(enchere.getNoUtilisateur()); //TODO: Debug - To Delete
+            Utilisateur utilisateur = daoUtilisateur.SelectUserByNoUtilisateur(enchere.getUtilisateur().getNoUtilisateur()); //TODO: Debug - To Delete
             System.out.println("Debug in ManagerEnchereImpl l.24 \n" + utilisateur.toString()); //TODO: Debug - To Delete
-            return daoUtilisateur.SelectUserByNoUtilisateur(enchere.getNoUtilisateur());
+            return daoUtilisateur.SelectUserByNoUtilisateur(enchere.getUtilisateur().getNoUtilisateur());
         }
         System.out.println("Les encheres ne sont pas terminées. Date de fin :" + article.getDateFinEncheres());
         return null;
@@ -56,10 +56,15 @@ public class ManagerEnchereImpl implements ManagerEnchere{
     }
 
     @Override
-    public Enchere GetEnchereByNoArticle(int noArticle) {
-        Enchere enchere = daoEnchere.SelectEnchereByNoArticle(noArticle); //TODO: Debug - To Delete
-        System.out.println("Debug in ManagerEnchereImpl l.61 \n" + enchere.toString()); //TODO: Debug - To Delete
+    public List<Enchere> GetEnchereByNoArticle(int noArticle) {
         return daoEnchere.SelectEnchereByNoArticle(noArticle);
+    }
+
+    @Override
+    public List<Enchere> GetEnchereByNoUtilisateur(int noUtilisateur) {
+
+
+        return daoEnchere.SelectEnchereByNoUtilisateur(noUtilisateur);
     }
 
     @Override

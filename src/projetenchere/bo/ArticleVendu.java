@@ -1,6 +1,7 @@
 package projetenchere.bo;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class ArticleVendu {
     private int noArticle;
@@ -13,13 +14,11 @@ public class ArticleVendu {
     private Utilisateur utilisateur;
     private Categorie categorie;
     private String etatVente;
-    private Retrait lieuRetrait;
-    private Enchere enchere;
 
     public ArticleVendu() {
     }
 
-    public ArticleVendu(String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres, int miseAPrix, int prixVente, Utilisateur utilisateur, Categorie categorie, String etatVente, Retrait lieuRetrait, Enchere enchere) {
+    public ArticleVendu(String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres, int miseAPrix, int prixVente, Utilisateur utilisateur, Categorie categorie, String etatVente) {
         this.nomArticle = nomArticle;
         this.description = description;
         this.dateDebutEncheres = dateDebutEncheres;
@@ -29,11 +28,9 @@ public class ArticleVendu {
         this.utilisateur = utilisateur;
         this.categorie = categorie;
         this.etatVente = etatVente;
-        this.lieuRetrait = lieuRetrait;
-        this.enchere = enchere;
     }
 
-    public ArticleVendu(int noArticle, String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres, int miseAPrix, int prixVente, Utilisateur utilisateur, Categorie categorie, String etatVente, Retrait lieuRetrait, Enchere enchere) {
+    public ArticleVendu(int noArticle, String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres, int miseAPrix, int prixVente, Utilisateur utilisateur, Categorie categorie, String etatVente) {
         this.noArticle = noArticle;
         this.nomArticle = nomArticle;
         this.description = description;
@@ -44,8 +41,6 @@ public class ArticleVendu {
         this.utilisateur = utilisateur;
         this.categorie = categorie;
         this.etatVente = etatVente;
-        this.lieuRetrait = lieuRetrait;
-        this.enchere = enchere;
     }
 
     public int getNoArticle() {
@@ -128,22 +123,6 @@ public class ArticleVendu {
         this.etatVente = etatVente;
     }
 
-    public Retrait getLieuRetrait() {
-        return lieuRetrait;
-    }
-
-    public void setLieuRetrait(Retrait lieuRetrait) {
-        this.lieuRetrait = lieuRetrait;
-    }
-
-    public Enchere getEnchere() {
-        return enchere;
-    }
-
-    public void setEnchere(Enchere enchere) {
-        this.enchere = enchere;
-    }
-
     @Override
     public String toString() {
         return "ArticleVendu{" +
@@ -157,8 +136,6 @@ public class ArticleVendu {
                 ", utilisateur=" + utilisateur +
                 ", categorie=" + categorie +
                 ", etatVente='" + etatVente + '\'' +
-                ", lieuRetrait=" + lieuRetrait +
-                ", enchere=" + enchere +
                 '}';
     }
 }

@@ -1,5 +1,9 @@
 package projetenchere.dal;
 
+import projetenchere.bll.ManagerCategorie;
+import projetenchere.bll.ManagerEnchere;
+import projetenchere.bll.ManagerSingleton;
+import projetenchere.bll.ManagerUtilisateur;
 import projetenchere.bo.ArticleVendu;
 import projetenchere.bo.Categorie;
 import projetenchere.bo.Utilisateur;
@@ -14,10 +18,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DAOArticleVenduImpl implements DAOArticleVendu {
-
-    DAOCategorie daoCategorie = new DAOCategorieImpl();
-    DAOEnchere daoEnchere = new DAOEnchereImpl();
-    DAOUtilisateur daoUtilisateur = new DAOUtilisateurImpl();
 
     private final static String SELECT_ALL = "SELECT * FROM ARTICLES_VENDUS ORDER BY date_debut_encheres";
     private final static String SELECT_BY_UTILISATEUR = "SELECT * FROM ARTICLES_VENDUS WHERE no_utilisateur = ? ORDER BY date_debut_encheres";
@@ -43,21 +43,7 @@ public class DAOArticleVenduImpl implements DAOArticleVendu {
 
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
-                ArticleVendu articleVendu = new ArticleVendu();
-                articleVendu.setNoArticle(rs.getInt("no_article"));
-                articleVendu.setNomArticle(rs.getString("nom_article"));
-                articleVendu.setDescription(rs.getString("description"));
-                articleVendu.setDateDebutEncheres(rs.getDate("date_debut_encheres").toLocalDate());
-                articleVendu.setDateFinEncheres(rs.getDate("date_fin_encheres").toLocalDate());
-                articleVendu.setMiseAPrix(rs.getInt("prix_initial"));
-                articleVendu.setPrixVente(rs.getInt("prix_vente"));
-                articleVendu.setCategorie(daoCategorie.SelectCategorieByNoCategorie(rs.getInt("no_categorie")));
-                articleVendu.setEtatVente(rs.getString("etat_vente"));
-                articleVendu.setEnchere(daoEnchere.SelectEnchereByNoArticle(rs.getInt("no_article")));
-                articleVendu.setUtilisateur(daoUtilisateur.SelectUserByNoUtilisateur(rs.getInt("no_utilisateur")));
-
-                listeArticleVendu.add(articleVendu);
-
+                listeArticleVendu.add(createArticleVendu(rs));
             }
 
 
@@ -78,17 +64,7 @@ public class DAOArticleVenduImpl implements DAOArticleVendu {
 
             ResultSet rs = pstmt.executeQuery();
             while(rs.next()) {
-                articleVendu.setNoArticle(rs.getInt("no_article"));
-                articleVendu.setNomArticle(rs.getString("nom_article"));
-                articleVendu.setDescription(rs.getString("description"));
-                articleVendu.setDateDebutEncheres(rs.getDate("date_debut_encheres").toLocalDate());
-                articleVendu.setDateFinEncheres(rs.getDate("date_fin_encheres").toLocalDate());
-                articleVendu.setMiseAPrix(rs.getInt("prix_initial"));
-                articleVendu.setPrixVente(rs.getInt("prix_vente"));
-                articleVendu.setCategorie(daoCategorie.SelectCategorieByNoCategorie(rs.getInt("no_categorie")));
-                articleVendu.setEtatVente(rs.getString("etat_vente"));
-                articleVendu.setEnchere(daoEnchere.SelectEnchereByNoArticle(rs.getInt("no_article")));
-                articleVendu.setUtilisateur(daoUtilisateur.SelectUserByNoUtilisateur(rs.getInt("no_utilisateur")));
+                articleVendu = createArticleVendu(rs);
             }
 
         } catch (SQLException e) {
@@ -108,22 +84,8 @@ public class DAOArticleVenduImpl implements DAOArticleVendu {
 
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
-                ArticleVendu articleVendu = new ArticleVendu();
-                articleVendu.setNoArticle(rs.getInt("no_article"));
-                articleVendu.setNomArticle(rs.getString("nom_article"));
-                articleVendu.setDescription(rs.getString("description"));
-                articleVendu.setDateDebutEncheres(rs.getDate("date_debut_encheres").toLocalDate());
-                articleVendu.setDateFinEncheres(rs.getDate("date_fin_encheres").toLocalDate());
-                articleVendu.setMiseAPrix(rs.getInt("prix_initial"));
-                articleVendu.setPrixVente(rs.getInt("prix_vente"));
-                articleVendu.setCategorie(daoCategorie.SelectCategorieByNoCategorie(rs.getInt("no_categorie")));
-                articleVendu.setEtatVente(rs.getString("etat_vente"));
-                articleVendu.setEnchere(daoEnchere.SelectEnchereByNoArticle(rs.getInt("no_article")));
-                articleVendu.setUtilisateur(daoUtilisateur.SelectUserByNoUtilisateur(rs.getInt("no_utilisateur")));
-
-                listeArticleVendu.add(articleVendu);
+                listeArticleVendu.add(createArticleVendu(rs));
             }
-
 
         } catch (SQLException e) {
             System.err.println(e.getMessage());
@@ -143,22 +105,8 @@ public class DAOArticleVenduImpl implements DAOArticleVendu {
 
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
-                ArticleVendu articleVendu = new ArticleVendu();
-                articleVendu.setNoArticle(rs.getInt("no_article"));
-                articleVendu.setNomArticle(rs.getString("nom_article"));
-                articleVendu.setDescription(rs.getString("description"));
-                articleVendu.setDateDebutEncheres(rs.getDate("date_debut_encheres").toLocalDate());
-                articleVendu.setDateFinEncheres(rs.getDate("date_fin_encheres").toLocalDate());
-                articleVendu.setMiseAPrix(rs.getInt("prix_initial"));
-                articleVendu.setPrixVente(rs.getInt("prix_vente"));
-                articleVendu.setCategorie(daoCategorie.SelectCategorieByNoCategorie(rs.getInt("no_categorie")));
-                articleVendu.setEtatVente(rs.getString("etat_vente"));
-                articleVendu.setEnchere(daoEnchere.SelectEnchereByNoArticle(rs.getInt("no_article")));
-                articleVendu.setUtilisateur(daoUtilisateur.SelectUserByNoUtilisateur(rs.getInt("no_utilisateur")));
-
-                listeArticleVendu.add(articleVendu);
+                listeArticleVendu.add(createArticleVendu(rs));
             }
-
 
         } catch (SQLException e) {
             System.err.println(e.getMessage());
@@ -181,22 +129,8 @@ public class DAOArticleVenduImpl implements DAOArticleVendu {
 
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
-                ArticleVendu articleVendu = new ArticleVendu();
-                articleVendu.setNoArticle(rs.getInt("no_article"));
-                articleVendu.setNomArticle(rs.getString("nom_article"));
-                articleVendu.setDescription(rs.getString("description"));
-                articleVendu.setDateDebutEncheres(rs.getDate("date_debut_encheres").toLocalDate());
-                articleVendu.setDateFinEncheres(rs.getDate("date_fin_encheres").toLocalDate());
-                articleVendu.setMiseAPrix(rs.getInt("prix_initial"));
-                articleVendu.setPrixVente(rs.getInt("prix_vente"));
-                articleVendu.setCategorie(daoCategorie.SelectCategorieByNoCategorie(rs.getInt("no_categorie")));
-                articleVendu.setEtatVente(rs.getString("etat_vente"));
-                articleVendu.setEnchere(daoEnchere.SelectEnchereByNoArticle(rs.getInt("no_article")));
-                articleVendu.setUtilisateur(daoUtilisateur.SelectUserByNoUtilisateur(rs.getInt("no_utilisateur")));
-
-                listeArticleVendu.add(articleVendu);
+                listeArticleVendu.add(createArticleVendu(rs));
             }
-
 
         } catch (SQLException e) {
             System.err.println(e.getMessage());
@@ -213,20 +147,7 @@ public class DAOArticleVenduImpl implements DAOArticleVendu {
             Statement stmt = cnx.createStatement();
             ResultSet rs = stmt.executeQuery(SELECT_ALL);
             while (rs.next()) {
-                ArticleVendu articleVendu = new ArticleVendu();
-                articleVendu.setNoArticle(rs.getInt("no_article"));
-                articleVendu.setNomArticle(rs.getString("nom_article"));
-                articleVendu.setDescription(rs.getString("description"));
-                articleVendu.setDateDebutEncheres(rs.getDate("date_debut_encheres").toLocalDate());
-                articleVendu.setDateFinEncheres(rs.getDate("date_fin_encheres").toLocalDate());
-                articleVendu.setMiseAPrix(rs.getInt("prix_initial"));
-                articleVendu.setPrixVente(rs.getInt("prix_vente"));
-                articleVendu.setCategorie(daoCategorie.SelectCategorieByNoCategorie(rs.getInt("no_categorie")));
-                articleVendu.setEtatVente(rs.getString("etat_vente"));
-                articleVendu.setEnchere(daoEnchere.SelectEnchereByNoArticle(rs.getInt("no_article")));
-                articleVendu.setUtilisateur(daoUtilisateur.SelectUserByNoUtilisateur(rs.getInt("no_utilisateur")));
-
-                listeArticleVendu.add(articleVendu);
+                listeArticleVendu.add(createArticleVendu(rs));
             }
 
 
@@ -304,7 +225,23 @@ public class DAOArticleVenduImpl implements DAOArticleVendu {
         }
     }
 
-    /*private ArticleVendu createArticleVendu(ResultSet rs) { //TODO: Factoriser la creaton d'objet
-        return null;
-    }*/
+    private ArticleVendu createArticleVendu(ResultSet rs) throws SQLException {
+
+        ManagerUtilisateur managerUtilisateur = ManagerSingleton.getManagerUtilisateur();
+        ManagerCategorie managerCategorie = ManagerSingleton.getManagerCategorie();
+
+        ArticleVendu articleVendu = new ArticleVendu();
+        articleVendu.setNoArticle(rs.getInt("no_article"));
+        articleVendu.setNomArticle(rs.getString("nom_article"));
+        articleVendu.setDescription(rs.getString("description"));
+        articleVendu.setDateDebutEncheres(rs.getDate("date_debut_encheres").toLocalDate());
+        articleVendu.setDateFinEncheres(rs.getDate("date_fin_encheres").toLocalDate());
+        articleVendu.setMiseAPrix(rs.getInt("prix_initial"));
+        articleVendu.setPrixVente(rs.getInt("prix_vente"));
+        articleVendu.setCategorie(managerCategorie.GetCategorieByNoCategorie(rs.getInt("no_categorie")));
+        articleVendu.setEtatVente(rs.getString("etat_vente"));
+        articleVendu.setUtilisateur(managerUtilisateur.GetUtilisateurByNoUtilisateur(rs.getInt("no_utilisateur")));
+
+        return articleVendu;
+    }
 }

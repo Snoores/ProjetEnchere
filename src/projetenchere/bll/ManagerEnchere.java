@@ -1,7 +1,6 @@
 package projetenchere.bll;
 
 import projetenchere.bo.ArticleVendu;
-import projetenchere.bo.Categorie;
 import projetenchere.bo.Enchere;
 import projetenchere.bo.Utilisateur;
 
@@ -13,7 +12,8 @@ public interface ManagerEnchere {
     Enchere CheckMeilleureOffre(Enchere oldEnchere, Enchere newEnchere);
     List<Enchere> GetEnchereByUtilisateur(Utilisateur utilisateur);
     Enchere GetEnchereByArticle(ArticleVendu article);
-    Enchere GetEnchereByNoArticle(int noArticle);
+    List<Enchere> GetEnchereByNoArticle(int noArticle);
+    List<Enchere> GetEnchereByNoUtilisateur(int noUtilisateur);
 
     public List<Enchere> GetAllEnchere();
     public void CreateEnchere(Enchere enchere);

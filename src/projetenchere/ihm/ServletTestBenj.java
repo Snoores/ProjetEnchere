@@ -2,21 +2,18 @@ package projetenchere.ihm;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import projetenchere.bll.ManagerArticleVendu;
-import projetenchere.bll.ManagerEnchere;
-import projetenchere.bll.ManagerFactory;
-import projetenchere.bll.ManagerRetrait;
 import projetenchere.bo.*;
 import projetenchere.dal.DAOArticleVendu;
 import projetenchere.dal.DAOEnchere;
-import projetenchere.dal.DAOFactory;
 import projetenchere.dal.DAORetrait;
+import projetenchere.dal.DAOSingleton;
 
 /**
  * Servlet implementation class ServletTestBenj
@@ -29,10 +26,9 @@ public class ServletTestBenj extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Utilisateur utilisateur = new Utilisateur(1, "azer", "reg", "vrve", "tert@erigei.com", "0101010101", "azer", "32568", "zefaz", "aaaaaa", 2000, null, false);
         Categorie categorie = new Categorie(2, "Vetements");
-        Retrait retrait = new Retrait(12, "Rue du ballec", "43210", "Paris");
 
         ArticleVendu articleVendu = new ArticleVendu(
-                13,
+                12,
                 "Chaussure 3",
                 "Qui a trois pied ?",
                 LocalDate.of(2021, 1, 1),
@@ -41,44 +37,45 @@ public class ServletTestBenj extends HttpServlet {
                 1000244,
                 utilisateur,
                 categorie,
-                "EC",
-                new Retrait(),
-                new Enchere());
+                "EC");
 
         Enchere enchere = new Enchere(
-                3,
-                3,
+                utilisateur,
+                articleVendu,
                 LocalDate.of(2021, 04, 9),
                 25000);
-
-        /*DAOArticleVendu daoArticleVendu = DAOFactory.getDAOArticleVendu();
-		daoArticleVendu.SelectArticleVenduByNoArticle(1);
-		daoArticleVendu.SelectArticleVenduByCategorie(categorie);
-		daoArticleVendu.SelectArticleVenduByUtilisateur(utilisateur);
-		daoArticleVendu.SelectArticleVenduByUtilisateurAndEtat(utilisateur, "EC");
-		daoArticleVendu.SelectArticleVenduByEtat("EC");
-		daoArticleVendu.SelectAllArticleVendu();*/
+        
+        Retrait retrait = new Retrait(articleVendu, "Rue du ballec", "43210", "Paris");
 
 
-        /*DAOEnchere daoEnchere = DAOFactory.getDAOEnchere();
-		System.out.println("Enchere by NoArticle");
-		daoEnchere.SelectEnchereByNoArticle(2);
-		System.out.println("Enchere All");
-		daoEnchere.SelectAllEnchere();
-		System.out.println("Enchere by Article");
-		daoEnchere.SelectEnchereByArticle(articleVendu);
-		System.out.println("Enchere by Utilisateur");
-		daoEnchere.SelectEnchereByUtilisateur(utilisateur);
-		daoEnchere.InsertEnchere(enchere);
-		daoEnchere.UpdateEnchere(enchere);
-        daoEnchere.DeleteEnchere(enchere);*/
+//        DAOArticleVendu daoArticleVendu = DAOSingleton.getDAOArticleVendu();
+//		daoArticleVendu.SelectArticleVenduByNoArticle(1);
+//		daoArticleVendu.SelectArticleVenduByCategorie(categorie);
+//		daoArticleVendu.SelectArticleVenduByUtilisateur(utilisateur);
+//		daoArticleVendu.SelectArticleVenduByUtilisateurAndEtat(utilisateur, "EC");
+//		daoArticleVendu.SelectArticleVenduByEtat("EC");
+//		daoArticleVendu.SelectAllArticleVendu();
 
-        /*DAORetrait daoRetrait = DAOFactory.getDAORetrait();
+
+//        DAOEnchere daoEnchere = DAOSingleton.getDAOEnchere();
+//		System.out.println("Enchere by NoArticle");
+//		daoEnchere.SelectEnchereByNoArticle(2);
+//		System.out.println("Enchere All");
+//		daoEnchere.SelectAllEnchere();
+//		System.out.println("Enchere by Article");
+//		daoEnchere.SelectEnchereByArticle(articleVendu);
+//		System.out.println("Enchere by Utilisateur");
+//		daoEnchere.SelectEnchereByUtilisateur(utilisateur);
+//		daoEnchere.InsertEnchere(enchere);
+//		daoEnchere.UpdateEnchere(enchere);
+//        daoEnchere.DeleteEnchere(enchere);
+
+        DAORetrait daoRetrait = DAOSingleton.getDAORetrait();
         daoRetrait.SelectAllRetrait();
-        daoRetrait.SelectByNoArticle(article);
+        daoRetrait.SelectRetraitByNoArticle(articleVendu.getNoArticle());
         daoRetrait.InsertRetrait(retrait);
         daoRetrait.UpdateRetrait(retrait);
-        daoRetrait.DeleteRetrait(retrait);*/
+        daoRetrait.DeleteRetrait(retrait);
 
         /*ManagerRetrait managerRetrait = ManagerFactory.getManagerRetrait();
         managerRetrait.CreateRetrait(retrait);

@@ -1,5 +1,7 @@
 package projetenchere.dal;
 
+import projetenchere.bll.ManagerEnchere;
+import projetenchere.bll.ManagerSingleton;
 import projetenchere.bo.ArticleVendu;
 import projetenchere.bo.Enchere;
 import projetenchere.bo.Utilisateur;
@@ -39,23 +41,14 @@ public class DAOUtilisateurImpl implements DAOUtilisateur{
 			PreparedStatement pStmt = cnx.prepareStatement(SELECTALL);
 			ResultSet rs = pStmt.executeQuery();
 			while (rs.next()) {
-				Utilisateur utilisateur = new Utilisateur();
-				utilisateur.setNoUtilisateur(rs.getInt("no_utilisateur"));
-				utilisateur.setPseudo(rs.getString("pseudo"));
-				utilisateur.setNom(rs.getString("nom"));
-				utilisateur.setPrenom(rs.getString("prenom"));
-				utilisateur.setEmail(rs.getString("email"));
-				utilisateur.setTelephone(rs.getString("telephone"));
-				utilisateur.setRue(rs.getString("rue"));
-				utilisateur.setCodePostal(rs.getString("code_postal"));
-				utilisateur.setVille(rs.getString("ville"));
-				utilisateur.setMotDePasse(rs.getString("mot_de_passe"));
-				utilisateur.setCredit(rs.getInt("credit"));
-				utilisateur.setAdministrateur(rs.getBoolean("administrateur"));
-				utilisateurs.add(utilisateur);
+				utilisateurs.add(CreateUtilisateur(rs));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+
+		for (Utilisateur util : utilisateurs){
+			System.out.println(util.toString());
 		}
 		return utilisateurs;
     }
@@ -231,4 +224,27 @@ public class DAOUtilisateurImpl implements DAOUtilisateur{
 			e.printStackTrace();
 		}
     }
+
+    public Utilisateur CreateUtilisateur(ResultSet rs) throws SQLException{
+		ManagerEnchere managerEnchere = ManagerSingleton.getManagerEnchere();
+
+
+		Utilisateur utilisateur = new Utilisateur();
+
+		utilisateur.setNoUtilisateur(rs.getInt("no_utilisateur"));
+		utilisateur.setPseudo(rs.getString("pseudo"));
+		utilisateur.setNom(rs.getString("nom"));
+		utilisateur.setPrenom(rs.getString("prenom"));
+		utilisateur.setEmail(rs.getString("email"));
+		utilisateur.setTelephone(rs.getString("telephone"));
+		utilisateur.setRue(rs.getString("rue"));
+		utilisateur.setCodePostal(rs.getString("code_postal"));
+		utilisateur.setVille(rs.getString("ville"));
+		utilisateur.setMotDePasse(rs.getString("mot_de_passe"));
+		utilisateur.setCredit(rs.getInt("credit"));
+		utilisateur.setAdministrateur(rs.getBoolean("administrateur"));
+		utilisateur.setListeEnchere(managerEnchere.GetEnchereByNoUtilisateur(rs.getInt("no_utilisateur")));
+
+		return utilisateur;
+	}
 }

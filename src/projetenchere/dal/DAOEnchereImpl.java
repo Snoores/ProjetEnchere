@@ -1,5 +1,8 @@
 package projetenchere.dal;
 
+import projetenchere.bll.ManagerArticleVendu;
+import projetenchere.bll.ManagerSingleton;
+import projetenchere.bll.ManagerUtilisateur;
 import projetenchere.bo.ArticleVendu;
 import projetenchere.bo.Enchere;
 import projetenchere.bo.Utilisateur;
@@ -26,24 +29,39 @@ public class DAOEnchereImpl implements DAOEnchere{
     private final static String DELETE = "DELETE FROM ENCHERES WHERE no_utilisateur=? AND no_article=?";
 
     @Override
-    public Enchere SelectEnchereByNoArticle(int noArticle) {
-        Enchere enchere = new Enchere();
+    public List<Enchere> SelectEnchereByNoArticle(int noArticle) {
+        List<Enchere> listeEnchere = new ArrayList<>();
         try (Connection cnx = ConnectionProvider.getConnection()) {
             PreparedStatement pstmt = cnx.prepareStatement(SELECT_BY_ARTICLE);
             pstmt.setInt(1, noArticle);
 
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
-                enchere.setNoArticle(rs.getInt("no_article"));
-                enchere.setNoUtilisateur(rs.getInt("no_utilisateur"));
-                enchere.setDateEnchere(rs.getDate("date_enchere").toLocalDate());
-                enchere.setMontantEnchere(rs.getInt("montant_enchere"));
+                listeEnchere.add(createNewEnchere(rs));
             }
         } catch (SQLException e) {
             System.err.println(e.getMessage());
         }
 
-        return enchere;
+        return listeEnchere;
+    }
+
+    @Override
+    public List<Enchere> SelectEnchereByNoUtilisateur(int noUtilisateur) {
+        List<Enchere> listeEnchere = new ArrayList<>();
+        try (Connection cnx = ConnectionProvider.getConnection()) {
+            PreparedStatement pstmt = cnx.prepareStatement(SELECT_BY_UTILISATEUR);
+            pstmt.setInt(1, noUtilisateur);
+
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                listeEnchere.add(createNewEnchere(rs));
+            }
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+
+        return listeEnchere;
     }
 
     public List<Enchere> SelectEnchereByUtilisateur(Utilisateur utilisateur) {
@@ -55,12 +73,7 @@ public class DAOEnchereImpl implements DAOEnchere{
 
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
-                Enchere enchere = new Enchere();
-                enchere.setNoArticle(rs.getInt("no_article"));
-                enchere.setNoUtilisateur(rs.getInt("no_utilisateur"));
-                enchere.setDateEnchere(rs.getDate("date_enchere").toLocalDate());
-                enchere.setMontantEnchere(rs.getInt("montant_enchere"));
-                listeEnchere.add(enchere);
+                listeEnchere.add(createNewEnchere(rs));
             }
 
 
@@ -81,10 +94,7 @@ public class DAOEnchereImpl implements DAOEnchere{
 
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
-                enchere.setNoUtilisateur(rs.getInt("no_utilisateur"));
-                enchere.setNoArticle(rs.getInt("no_article"));
-                enchere.setDateEnchere(rs.getDate("date_enchere").toLocalDate());
-                enchere.setMontantEnchere(rs.getInt("montant_enchere"));
+                enchere = createNewEnchere(rs);
             }
 
 
@@ -103,12 +113,7 @@ public class DAOEnchereImpl implements DAOEnchere{
             Statement stmt = cnx.createStatement();
             ResultSet rs = stmt.executeQuery(SELECT_ALL);
             while (rs.next()) {
-                Enchere enchere = new Enchere();
-                enchere.setNoArticle(rs.getInt("no_article"));
-                enchere.setNoUtilisateur(rs.getInt("no_utilisateur"));
-                enchere.setDateEnchere(rs.getDate("date_enchere").toLocalDate());
-                enchere.setMontantEnchere(rs.getInt("montant_enchere"));
-                listeEnchere.add(enchere);
+                listeEnchere.add(createNewEnchere(rs));
             }
 
 
@@ -124,8 +129,8 @@ public class DAOEnchereImpl implements DAOEnchere{
         try(Connection cnx = ConnectionProvider.getConnection()) {
             PreparedStatement pStmt = cnx.prepareStatement(INSERT);
 
-            pStmt.setInt(1, enchere.getNoUtilisateur()); //nom_article
-            pStmt.setInt(2, enchere.getNoArticle()); //description
+            pStmt.setInt(1, enchere.getUtilisateur().getNoUtilisateur()); //nom_article
+            pStmt.setInt(2, enchere.getArticleVendu().getNoArticle()); //description
             pStmt.setDate(3, java.sql.Date.valueOf(enchere.getDateEnchere())); //date_debut_enchere
             pStmt.setInt(4, enchere.getMontantEnchere()); //date_debut_enchere
             pStmt.executeUpdate();
@@ -140,11 +145,11 @@ public class DAOEnchereImpl implements DAOEnchere{
 
         try(Connection cnx = ConnectionProvider.getConnection()) {
             PreparedStatement pStmt = cnx.prepareStatement(UPDATE);
-            pStmt.setInt(1, enchere.getNoUtilisateur());
-            pStmt.setInt(2, enchere.getNoArticle());
+            pStmt.setInt(1, enchere.getUtilisateur().getNoUtilisateur()); //nom_article
+            pStmt.setInt(2, enchere.getArticleVendu().getNoArticle()); //description
             pStmt.setDate(3, java.sql.Date.valueOf(enchere.getDateEnchere()));
             pStmt.setInt(4, enchere.getMontantEnchere());
-            pStmt.setInt(5, enchere.getNoArticle());
+            pStmt.setInt(5, enchere.getArticleVendu().getNoArticle());
 
             pStmt.executeUpdate();
 
@@ -157,13 +162,26 @@ public class DAOEnchereImpl implements DAOEnchere{
     public void DeleteEnchere(Enchere enchere) {
         try(Connection cnx = ConnectionProvider.getConnection()) {
             PreparedStatement pStmt = cnx.prepareStatement(DELETE);
-            pStmt.setInt(1, enchere.getNoUtilisateur());
-            pStmt.setInt(2, enchere.getNoArticle());
+            pStmt.setInt(1, enchere.getUtilisateur().getNoUtilisateur()); //nom_article
+            pStmt.setInt(2, enchere.getArticleVendu().getNoArticle()); //description
 
             pStmt.executeUpdate(); //nb de lignes affectées par l'opération (ici delete)
 
         } catch (SQLException e) {
             System.err.println(e.getMessage());
         }
+    }
+
+    public Enchere createNewEnchere(ResultSet rs) throws SQLException {
+        ManagerArticleVendu managerArticleVendu = ManagerSingleton.getManagerArticleVendu();
+        ManagerUtilisateur managerUtilisateur = ManagerSingleton.getManagerUtilisateur();
+
+        Enchere enchere = new Enchere();
+        enchere.setArticleVendu(managerArticleVendu.GetArticleVenduByNoArticle(rs.getInt("no_article")));
+        enchere.setUtilisateur(managerUtilisateur.GetUtilisateurByNoUtilisateur(rs.getInt("no_utilisateur")));
+        enchere.setDateEnchere(rs.getDate("date_enchere").toLocalDate());
+        enchere.setMontantEnchere(rs.getInt("montant_enchere"));
+
+        return enchere;
     }
 }

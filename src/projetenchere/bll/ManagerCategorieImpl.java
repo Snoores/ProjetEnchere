@@ -2,7 +2,7 @@ package projetenchere.bll;
 
 import projetenchere.bo.Categorie;
 import projetenchere.dal.DAOCategorie;
-import projetenchere.dal.DAOFactory;
+import projetenchere.dal.DAOSingleton;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ public class ManagerCategorieImpl implements ManagerCategorie{
 	private static DAOCategorie daoCategorie;
 
     static {
-    	daoCategorie = DAOFactory.getDAOCategorie();
+    	daoCategorie = DAOSingleton.getDAOCategorie();
     }
     
     @Override

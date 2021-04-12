@@ -1,5 +1,7 @@
 package projetenchere.dal;
 
+import projetenchere.bll.ManagerArticleVendu;
+import projetenchere.bll.ManagerSingleton;
 import projetenchere.bo.Retrait;
 
 import java.sql.Connection;
@@ -29,12 +31,7 @@ public class DAORetraitImpl implements DAORetrait{
             Statement stmt = cnx.createStatement();
             ResultSet rs = stmt.executeQuery(SELECT_ALL);
             while (rs.next()) {
-                Retrait retrait = new Retrait();
-                retrait.setNoArticle(rs.getInt("no_article"));
-                retrait.setRue(rs.getString("rue"));
-                retrait.setCodePostal(rs.getString("code_postal"));
-                retrait.setVille(rs.getString("ville"));
-                listeRetrait.add(retrait);
+                listeRetrait.add(createRetrait(rs));
             }
 
 
@@ -56,10 +53,7 @@ public class DAORetraitImpl implements DAORetrait{
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
-                retrait.setNoArticle(rs.getInt("no_article"));
-                retrait.setRue(rs.getString("rue"));
-                retrait.setCodePostal(rs.getString("code_postal"));
-                retrait.setVille(rs.getString("ville"));
+                retrait = createRetrait(rs);
             }
 
 
@@ -76,7 +70,7 @@ public class DAORetraitImpl implements DAORetrait{
     public void InsertRetrait(Retrait retrait) {
         try(Connection cnx = ConnectionProvider.getConnection()) {
             PreparedStatement pStmt = cnx.prepareStatement(INSERT);
-            pStmt.setInt(1, retrait.getNoArticle());
+            pStmt.setInt(1, retrait.getArticle().getNoArticle());
             pStmt.setString(2, retrait.getRue());
             pStmt.setString(3, retrait.getCodePostal());
             pStmt.setString(4, retrait.getVille());
@@ -93,7 +87,7 @@ public class DAORetraitImpl implements DAORetrait{
             pStmt.setString(1, retrait.getRue());
             pStmt.setString(2, retrait.getCodePostal());
             pStmt.setString(3, retrait.getVille());
-            pStmt.setInt(4, retrait.getNoArticle());
+            pStmt.setInt(4, retrait.getArticle().getNoArticle());
             pStmt.executeUpdate();
         } catch (SQLException e) {
             System.err.println(e.getMessage());
@@ -105,10 +99,23 @@ public class DAORetraitImpl implements DAORetrait{
     public void DeleteRetrait(Retrait retrait) {
         try(Connection cnx = ConnectionProvider.getConnection()) {
             PreparedStatement pStmt = cnx.prepareStatement(DELETE);
-            pStmt.setInt(1, retrait.getNoArticle());
+            pStmt.setInt(1, retrait.getArticle().getNoArticle());
             pStmt.executeUpdate();
         } catch (SQLException e) {
             System.err.println(e.getMessage());
         }
+    }
+
+    public Retrait createRetrait(ResultSet rs) throws SQLException{
+
+        ManagerArticleVendu managerArticleVendu = ManagerSingleton.getManagerArticleVendu();
+
+        Retrait retrait = new Retrait();
+        retrait.setArticle(managerArticleVendu.GetArticleVenduByNoArticle(rs.getInt("no_article")));
+        retrait.setRue(rs.getString("rue"));
+        retrait.setCodePostal(rs.getString("code_postal"));
+        retrait.setVille(rs.getString("ville"));
+
+        return retrait;
     }
 }

@@ -1,7 +1,7 @@
 package projetenchere.bll;
 
 import projetenchere.bo.Utilisateur;
-import projetenchere.dal.DAOFactory;
+import projetenchere.dal.DAOSingleton;
 import projetenchere.dal.DAOUtilisateur;
 
 import java.util.List;
@@ -10,7 +10,7 @@ public class ManagerUtilisateurImpl implements ManagerUtilisateur{
 	private static DAOUtilisateur daoUtilisateur;
 
     static {
-    	daoUtilisateur = DAOFactory.getDAOUtilisateur();
+    	daoUtilisateur = DAOSingleton.getDAOUtilisateur();
     }
     
     @Override

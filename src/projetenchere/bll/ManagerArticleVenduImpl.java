@@ -4,12 +4,12 @@ import projetenchere.bo.ArticleVendu;
 import projetenchere.bo.Categorie;
 import projetenchere.bo.Utilisateur;
 import projetenchere.dal.DAOArticleVendu;
-import projetenchere.dal.DAOFactory;
+import projetenchere.dal.DAOSingleton;
 
 import java.util.List;
 
 public class ManagerArticleVenduImpl implements ManagerArticleVendu{
-    DAOArticleVendu daoArticleVendu = DAOFactory.getDAOArticleVendu();
+    DAOArticleVendu daoArticleVendu = DAOSingleton.getDAOArticleVendu();
 
     @Override
     public List<ArticleVendu> GetAllArticleVendu() {

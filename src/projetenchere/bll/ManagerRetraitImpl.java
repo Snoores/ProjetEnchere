@@ -1,13 +1,13 @@
 package projetenchere.bll;
 
 import projetenchere.bo.Retrait;
-import projetenchere.dal.DAOFactory;
+import projetenchere.dal.DAOSingleton;
 import projetenchere.dal.DAORetrait;
 
 import java.util.List;
 
 public class ManagerRetraitImpl implements ManagerRetrait{
-    DAORetrait daoRetrait = DAOFactory.getDAORetrait();
+    DAORetrait daoRetrait = DAOSingleton.getDAORetrait();
 
     @Override
     public Retrait GetRetraitByNoArticle(int noArticle) {

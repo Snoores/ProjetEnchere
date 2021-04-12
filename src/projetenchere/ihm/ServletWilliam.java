@@ -1,8 +1,6 @@
 package projetenchere.ihm;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,16 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import projetenchere.bll.ManagerCategorie;
-import projetenchere.bll.ManagerFactory;
-import projetenchere.bll.ManagerUtilisateur;
-import projetenchere.bo.ArticleVendu;
-import projetenchere.bo.Categorie;
-import projetenchere.bo.Enchere;
-import projetenchere.bo.Utilisateur;
-import projetenchere.dal.DAOCategorie;
-import projetenchere.dal.DAOFactory;
+import projetenchere.bll.ManagerSingleton;
+import projetenchere.dal.DAOSingleton;
 import projetenchere.dal.DAOUtilisateur;
-
 /**
  * Servlet implementation class ServletWilliam
  */
@@ -34,7 +25,7 @@ public class ServletWilliam extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		//***DAOUtilisateur***\\
-//		DAOUtilisateur daoUtilisateur = DAOFactory.getDAOUtilisateur();
+		DAOUtilisateur daoUtilisateur = DAOSingleton.getDAOUtilisateur();
 		//***DAOCategorie***\\
 //		DAOCategorie daoCategorie = DAOFactory.getDAOCategorie();
 		
@@ -44,7 +35,7 @@ public class ServletWilliam extends HttpServlet {
 //		daoUtilisateur.InsertUtilisateur(new Utilisateur("william-penna","pennaneach","william","w.test@test.fr","0606060606","rue du test","29500","Ergue-Gaberic","test",30,listeArticleVendu,listeEnchere,true));
 		
 		//***SelectAllUtilisateur***\\
-//		System.out.println(daoUtilisateur.SelectAllUtilisateur().toString());
+		daoUtilisateur.SelectAllUtilisateur();
 		
 		//***SelectUtilisateurByNoUtilisateur***\\
 //		System.out.println(daoUtilisateur.SelectUserByNoUtilisateur(1).toString());
@@ -95,7 +86,7 @@ public class ServletWilliam extends HttpServlet {
 //		ManagerUtilisateur managerUtilisateur = ManagerFactory.getManagerUtilisateur();
 				
 		//***ManagerCategorie***\\
-		ManagerCategorie managerCategorie = ManagerFactory.getManagerCategorie();
+		ManagerCategorie managerCategorie = ManagerSingleton.getManagerCategorie();
 		
 		//***CreateUtilisateur***\\
 //		List<ArticleVendu> listeArticleVendu = new ArrayList<>();
