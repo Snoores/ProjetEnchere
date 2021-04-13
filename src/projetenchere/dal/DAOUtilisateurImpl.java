@@ -23,15 +23,71 @@ public class DAOUtilisateurImpl implements DAOUtilisateur{
 	private final static String DELETE = "DELETE FROM UTILISATEURS WHERE no_utilisateur=?";
 	private final static String UPDATE = "UPDATE UTILISATEURS set pseudo=?, nom=?, prenom=?, email=?, telephone=?, rue=?, code_postal=?, ville=?, mot_de_passe=?, credit=?, administrateur=? WHERE no_utilisateur=?";
 	private final static String UPDATECREDIT = "UPDATE UTILISATEURS set credit=? WHERE no_utilisateur=?";
+	private final static String CONNECTBYEMAIL = "SELECT * FROM UTILISATEURS WHERE email=? AND mot_de_passe=?";
+	private final static String CONNECTBYPSEUDO = "SELECT * FROM UTILISATEURS WHERE pseudo=? AND mot_de_passe=?";
 	
 	@Override
-    public Utilisateur UtilisateurConnectionByEmail(String email, String password) {
-        return null;
+    public Utilisateur UtilisateurConnectionByEmail(String email, String motDePasse) {
+		Utilisateur utilisateur = new Utilisateur();
+		try(Connection cnx = ConnectionProvider.getConnection()) {
+			PreparedStatement pStmt = cnx.prepareStatement(CONNECTBYEMAIL);
+			pStmt.setString(1, email);
+			pStmt.setString(2, motDePasse);
+			ResultSet rs = pStmt.executeQuery();
+			if(rs.next()) {
+				utilisateur.setNoUtilisateur(rs.getInt("no_utilisateur"));
+				utilisateur.setPseudo(rs.getString("pseudo"));
+				utilisateur.setNom(rs.getString("nom"));
+				utilisateur.setPrenom(rs.getString("prenom"));
+				utilisateur.setEmail(rs.getString("email"));
+				utilisateur.setTelephone(rs.getString("telephone"));
+				utilisateur.setRue(rs.getString("rue"));
+				utilisateur.setCodePostal(rs.getString("code_postal"));
+				utilisateur.setVille(rs.getString("ville"));
+				utilisateur.setMotDePasse(rs.getString("mot_de_passe"));
+				utilisateur.setCredit(rs.getInt("credit"));
+				List<Enchere> lste = new ArrayList<>();
+				utilisateur.setListeEnchere(lste);
+				utilisateur.setAdministrateur(rs.getBoolean("administrateur"));
+				return utilisateur;
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
     }
 
     @Override
-    public Utilisateur UtilisateurConnectionByPseudo(String pseudo, String password) {
-        return null;
+    public Utilisateur UtilisateurConnectionByPseudo(String pseudo, String motDePasse) {
+    	Utilisateur utilisateur = new Utilisateur();
+		try(Connection cnx = ConnectionProvider.getConnection()) {
+			PreparedStatement pStmt = cnx.prepareStatement(CONNECTBYPSEUDO);
+			pStmt.setString(1, pseudo);
+			pStmt.setString(2, motDePasse);
+			ResultSet rs = pStmt.executeQuery();
+			if(rs.next()) {
+				utilisateur.setNoUtilisateur(rs.getInt("no_utilisateur"));
+				utilisateur.setPseudo(rs.getString("pseudo"));
+				utilisateur.setNom(rs.getString("nom"));
+				utilisateur.setPrenom(rs.getString("prenom"));
+				utilisateur.setEmail(rs.getString("email"));
+				utilisateur.setTelephone(rs.getString("telephone"));
+				utilisateur.setRue(rs.getString("rue"));
+				utilisateur.setCodePostal(rs.getString("code_postal"));
+				utilisateur.setVille(rs.getString("ville"));
+				utilisateur.setMotDePasse(rs.getString("mot_de_passe"));
+				utilisateur.setCredit(rs.getInt("credit"));
+				List<Enchere> lste = new ArrayList<>();
+				utilisateur.setListeEnchere(lste);
+				utilisateur.setAdministrateur(rs.getBoolean("administrateur"));
+				return utilisateur;
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
     }
 
     @Override

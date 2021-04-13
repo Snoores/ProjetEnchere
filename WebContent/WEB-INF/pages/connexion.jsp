@@ -3,12 +3,13 @@
 <html>
 <%@include file="templates/head.jspf"%>
 <body>
+<%@include file="templates/header.jspf"%>
 <div class="bloc-connection">
 	<div class="container align-items-center">
 		<div class="row">
             <div class="col-md-6 login-form">
                 <h3>Se connecter</h3>
-                <form>
+                <form method="POST" action="${pageContext.request.contextPath}/connexion">
                     <div class="form-group">
                         <input type="text" class="form-control" name="login" placeholder="Pseudo ou Email *" value="" required/>
                     </div>
@@ -24,12 +25,7 @@
 	                        <label class="form-check-label" for="resterConnecte">Se souvenir de moi</label>
                         </div>
                     </div>
-                    <!-- <div class="form-check">
-				    	<input type="checkbox" class="form-check-input" id="resterConnecte">
-				    	<label class="form-check-label" for="resterConnecte">Se souvenir de moi</label>
-				  	</div> -->
 				  	<div class="form-group" style="margin-top: 40px;">
-                        <!-- <input type="submit" class="btnSubmit" value="Login" /> -->
                         <button type="submit" class="btn btn-primary w-100">Connexion</button>
                     </div>
                 </form>
@@ -38,9 +34,7 @@
 	  			</div>
             </div>
         </div>
-               
 	</div>
 </div>
 </body>
 </html>
-<%-- <style><%@include file="/resources/css/style.css"%></style> --%>

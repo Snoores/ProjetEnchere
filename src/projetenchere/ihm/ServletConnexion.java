@@ -33,17 +33,28 @@ public class ServletConnexion extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String pseudo = request.getParameter("login");
-		String password = request.getParameter("password");		
+		String login = request.getParameter("login");
+		String motDePasse = request.getParameter("password");	
 		ManagerUtilisateur managerUtilisateur = ManagerSingleton.getManagerUtilisateur();
-//		Utilisateur utilisateur = managerUtilisateur.login(login, mdp);
+		boolean email = managerUtilisateur.CheckLoginEmail(login);
+		Utilisateur utilisateur = new Utilisateur();
+		if(email == true) {
+			utilisateur = managerUtilisateur.LoginEmail(login, motDePasse);
+			
+		} else {
+			utilisateur = managerUtilisateur.LoginPseudo(login, motDePasse);
+		}
 		
-//		if(utilisateur!= null) {
-//			HttpSession session = request.getSession();
-//			session.setAttribute("session", "on");
-//			session.setAttribute("user", utilisateur);
-//			response.sendRedirect(request.getContextPath() + "/accueil");
-//		}
+		if(utilisateur != null) {
+			HttpSession session = request.getSession();
+			session.setAttribute("session", "on");
+			session.setAttribute("user", utilisateur);
+			response.sendRedirect(request.getContextPath() + "/accueil");
+			System.out.println("urilisateur connecté");
+		}
+		else {
+			System.out.println("identifiants incorrecte");
+		}
 	}
 
 }

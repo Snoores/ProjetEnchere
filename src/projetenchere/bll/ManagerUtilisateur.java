@@ -7,7 +7,9 @@ import java.util.List;
 public interface ManagerUtilisateur {
 
     void Logout();
-    Utilisateur Login(String pseudo, String motDePasse);
+    Utilisateur LoginPseudo(String pseudo, String motDePasse);
+    Utilisateur LoginEmail(String email, String motDePasse);
+    Boolean CheckLoginEmail(String login);
 
     Utilisateur GetUtilisateurByNoUtilisateur(int noUtilisateur);
     Utilisateur GetUtilisateurByPseudo(String pseudo);

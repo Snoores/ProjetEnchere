@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import projetenchere.bll.ManagerCategorie;
 import projetenchere.bll.ManagerSingleton;
+import projetenchere.bll.ManagerUtilisateur;
 import projetenchere.dal.DAOSingleton;
 import projetenchere.dal.DAOUtilisateur;
 /**
@@ -29,13 +30,20 @@ public class ServletWilliam extends HttpServlet {
 		//***DAOCategorie***\\
 //		DAOCategorie daoCategorie = DAOFactory.getDAOCategorie();
 		
+
+		//***UtilisateurConnectionByEmail***\\
+//		System.out.println(daoUtilisateur.UtilisateurConnectionByEmail("w.test@test.fr", "test"));
+		
+		//***UtilisateurConnectionByPseudo***\\
+//		System.out.println(daoUtilisateur.UtilisateurConnectionByPseudo("william-penna", "test"));
+		
 		//***Insert Utilisateur***\\
 //		List<ArticleVendu> listeArticleVendu = new ArrayList<>();
 //		List<Enchere> listeEnchere = new ArrayList<>();
 //		daoUtilisateur.InsertUtilisateur(new Utilisateur("william-penna","pennaneach","william","w.test@test.fr","0606060606","rue du test","29500","Ergue-Gaberic","test",30,listeArticleVendu,listeEnchere,true));
 		
 		//***SelectAllUtilisateur***\\
-		daoUtilisateur.SelectAllUtilisateur();
+//		daoUtilisateur.SelectAllUtilisateur();
 		
 		//***SelectUtilisateurByNoUtilisateur***\\
 //		System.out.println(daoUtilisateur.SelectUserByNoUtilisateur(1).toString());
@@ -83,10 +91,13 @@ public class ServletWilliam extends HttpServlet {
 //		System.out.println(daoCategorie.UpdateCategorie(categorie));
 		
 		//***ManagerUtilisateur***\\
-//		ManagerUtilisateur managerUtilisateur = ManagerFactory.getManagerUtilisateur();
+		ManagerUtilisateur managerUtilisateur = ManagerSingleton.getManagerUtilisateur();
 				
 		//***ManagerCategorie***\\
-		ManagerCategorie managerCategorie = ManagerSingleton.getManagerCategorie();
+//		ManagerCategorie managerCategorie = ManagerSingleton.getManagerCategorie();
+		
+		//***CheckLoginEmail***\\
+//		System.out.println(managerUtilisateur.CheckLoginEmail("test@test.fr"));
 		
 		//***CreateUtilisateur***\\
 //		List<ArticleVendu> listeArticleVendu = new ArrayList<>();

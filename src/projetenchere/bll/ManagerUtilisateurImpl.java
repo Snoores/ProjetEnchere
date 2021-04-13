@@ -19,8 +19,23 @@ public class ManagerUtilisateurImpl implements ManagerUtilisateur{
     }
 
     @Override
-    public Utilisateur Login(String pseudo, String motDePasse) {
-        return null;
+    public Utilisateur LoginPseudo(String pseudo, String motDePasse) {
+        return daoUtilisateur.UtilisateurConnectionByPseudo(pseudo, motDePasse);
+    }
+    
+    @Override
+    public Utilisateur LoginEmail(String email, String motDePasse) {
+        return daoUtilisateur.UtilisateurConnectionByEmail(email, motDePasse);
+    }
+    
+    @Override
+    public Boolean CheckLoginEmail(String login) {
+    	if(login.contains("@")) {
+    		return true;
+    	}
+    	else {
+    		return false;
+    	}
     }
 
     @Override
