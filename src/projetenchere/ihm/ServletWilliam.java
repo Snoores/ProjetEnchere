@@ -43,7 +43,7 @@ public class ServletWilliam extends HttpServlet {
 //		daoUtilisateur.InsertUtilisateur(new Utilisateur("william-penna","pennaneach","william","w.test@test.fr","0606060606","rue du test","29500","Ergue-Gaberic","test",30,listeArticleVendu,listeEnchere,true));
 		
 		//***SelectAllUtilisateur***\\
-//		daoUtilisateur.SelectAllUtilisateur();
+		daoUtilisateur.SelectAllUtilisateur();
 		
 		//***SelectUtilisateurByNoUtilisateur***\\
 //		System.out.println(daoUtilisateur.SelectUserByNoUtilisateur(1).toString());

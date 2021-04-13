@@ -69,15 +69,15 @@ public class ServletTestBenj extends HttpServlet {
         }
 
 
-        DAOEnchere daoEnchere = DAOSingleton.getDAOEnchere();
-		System.out.println("Enchere by NoArticle");
-        System.out.println(daoEnchere.SelectEnchereByNoArticle(2).toString());
-		System.out.println("Enchere All");
-        System.out.println(daoEnchere.SelectAllEnchere().toString());
-		System.out.println("Enchere by Article");
-        System.out.println(daoEnchere.SelectEnchereByArticle(articleVendu).toString());
-		System.out.println("Enchere by Utilisateur");
-        System.out.println(daoEnchere.SelectEnchereByUtilisateur(utilisateur).toString());
+//        DAOEnchere daoEnchere = DAOSingleton.getDAOEnchere();
+//		System.out.println("Enchere by NoArticle");
+//        System.out.println(daoEnchere.SelectEnchereByNoArticle(2).toString());
+//		System.out.println("Enchere All");
+//        System.out.println(daoEnchere.SelectAllEnchere().toString());
+//		System.out.println("Enchere by Article");
+//        System.out.println(daoEnchere.SelectEnchereByArticle(articleVendu).toString());
+//		System.out.println("Enchere by Utilisateur");
+//        System.out.println(daoEnchere.SelectEnchereByUtilisateur(utilisateur).toString());
 //		daoEnchere.InsertEnchere(enchere);
 //		daoEnchere.UpdateEnchere(enchere);
 //        daoEnchere.DeleteEnchere(enchere);

@@ -299,7 +299,7 @@ public class DAOUtilisateurImpl implements DAOUtilisateur{
 		utilisateur.setMotDePasse(rs.getString("mot_de_passe"));
 		utilisateur.setCredit(rs.getInt("credit"));
 		utilisateur.setAdministrateur(rs.getBoolean("administrateur"));
-		utilisateur.setListeEnchere(managerEnchere.GetEnchereByNoUtilisateur(rs.getInt("no_utilisateur")));
+		utilisateur.setListeEnchere(managerEnchere.GetEnchereByNoUtilisateurWithUtilisateur(utilisateur.getNoUtilisateur(), utilisateur));
 
 		return utilisateur;
 	}

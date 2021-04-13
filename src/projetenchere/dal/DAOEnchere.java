@@ -11,6 +11,7 @@ public interface DAOEnchere {
     List<Enchere> SelectEnchereByNoArticle(int noArticle);
     List<Enchere> SelectEnchereByNoArticleWithArticle(int noArticle, ArticleVendu articleVendu);
     List<Enchere> SelectEnchereByNoUtilisateur(int noUtilisateur);
+    List<Enchere> SelectEnchereByNoUtilisateurWithUtilisateur(int noUtilisateur, Utilisateur utilisateur);
     List<Enchere> SelectEnchereByUtilisateur(Utilisateur utilisateur);
     Enchere SelectEnchereByArticle(ArticleVendu article);
 

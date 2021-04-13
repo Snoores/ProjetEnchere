@@ -14,6 +14,7 @@ public interface ManagerEnchere {
     Enchere GetEnchereByArticle(ArticleVendu article);
     List<Enchere> GetEnchereByNoArticle(int noArticle);
     List<Enchere> GetEnchereByNoArticleWithArticle(int noArticle, ArticleVendu articleVendu);
+    List<Enchere> GetEnchereByNoUtilisateurWithUtilisateur(int noUtilisateur, Utilisateur utilisateur);
     List<Enchere> GetEnchereByNoUtilisateur(int noUtilisateur);
 
     public List<Enchere> GetAllEnchere();

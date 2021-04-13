@@ -81,6 +81,24 @@ public class DAOEnchereImpl implements DAOEnchere{
         return listeEnchere;
     }
 
+    @Override
+    public List<Enchere> SelectEnchereByNoUtilisateurWithUtilisateur(int noUtilisateur, Utilisateur utilisateur) {
+        List<Enchere> listeEnchere = new ArrayList<>();
+        try (Connection cnx = ConnectionProvider.getConnection()) {
+            PreparedStatement pstmt = cnx.prepareStatement(SELECT_BY_UTILISATEUR);
+            pstmt.setInt(1, noUtilisateur);
+
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                listeEnchere.add(CreateNewEnchereWithUtilisateur(rs, utilisateur));
+            }
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+
+        return listeEnchere;
+    }
+
     public List<Enchere> SelectEnchereByUtilisateur(Utilisateur utilisateur) {
         List<Enchere> listeEnchere = new ArrayList<>();
 
@@ -204,12 +222,25 @@ public class DAOEnchereImpl implements DAOEnchere{
 
     public Enchere CreateNewEnchereWithArticle(ResultSet rs, ArticleVendu articleVendu) throws SQLException {
 
-        //ManagerUtilisateur managerUtilisateur = ManagerSingleton.getManagerUtilisateur();
+        ManagerUtilisateur managerUtilisateur = ManagerSingleton.getManagerUtilisateur();
 
 
         Enchere enchere = new Enchere();
         enchere.setArticleVendu(articleVendu);
-        enchere.setUtilisateur(new Utilisateur()); //managerUtilisateur.GetUtilisateurByNoUtilisateur
+        enchere.setUtilisateur(managerUtilisateur.GetUtilisateurByNoUtilisateur(rs.getInt("no_utilisateur"))); //managerUtilisateur.GetUtilisateurByNoUtilisateur
+        enchere.setDateEnchere(rs.getDate("date_enchere").toLocalDate());
+        enchere.setMontantEnchere(rs.getInt("montant_enchere"));
+        return enchere;
+    }
+
+    public Enchere CreateNewEnchereWithUtilisateur(ResultSet rs, Utilisateur utilisateur) throws SQLException {
+
+        ManagerArticleVendu managerArticleVendu = ManagerSingleton.getManagerArticleVendu();
+
+
+        Enchere enchere = new Enchere();
+        enchere.setArticleVendu(managerArticleVendu.GetArticleVenduByNoArticle(rs.getInt("no_article")));
+        enchere.setUtilisateur(utilisateur);
         enchere.setDateEnchere(rs.getDate("date_enchere").toLocalDate());
         enchere.setMontantEnchere(rs.getInt("montant_enchere"));
         return enchere;

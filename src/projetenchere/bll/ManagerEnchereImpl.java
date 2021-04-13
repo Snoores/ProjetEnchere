@@ -66,6 +66,11 @@ public class ManagerEnchereImpl implements ManagerEnchere{
     }
 
     @Override
+    public List<Enchere> GetEnchereByNoUtilisateurWithUtilisateur(int noUtilisateur, Utilisateur utilisateur) {
+        return daoEnchere.SelectEnchereByNoUtilisateurWithUtilisateur(noUtilisateur, utilisateur);
+    }
+
+    @Override
     public List<Enchere> GetEnchereByNoUtilisateur(int noUtilisateur) {
 
 
