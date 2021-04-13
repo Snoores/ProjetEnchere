@@ -25,4 +25,11 @@ jobs:
     runs-on: [ self-hosted, maven ]
     steps:
     - name: Deploy the project
-      run: cp -r /home/github/actions-runner/_work/projet-enchere/projet-enchere/target/ProjetEnchere-0.0.1/* /root/Tomcat/webapps/ProjetEnchere/
+      run: cp -r /home/eni/actions-runner/_work/projet-enchere/projet-enchere/target/ProjetEnchere-0.0.1/* /home/eni/Tomcat/webapps/ProjetEnchere/
+
+  restart:
+    needs: build
+    runs-on: [ self-hosted ]
+    steps:
+    - name: Restart Tomcat container
+      run: docker restart Tomcat
