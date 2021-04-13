@@ -1,6 +1,7 @@
 package projetenchere.ihm;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,6 +9,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import projetenchere.bll.ManagerEnchere;
+import projetenchere.bll.ManagerSingleton;
+import projetenchere.bll.ManagerUtilisateur;
+import projetenchere.bo.Enchere;
 
 /**
  * Servlet implementation class ServletHome
@@ -20,6 +26,9 @@ public class ServletHome extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ManagerEnchere managerEnchere = ManagerSingleton.getManagerEnchere();
+		List<Enchere> encheres = managerEnchere.GetAllEnchere();
+		request.setAttribute("encheres", encheres);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/pages/home.jsp");
 		rd.forward(request, response);
 	}

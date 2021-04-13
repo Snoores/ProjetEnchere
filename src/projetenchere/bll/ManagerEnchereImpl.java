@@ -79,10 +79,10 @@ public class ManagerEnchereImpl implements ManagerEnchere{
 
     @Override
     public List<Enchere> GetAllEnchere() {
-        List<Enchere> listeEnchere = daoEnchere.SelectAllEnchere();//TODO: Debug - To Delete
-        for (Enchere enchere : listeEnchere){//TODO: Debug - To Delete
-            System.out.println("Debug in ManagerEnchereImpl l.69 \n" + enchere.toString());//TODO: Debug - To Delete
-        }
+//        List<Enchere> listeEnchere = daoEnchere.SelectAllEnchere();//TODO: Debug - To Delete
+//        for (Enchere enchere : listeEnchere){//TODO: Debug - To Delete
+//            System.out.println("Debug in ManagerEnchereImpl l.69 \n" + enchere.toString());//TODO: Debug - To Delete
+//        }
         return daoEnchere.SelectAllEnchere();
     }
 
