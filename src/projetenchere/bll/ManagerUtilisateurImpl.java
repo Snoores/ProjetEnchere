@@ -4,6 +4,11 @@ import projetenchere.bo.Utilisateur;
 import projetenchere.dal.DAOSingleton;
 import projetenchere.dal.DAOUtilisateur;
 
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
 import java.util.List;
 
 public class ManagerUtilisateurImpl implements ManagerUtilisateur{
@@ -12,29 +17,32 @@ public class ManagerUtilisateurImpl implements ManagerUtilisateur{
     static {
     	daoUtilisateur = DAOSingleton.getDAOUtilisateur();
     }
+
+    @Override
+    public String ChiffrerMotDePasse(String motDePasse) throws NoSuchAlgorithmException {
+        Charset charset = StandardCharsets.US_ASCII;
+        String encryption = "SHA-1";
+
+        MessageDigest md = MessageDigest.getInstance(encryption);
+        byte[] hashedPassword = md.digest(motDePasse.getBytes(charset));
+        motDePasse = Base64.getEncoder().encodeToString(hashedPassword);
+        return motDePasse;
+    }
     
     @Override
     public void Logout() {
 
     }
-
-    @Override
-    public Utilisateur LoginPseudo(String pseudo, String motDePasse) {
-        return daoUtilisateur.UtilisateurConnectionByPseudo(pseudo, motDePasse);
-    }
     
     @Override
-    public Utilisateur LoginEmail(String email, String motDePasse) {
-        return daoUtilisateur.UtilisateurConnectionByEmail(email, motDePasse);
-    }
-    
-    @Override
-    public Boolean CheckLoginEmail(String login) {
-    	if(login.contains("@")) {
-    		return true;
+    public Utilisateur CheckLoginEmail(String login, String motDePasse) throws NoSuchAlgorithmException {
+    	motDePasse = ChiffrerMotDePasse(motDePasse);
+        System.out.println(motDePasse);
+        if(login.contains("@")) {
+    		return daoUtilisateur.UtilisateurConnectionByEmail(login, motDePasse);
     	}
     	else {
-    		return false;
+    		return daoUtilisateur.UtilisateurConnectionByPseudo(login, motDePasse);
     	}
     }
 
@@ -59,7 +67,8 @@ public class ManagerUtilisateurImpl implements ManagerUtilisateur{
     }
 
     @Override
-    public void CreateUtilisateur(Utilisateur utilisateur) {
+    public void CreateUtilisateur(Utilisateur utilisateur) throws NoSuchAlgorithmException {
+        utilisateur.setMotDePasse(ChiffrerMotDePasse(utilisateur.getMotDePasse()));
     	daoUtilisateur.InsertUtilisateur(utilisateur);
     }
 

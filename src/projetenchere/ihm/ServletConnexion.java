@@ -1,6 +1,7 @@
 package projetenchere.ihm;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -36,15 +37,13 @@ public class ServletConnexion extends HttpServlet {
 		String login = request.getParameter("login");
 		String motDePasse = request.getParameter("password");	
 		ManagerUtilisateur managerUtilisateur = ManagerSingleton.getManagerUtilisateur();
-		boolean email = managerUtilisateur.CheckLoginEmail(login);
-		Utilisateur utilisateur = new Utilisateur();
-		if(email == true) {
-			utilisateur = managerUtilisateur.LoginEmail(login, motDePasse);
-			
-		} else {
-			utilisateur = managerUtilisateur.LoginPseudo(login, motDePasse);
+		Utilisateur utilisateur = null;
+		try {
+			utilisateur = managerUtilisateur.CheckLoginEmail(login, motDePasse);
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
 		}
-		
+
 		if(utilisateur != null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("session", "on");

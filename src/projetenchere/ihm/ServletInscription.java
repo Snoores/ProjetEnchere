@@ -1,6 +1,7 @@
 package projetenchere.ihm;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -46,7 +47,11 @@ public class ServletInscription extends HttpServlet {
 		if (motDePasse.equals(confirmationMotDePasse)) {
 			System.out.println("les mdp correspondent");
 			Utilisateur utilisateur = new Utilisateur(login,nom,prenom,email,telephone,rue,codePostal,ville,motDePasse,0,false);
-			managerUtilisateur.CreateUtilisateur(utilisateur);	
+			try {
+				managerUtilisateur.CreateUtilisateur(utilisateur);
+			} catch (NoSuchAlgorithmException e) {
+				e.printStackTrace();
+			}
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/pages/connexion.jsp");
 			rd.forward(request, response);
 		} else {

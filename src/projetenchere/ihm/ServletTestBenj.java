@@ -1,6 +1,7 @@
 package projetenchere.ihm;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
@@ -9,11 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import projetenchere.bll.ManagerSingleton;
+import projetenchere.bll.ManagerUtilisateur;
 import projetenchere.bo.*;
-import projetenchere.dal.DAOArticleVendu;
-import projetenchere.dal.DAOEnchere;
-import projetenchere.dal.DAORetrait;
-import projetenchere.dal.DAOSingleton;
+import projetenchere.dal.*;
 
 /**
  * Servlet implementation class ServletTestBenj
@@ -50,24 +50,35 @@ public class ServletTestBenj extends HttpServlet {
         Retrait retrait = new Retrait(articleVendu, "Rue du ballec", "43210", "Paris");
 
 
-        DAOArticleVendu daoArticleVendu = DAOSingleton.getDAOArticleVendu();
-		daoArticleVendu.SelectArticleVenduByNoArticle(1);
-		for (ArticleVendu article : daoArticleVendu.SelectArticleVenduByCategorie(categorie)){
-            System.out.println(article.toString());
-        }
-		for (ArticleVendu article : daoArticleVendu.SelectArticleVenduByUtilisateur(utilisateur)){
-            System.out.println(article.toString());
-        }
-		for (ArticleVendu article : daoArticleVendu.SelectArticleVenduByUtilisateurAndEtat(utilisateur, "EC")){
-            System.out.println(article.toString());
-        }
-		for (ArticleVendu article : daoArticleVendu.SelectArticleVenduByEtat("EC")){
-            System.out.println(article.toString());
-        }
-		for (ArticleVendu article : daoArticleVendu.SelectAllArticleVendu()){
-            System.out.println(article.toString());
-        }
+//        DAOArticleVendu daoArticleVendu = DAOSingleton.getDAOArticleVendu();
+//		daoArticleVendu.SelectArticleVenduByNoArticle(1);
+//		for (ArticleVendu article : daoArticleVendu.SelectArticleVenduByCategorie(categorie)){
+//            System.out.println(article.toString());
+//        }
+//		for (ArticleVendu article : daoArticleVendu.SelectArticleVenduByUtilisateur(utilisateur)){
+//            System.out.println(article.toString());
+//        }
+//		for (ArticleVendu article : daoArticleVendu.SelectArticleVenduByUtilisateurAndEtat(utilisateur, "EC")){
+//            System.out.println(article.toString());
+//        }
+//		for (ArticleVendu article : daoArticleVendu.SelectArticleVenduByEtat("EC")){
+//            System.out.println(article.toString());
+//        }
+//		for (ArticleVendu article : daoArticleVendu.SelectAllArticleVendu()){
+//            System.out.println(article.toString());
+//        }
 
+		ManagerUtilisateur managerUtilisateur = ManagerSingleton.getManagerUtilisateur();
+//        try {
+//            managerUtilisateur.CreateUtilisateur(new Utilisateur ("cyper-password", "cyper", "prenom", "email", "telephone", "rue", "codePostal", "ville", "motDePasse", 0, false));
+//        } catch (NoSuchAlgorithmException e) {
+//            e.printStackTrace();
+//        }
+        try {
+            System.out.println(managerUtilisateur.CheckLoginEmail("cyper-password", "motDePasse").toString());
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
 
 //        DAOEnchere daoEnchere = DAOSingleton.getDAOEnchere();
 //		System.out.println("Enchere by NoArticle");
