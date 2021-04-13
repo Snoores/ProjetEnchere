@@ -32,4 +32,4 @@ jobs:
     runs-on: [ self-hosted ]
     steps:
     - name: Restart Tomcat container
-      run: docker restart Tomcat
+      run: sudo docker restart Tomcat
