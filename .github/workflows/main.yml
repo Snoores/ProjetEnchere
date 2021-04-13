@@ -28,7 +28,7 @@ jobs:
       run: cp -r /home/eni/actions-runner/_work/projet-enchere/projet-enchere/target/ProjetEnchere-0.0.1/* /home/eni/Tomcat/webapps/ProjetEnchere/
 
   restart:
-    needs: build
+    needs: deploy
     runs-on: [ self-hosted ]
     steps:
     - name: Restart Tomcat container
