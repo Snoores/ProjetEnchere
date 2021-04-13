@@ -1,6 +1,3 @@
-<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <!doctype html>
 <html lang="fr">
 <%@include file="templates/head.jspf"%>
@@ -8,17 +5,17 @@
 	<%@include file="templates/header.jspf"%>
 		<div class="bloc-home container align-items-center">
 			<div class="col-md-12 col-center">
-			  	<h1>Liste des enchÃ¨res</h1>
+			  	<h1>Liste des enchères</h1>
 			  	<div class="tbl-header">
 			    	<table cellpadding="0" cellspacing="0" border="0">
 			      		<thead>
 					        <tr>
 					          	<th>Nom de l'encherisseur</th>
 						        <th>Article</th>
-						        <th>DÃ©but de l'enchÃ¨re</th>
-						        <th>Fin de l'enchÃ¨re</th>
+						        <th>Début de l'enchère</th>
+						        <th>Fin de l'enchère</th>
 						        <th>Prix initial</th>
-						        <th>Montant de l'enchÃ¨re</th>
+						        <th>Montant de l'enchère</th>
 			        		</tr>
 			      		</thead>
 			    	</table>
