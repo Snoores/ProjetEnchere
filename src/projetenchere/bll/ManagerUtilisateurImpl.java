@@ -78,8 +78,9 @@ public class ManagerUtilisateurImpl implements ManagerUtilisateur{
     }
 
     @Override
-    public void UpdateUtilisateur(Utilisateur utilisateur) {
-    	daoUtilisateur.UpdateUtilisateur(utilisateur);
+    public void UpdateUtilisateur(Utilisateur utilisateur) throws NoSuchAlgorithmException {
+    	utilisateur.setMotDePasse(ChiffrerMotDePasse(utilisateur.getMotDePasse())); //TODO: Doit-on chiffrer le mot de passe lors d'un update ? Surement, mais si l'utilisateur est connecté et qu'il contient un mot de passe chiffré, le mot de passe sera de nouveau chiffré et sera donc faux. Vérification à faire pour voir si le mot de passe de l'objet correspond à celui de la BDD ?
+        daoUtilisateur.UpdateUtilisateur(utilisateur);
     }
     
     @Override

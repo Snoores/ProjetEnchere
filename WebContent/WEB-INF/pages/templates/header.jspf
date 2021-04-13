@@ -21,6 +21,9 @@
             <ul class="navbar-nav my-2 my-lg-0">
                 <c:if test="${pageContext.session.getAttribute('session') != 'on'}">
                     <li class="nav-item">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/inscription">S'inscrire</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="${pageContext.request.contextPath}/connexion">Se connecter</a>
                     </li>
                 </c:if>
