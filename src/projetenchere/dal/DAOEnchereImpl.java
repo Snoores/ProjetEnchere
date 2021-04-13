@@ -99,6 +99,7 @@ public class DAOEnchereImpl implements DAOEnchere{
         return listeEnchere;
     }
 
+    @Override
     public List<Enchere> SelectEnchereByUtilisateur(Utilisateur utilisateur) {
         List<Enchere> listeEnchere = new ArrayList<>();
 
@@ -207,6 +208,7 @@ public class DAOEnchereImpl implements DAOEnchere{
         }
     }
 
+    @Override
     public Enchere CreateNewEnchere(ResultSet rs) throws SQLException {
         ManagerArticleVendu managerArticleVendu = ManagerSingleton.getManagerArticleVendu();
         ManagerUtilisateur managerUtilisateur = ManagerSingleton.getManagerUtilisateur();
@@ -220,6 +222,7 @@ public class DAOEnchereImpl implements DAOEnchere{
         return enchere;
     }
 
+    @Override
     public Enchere CreateNewEnchereWithArticle(ResultSet rs, ArticleVendu articleVendu) throws SQLException {
 
         ManagerUtilisateur managerUtilisateur = ManagerSingleton.getManagerUtilisateur();
@@ -233,6 +236,7 @@ public class DAOEnchereImpl implements DAOEnchere{
         return enchere;
     }
 
+    @Override
     public Enchere CreateNewEnchereWithUtilisateur(ResultSet rs, Utilisateur utilisateur) throws SQLException {
 
         ManagerArticleVendu managerArticleVendu = ManagerSingleton.getManagerArticleVendu();

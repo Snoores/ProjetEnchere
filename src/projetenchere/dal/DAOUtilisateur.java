@@ -2,6 +2,8 @@ package projetenchere.dal;
 
 import projetenchere.bo.Utilisateur;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 public interface DAOUtilisateur {
@@ -20,4 +22,6 @@ public interface DAOUtilisateur {
 
     void InsertUtilisateur(Utilisateur utilisateur);
     void DeleteUtilisateur(Utilisateur utilisateur);
+
+    Utilisateur CreateUtilisateur(ResultSet rs) throws SQLException;
 }

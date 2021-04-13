@@ -31,7 +31,7 @@ public class DAORetraitImpl implements DAORetrait{
             Statement stmt = cnx.createStatement();
             ResultSet rs = stmt.executeQuery(SELECT_ALL);
             while (rs.next()) {
-                listeRetrait.add(createRetrait(rs));
+                listeRetrait.add(CreateRetrait(rs));
             }
 
 
@@ -53,7 +53,7 @@ public class DAORetraitImpl implements DAORetrait{
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
-                retrait = createRetrait(rs);
+                retrait = CreateRetrait(rs);
             }
 
 
@@ -106,7 +106,7 @@ public class DAORetraitImpl implements DAORetrait{
         }
     }
 
-    public Retrait createRetrait(ResultSet rs) throws SQLException{
+    public Retrait CreateRetrait(ResultSet rs) throws SQLException{
 
         ManagerArticleVendu managerArticleVendu = ManagerSingleton.getManagerArticleVendu();
 

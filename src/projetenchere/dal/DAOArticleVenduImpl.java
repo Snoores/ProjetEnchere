@@ -223,7 +223,8 @@ public class DAOArticleVenduImpl implements DAOArticleVendu {
         }
     }
 
-    private ArticleVendu CreateArticleVendu(ResultSet rs) throws SQLException {
+    @Override
+    public ArticleVendu CreateArticleVendu(ResultSet rs) throws SQLException {
 
         ManagerUtilisateur managerUtilisateur = ManagerSingleton.getManagerUtilisateur();
         ManagerCategorie managerCategorie = ManagerSingleton.getManagerCategorie();

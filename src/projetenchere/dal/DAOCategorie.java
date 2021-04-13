@@ -16,4 +16,6 @@ public interface DAOCategorie {
     void InsertCategorie(Categorie categorie);
     Categorie UpdateCategorie(Categorie categorie);
     void DeleteCategorie(Categorie categorie);
+
+    //TODO: CreateCategorie();
 }
