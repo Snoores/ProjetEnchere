@@ -30,16 +30,16 @@
                         <input type="text" class="form-control" name="rue" placeholder="Rue *" value="" required/>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" name="codepostal" placeholder="Code Postal *" value="" required/>
+                        <input type="text" class="form-control" name="code-postal" placeholder="Code Postal *" value="" required/>
                     </div>
                     <div class="form-group">
                         <input type="text" class="form-control" name="ville" placeholder="Ville *" value="" required/>
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" name="password" placeholder="Mot de passe *" value="" required/>
+                        <input type="password" class="form-control" name="mdp" placeholder="Mot de passe *" value="" required/>
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" name="password-confirmation" placeholder="Confirmer votre mot de passe *" value="" required/>
+                        <input type="password" class="form-control" name="mdp-confirmation" placeholder="Confirmer votre mot de passe *" value="" required/>
                     </div>
 				  	<div class="form-group" style="margin-top: 40px;">
                         <button type="submit" class="btn btn-primary w-100">Inscription</button>

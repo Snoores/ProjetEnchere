@@ -108,3 +108,12 @@ body{
     padding-top: 10px;
 }
 
+/* .form-control.form-group-default.required:after {
+    color: #D83C31;
+    content: "*";
+    font-size: 20px;
+    position: absolute;
+    right: 10px;
+    top: 2px;
+}
+ */

@@ -9,6 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import projetenchere.bll.ManagerSingleton;
+import projetenchere.bll.ManagerUtilisateur;
+import projetenchere.bo.Utilisateur;
+
 /**
  * Servlet implementation class ServletInscription
  */
@@ -28,8 +32,28 @@ public class ServletInscription extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		ManagerUtilisateur managerUtilisateur = ManagerSingleton.getManagerUtilisateur();
+		String login = request.getParameter("login");
+		String nom = request.getParameter("nom");
+		String prenom = request.getParameter("prenom");
+		String email = request.getParameter("email");
+		String telephone = request.getParameter("telephone");
+		String rue = request.getParameter("rue");
+		String codePostal = request.getParameter("code-postal");
+		String ville = request.getParameter("ville");
+		String motDePasse = request.getParameter("mdp");
+		String confirmationMotDePasse = request.getParameter("mdp-confirmation");
+		if (motDePasse.equals(confirmationMotDePasse)) {
+			System.out.println("les mdp correspondent");
+			Utilisateur utilisateur = new Utilisateur(login,nom,prenom,email,telephone,rue,codePostal,ville,motDePasse,0,false);
+			managerUtilisateur.CreateUtilisateur(utilisateur);	
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/pages/connexion.jsp");
+			rd.forward(request, response);
+		} else {
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/pages/inscription.jsp");
+			rd.forward(request, response);
+			System.out.println("Les mots de passe ne correspondent pas");
+		}
 	}
 
 }
