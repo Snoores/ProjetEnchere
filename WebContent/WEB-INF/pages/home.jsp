@@ -4,13 +4,14 @@
 <!doctype html>
 <html lang="fr">
 <%@include file="templates/head.jspf"%>
-	<body class="m-2">
+	<body>
+	<%@include file="templates/header.jspf"%>
 		<div class="bloc-home container align-items-center">
 			<!-- <div class="container"> -->
 				<div class="nav-center">
-					<h1 class="h1-accueil">Enchères</h1>
-					<img src="${pageContext.request.contextPath}/resources/img/testimg.png">
-				</div>
+<!-- 					<h1 class="h1-accueil">Enchères</h1>
+ --><%-- 					<img src="${pageContext.request.contextPath}/resources/img/testimg.png">
+ --%>				</div>
 					
 				<div class="col-md-12 col-center">
 					<div class="liste-encheres" style="margin-bottom:50px">
@@ -25,4 +26,4 @@
  -->		</div>
 	</body>
 </html>
-<style><%@include file="/resources/css/style.css"%></style>
+<%-- <style><%@include file="/resources/css/style.css"%></style> --%>

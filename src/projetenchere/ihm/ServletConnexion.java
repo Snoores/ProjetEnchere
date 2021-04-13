@@ -8,6 +8,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import projetenchere.bll.ManagerSingleton;
+import projetenchere.bll.ManagerUtilisateur;
+import projetenchere.bo.Utilisateur;
 
 /**
  * Servlet implementation class ServletHome
@@ -28,8 +33,17 @@ public class ServletConnexion extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		String pseudo = request.getParameter("login");
+		String password = request.getParameter("password");		
+		ManagerUtilisateur managerUtilisateur = ManagerSingleton.getManagerUtilisateur();
+//		Utilisateur utilisateur = managerUtilisateur.login(login, mdp);
+		
+//		if(utilisateur!= null) {
+//			HttpSession session = request.getSession();
+//			session.setAttribute("session", "on");
+//			session.setAttribute("user", utilisateur);
+//			response.sendRedirect(request.getContextPath() + "/accueil");
+//		}
 	}
 
 }

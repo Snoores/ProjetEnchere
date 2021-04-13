@@ -13,6 +13,11 @@ body{
 	text-align: center;
 }
 
+.img-brand {
+	width: 32px;
+	height: 32px;
+}
+
 .bloc-home .nav-center {
 	margin-bottom:50px; 
 	text-align: center;
