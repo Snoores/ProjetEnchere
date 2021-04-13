@@ -14,11 +14,13 @@ public class ArticleVendu {
     private Utilisateur utilisateur;
     private Categorie categorie;
     private String etatVente;
+    private List<Enchere> listeEnchere;
+    private Retrait retrait;
 
     public ArticleVendu() {
     }
 
-    public ArticleVendu(String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres, int miseAPrix, int prixVente, Utilisateur utilisateur, Categorie categorie, String etatVente) {
+    public ArticleVendu(String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres, int miseAPrix, int prixVente, Utilisateur utilisateur, Categorie categorie, String etatVente, List<Enchere> listeEnchere, Retrait retrait) {
         this.nomArticle = nomArticle;
         this.description = description;
         this.dateDebutEncheres = dateDebutEncheres;
@@ -28,9 +30,11 @@ public class ArticleVendu {
         this.utilisateur = utilisateur;
         this.categorie = categorie;
         this.etatVente = etatVente;
+        this.listeEnchere = listeEnchere;
+        this.retrait = retrait;
     }
 
-    public ArticleVendu(int noArticle, String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres, int miseAPrix, int prixVente, Utilisateur utilisateur, Categorie categorie, String etatVente) {
+    public ArticleVendu(int noArticle, String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres, int miseAPrix, int prixVente, Utilisateur utilisateur, Categorie categorie, String etatVente, List<Enchere> listeEnchere, Retrait retrait) {
         this.noArticle = noArticle;
         this.nomArticle = nomArticle;
         this.description = description;
@@ -41,6 +45,8 @@ public class ArticleVendu {
         this.utilisateur = utilisateur;
         this.categorie = categorie;
         this.etatVente = etatVente;
+        this.listeEnchere = listeEnchere;
+        this.retrait = retrait;
     }
 
     public int getNoArticle() {
@@ -123,6 +129,23 @@ public class ArticleVendu {
         this.etatVente = etatVente;
     }
 
+    public List<Enchere> getListeEnchere() {
+        return listeEnchere;
+    }
+
+    public void setListeEnchere(List<Enchere> listeEnchere) {
+        this.listeEnchere = listeEnchere;
+    }
+
+    public Retrait getRetrait() {
+        return retrait;
+    }
+
+    public void setRetrait(Retrait retrait) {
+        this.retrait = retrait;
+    }
+
+
     @Override
     public String toString() {
         return "ArticleVendu{" +
@@ -136,6 +159,8 @@ public class ArticleVendu {
                 ", utilisateur=" + utilisateur +
                 ", categorie=" + categorie +
                 ", etatVente='" + etatVente + '\'' +
+                ", listeEnchere=" + listeEnchere +
+                ", retrait=" + retrait +
                 '}';
     }
 }

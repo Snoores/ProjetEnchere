@@ -4,9 +4,7 @@ import projetenchere.bll.ManagerCategorie;
 import projetenchere.bll.ManagerEnchere;
 import projetenchere.bll.ManagerSingleton;
 import projetenchere.bll.ManagerUtilisateur;
-import projetenchere.bo.ArticleVendu;
-import projetenchere.bo.Categorie;
-import projetenchere.bo.Utilisateur;
+import projetenchere.bo.*;
 
 
 import java.sql.Connection;
@@ -43,7 +41,7 @@ public class DAOArticleVenduImpl implements DAOArticleVendu {
 
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
-                listeArticleVendu.add(createArticleVendu(rs));
+                listeArticleVendu.add(CreateArticleVendu(rs));
             }
 
 
@@ -64,7 +62,7 @@ public class DAOArticleVenduImpl implements DAOArticleVendu {
 
             ResultSet rs = pstmt.executeQuery();
             while(rs.next()) {
-                articleVendu = createArticleVendu(rs);
+                articleVendu = CreateArticleVendu(rs);
             }
 
         } catch (SQLException e) {
@@ -84,7 +82,7 @@ public class DAOArticleVenduImpl implements DAOArticleVendu {
 
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
-                listeArticleVendu.add(createArticleVendu(rs));
+                listeArticleVendu.add(CreateArticleVendu(rs));
             }
 
         } catch (SQLException e) {
@@ -105,7 +103,7 @@ public class DAOArticleVenduImpl implements DAOArticleVendu {
 
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
-                listeArticleVendu.add(createArticleVendu(rs));
+                listeArticleVendu.add(CreateArticleVendu(rs));
             }
 
         } catch (SQLException e) {
@@ -129,7 +127,7 @@ public class DAOArticleVenduImpl implements DAOArticleVendu {
 
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
-                listeArticleVendu.add(createArticleVendu(rs));
+                listeArticleVendu.add(CreateArticleVendu(rs));
             }
 
         } catch (SQLException e) {
@@ -147,7 +145,7 @@ public class DAOArticleVenduImpl implements DAOArticleVendu {
             Statement stmt = cnx.createStatement();
             ResultSet rs = stmt.executeQuery(SELECT_ALL);
             while (rs.next()) {
-                listeArticleVendu.add(createArticleVendu(rs));
+                listeArticleVendu.add(CreateArticleVendu(rs));
             }
 
 
@@ -225,10 +223,11 @@ public class DAOArticleVenduImpl implements DAOArticleVendu {
         }
     }
 
-    private ArticleVendu createArticleVendu(ResultSet rs) throws SQLException {
+    private ArticleVendu CreateArticleVendu(ResultSet rs) throws SQLException {
 
         ManagerUtilisateur managerUtilisateur = ManagerSingleton.getManagerUtilisateur();
         ManagerCategorie managerCategorie = ManagerSingleton.getManagerCategorie();
+        ManagerEnchere managerEnchere = ManagerSingleton.getManagerEnchere();
 
         ArticleVendu articleVendu = new ArticleVendu();
         articleVendu.setNoArticle(rs.getInt("no_article"));
@@ -241,6 +240,7 @@ public class DAOArticleVenduImpl implements DAOArticleVendu {
         articleVendu.setCategorie(managerCategorie.GetCategorieByNoCategorie(rs.getInt("no_categorie")));
         articleVendu.setEtatVente(rs.getString("etat_vente"));
         articleVendu.setUtilisateur(managerUtilisateur.GetUtilisateurByNoUtilisateur(rs.getInt("no_utilisateur")));
+        articleVendu.setListeEnchere(managerEnchere.GetEnchereByNoArticleWithArticle(articleVendu.getNoArticle(), articleVendu));
 
         return articleVendu;
     }

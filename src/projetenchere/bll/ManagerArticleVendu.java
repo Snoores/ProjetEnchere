@@ -2,6 +2,7 @@ package projetenchere.bll;
 
 import projetenchere.bo.ArticleVendu;
 import projetenchere.bo.Categorie;
+import projetenchere.bo.Enchere;
 import projetenchere.bo.Utilisateur;
 
 import java.util.List;

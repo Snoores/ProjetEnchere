@@ -53,8 +53,8 @@ public class Enchere {
     @Override
     public String toString() {
         return "Enchere{" +
-                "utilisateur=" + utilisateur +
-                ", articleVendu=" + articleVendu +
+                "utilisateur=" + utilisateur.getPseudo() +
+                ", articleVendu=" + articleVendu.getNomArticle() +
                 ", dateEnchere=" + dateEnchere +
                 ", montantEnchere=" + montantEnchere +
                 '}';

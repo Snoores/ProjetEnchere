@@ -13,6 +13,7 @@ public interface ManagerEnchere {
     List<Enchere> GetEnchereByUtilisateur(Utilisateur utilisateur);
     Enchere GetEnchereByArticle(ArticleVendu article);
     List<Enchere> GetEnchereByNoArticle(int noArticle);
+    List<Enchere> GetEnchereByNoArticleWithArticle(int noArticle, ArticleVendu articleVendu);
     List<Enchere> GetEnchereByNoUtilisateur(int noUtilisateur);
 
     public List<Enchere> GetAllEnchere();

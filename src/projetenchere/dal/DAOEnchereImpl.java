@@ -12,7 +12,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +36,25 @@ public class DAOEnchereImpl implements DAOEnchere{
 
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
-                listeEnchere.add(createNewEnchere(rs));
+                listeEnchere.add(CreateNewEnchere(rs));
+            }
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+
+        return listeEnchere;
+    }
+
+    @Override
+    public List<Enchere> SelectEnchereByNoArticleWithArticle(int noArticle, ArticleVendu articleVendu) {
+        List<Enchere> listeEnchere = new ArrayList<>();
+        try (Connection cnx = ConnectionProvider.getConnection()) {
+            PreparedStatement pstmt = cnx.prepareStatement(SELECT_BY_ARTICLE);
+            pstmt.setInt(1, noArticle);
+
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                listeEnchere.add(CreateNewEnchereWithArticle(rs, articleVendu));
             }
         } catch (SQLException e) {
             System.err.println(e.getMessage());
@@ -55,7 +72,7 @@ public class DAOEnchereImpl implements DAOEnchere{
 
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
-                listeEnchere.add(createNewEnchere(rs));
+                listeEnchere.add(CreateNewEnchere(rs));
             }
         } catch (SQLException e) {
             System.err.println(e.getMessage());
@@ -73,7 +90,7 @@ public class DAOEnchereImpl implements DAOEnchere{
 
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
-                listeEnchere.add(createNewEnchere(rs));
+                listeEnchere.add(CreateNewEnchere(rs));
             }
 
 
@@ -94,7 +111,7 @@ public class DAOEnchereImpl implements DAOEnchere{
 
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
-                enchere = createNewEnchere(rs);
+                enchere = CreateNewEnchere(rs);
             }
 
 
@@ -113,7 +130,7 @@ public class DAOEnchereImpl implements DAOEnchere{
             Statement stmt = cnx.createStatement();
             ResultSet rs = stmt.executeQuery(SELECT_ALL);
             while (rs.next()) {
-                listeEnchere.add(createNewEnchere(rs));
+                listeEnchere.add(CreateNewEnchere(rs));
             }
 
 
@@ -172,7 +189,7 @@ public class DAOEnchereImpl implements DAOEnchere{
         }
     }
 
-    public Enchere createNewEnchere(ResultSet rs) throws SQLException {
+    public Enchere CreateNewEnchere(ResultSet rs) throws SQLException {
         ManagerArticleVendu managerArticleVendu = ManagerSingleton.getManagerArticleVendu();
         ManagerUtilisateur managerUtilisateur = ManagerSingleton.getManagerUtilisateur();
 
@@ -182,6 +199,19 @@ public class DAOEnchereImpl implements DAOEnchere{
         enchere.setDateEnchere(rs.getDate("date_enchere").toLocalDate());
         enchere.setMontantEnchere(rs.getInt("montant_enchere"));
 
+        return enchere;
+    }
+
+    public Enchere CreateNewEnchereWithArticle(ResultSet rs, ArticleVendu articleVendu) throws SQLException {
+
+        //ManagerUtilisateur managerUtilisateur = ManagerSingleton.getManagerUtilisateur();
+
+
+        Enchere enchere = new Enchere();
+        enchere.setArticleVendu(articleVendu);
+        enchere.setUtilisateur(new Utilisateur()); //managerUtilisateur.GetUtilisateurByNoUtilisateur
+        enchere.setDateEnchere(rs.getDate("date_enchere").toLocalDate());
+        enchere.setMontantEnchere(rs.getInt("montant_enchere"));
         return enchere;
     }
 }

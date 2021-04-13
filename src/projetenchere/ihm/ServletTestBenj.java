@@ -37,7 +37,9 @@ public class ServletTestBenj extends HttpServlet {
                 1000244,
                 utilisateur,
                 categorie,
-                "EC");
+                "EC",
+                new ArrayList<Enchere>(),
+                new Retrait());
 
         Enchere enchere = new Enchere(
                 utilisateur,
@@ -48,34 +50,44 @@ public class ServletTestBenj extends HttpServlet {
         Retrait retrait = new Retrait(articleVendu, "Rue du ballec", "43210", "Paris");
 
 
-//        DAOArticleVendu daoArticleVendu = DAOSingleton.getDAOArticleVendu();
-//		daoArticleVendu.SelectArticleVenduByNoArticle(1);
-//		daoArticleVendu.SelectArticleVenduByCategorie(categorie);
-//		daoArticleVendu.SelectArticleVenduByUtilisateur(utilisateur);
-//		daoArticleVendu.SelectArticleVenduByUtilisateurAndEtat(utilisateur, "EC");
-//		daoArticleVendu.SelectArticleVenduByEtat("EC");
-//		daoArticleVendu.SelectAllArticleVendu();
+        DAOArticleVendu daoArticleVendu = DAOSingleton.getDAOArticleVendu();
+		daoArticleVendu.SelectArticleVenduByNoArticle(1);
+		for (ArticleVendu article : daoArticleVendu.SelectArticleVenduByCategorie(categorie)){
+            System.out.println(article.toString());
+        }
+		for (ArticleVendu article : daoArticleVendu.SelectArticleVenduByUtilisateur(utilisateur)){
+            System.out.println(article.toString());
+        }
+		for (ArticleVendu article : daoArticleVendu.SelectArticleVenduByUtilisateurAndEtat(utilisateur, "EC")){
+            System.out.println(article.toString());
+        }
+		for (ArticleVendu article : daoArticleVendu.SelectArticleVenduByEtat("EC")){
+            System.out.println(article.toString());
+        }
+		for (ArticleVendu article : daoArticleVendu.SelectAllArticleVendu()){
+            System.out.println(article.toString());
+        }
 
 
-//        DAOEnchere daoEnchere = DAOSingleton.getDAOEnchere();
-//		System.out.println("Enchere by NoArticle");
-//		daoEnchere.SelectEnchereByNoArticle(2);
-//		System.out.println("Enchere All");
-//		daoEnchere.SelectAllEnchere();
-//		System.out.println("Enchere by Article");
-//		daoEnchere.SelectEnchereByArticle(articleVendu);
-//		System.out.println("Enchere by Utilisateur");
-//		daoEnchere.SelectEnchereByUtilisateur(utilisateur);
+        DAOEnchere daoEnchere = DAOSingleton.getDAOEnchere();
+		System.out.println("Enchere by NoArticle");
+        System.out.println(daoEnchere.SelectEnchereByNoArticle(2).toString());
+		System.out.println("Enchere All");
+        System.out.println(daoEnchere.SelectAllEnchere().toString());
+		System.out.println("Enchere by Article");
+        System.out.println(daoEnchere.SelectEnchereByArticle(articleVendu).toString());
+		System.out.println("Enchere by Utilisateur");
+        System.out.println(daoEnchere.SelectEnchereByUtilisateur(utilisateur).toString());
 //		daoEnchere.InsertEnchere(enchere);
 //		daoEnchere.UpdateEnchere(enchere);
 //        daoEnchere.DeleteEnchere(enchere);
 
-        DAORetrait daoRetrait = DAOSingleton.getDAORetrait();
-        daoRetrait.SelectAllRetrait();
-        daoRetrait.SelectRetraitByNoArticle(articleVendu.getNoArticle());
-        daoRetrait.InsertRetrait(retrait);
-        daoRetrait.UpdateRetrait(retrait);
-        daoRetrait.DeleteRetrait(retrait);
+//        DAORetrait daoRetrait = DAOSingleton.getDAORetrait();
+//        daoRetrait.SelectAllRetrait();
+//        daoRetrait.SelectRetraitByNoArticle(articleVendu.getNoArticle());
+//        daoRetrait.InsertRetrait(retrait);
+//        daoRetrait.UpdateRetrait(retrait);
+//        daoRetrait.DeleteRetrait(retrait);
 
         /*ManagerRetrait managerRetrait = ManagerFactory.getManagerRetrait();
         managerRetrait.CreateRetrait(retrait);
