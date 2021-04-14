@@ -19,9 +19,11 @@
                 		<li>Ville : ${requestScope.user_profile.ville}</li>
 						<li>Credit : ${requestScope.user_profile.credit}</li>
                 	</ul>
+				<c:if test="${requestScope.user_profile.noUtilisateur == sessionScope.user.noUtilisateur}">
 	                 <div class="col-12 d-flex justify-content-center mt-3">
 		  				<a href="${pageContext.request.contextPath}/modifier-profile" class="btn btn-secondary btn-modifier-profiles">Modifier</a>
 		  			</div>
+				</c:if>
 	        </div>
 	    </div>
 	</div>
