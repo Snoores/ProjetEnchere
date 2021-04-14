@@ -9,14 +9,15 @@
 			<div class="col-md-12 col-center">
 	                <h3 class="h3-my-profile">Mon profile</h3>
                 	<ul class="ul-my-profile">
-                		<li>Pseudo : william-penna</li>
-                		<li>Nom : Pennaneach</li>
-                		<li>Prénom : William</li>
-                		<li>Email : w.pennaneach@test.fr</li>
-                		<li>Téléphone : 0606060606</li>
-                		<li>Rue : le test</li>
-                		<li>Code postal : 29500</li>
-                		<li>Ville : Ergué Gabéric</li>
+                		<li>Pseudo : ${requestScope.user_profile.pseudo}</li>
+                		<li>Nom : ${requestScope.user_profile.nom}</li>
+                		<li>Prénom : ${requestScope.user_profile.prenom}</li>
+                		<li>Email : ${requestScope.user_profile.email}</li>
+                		<li>Téléphone : ${requestScope.user_profile.telephone}</li>
+                		<li>Rue : ${requestScope.user_profile.rue}</li>
+                		<li>Code postal : ${requestScope.user_profile.codePostal}</li>
+                		<li>Ville : ${requestScope.user_profile.ville}</li>
+						<li>Credit : ${requestScope.user_profile.credit}</li>
                 	</ul>
 	                 <div class="col-12 d-flex justify-content-center mt-3">
 		  				<a href="${pageContext.request.contextPath}/modifier-profile" class="btn btn-secondary btn-modifier-profiles">Modifier</a>
