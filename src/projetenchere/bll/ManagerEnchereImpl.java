@@ -9,6 +9,7 @@ import projetenchere.dal.DAOSingleton;
 import projetenchere.dal.DAOUtilisateur;
 
 import java.time.LocalDate;
+import java.util.Comparator;
 import java.util.List;
 
 public class ManagerEnchereImpl implements ManagerEnchere{
@@ -75,6 +76,16 @@ public class ManagerEnchereImpl implements ManagerEnchere{
 
 
         return daoEnchere.SelectEnchereByNoUtilisateur(noUtilisateur);
+    }
+
+    @Override
+    public Enchere GetMeilleureOffre(ArticleVendu articleVendu) { //TODO: transformer en String /!\Java Version/!\
+        Enchere meilleureOffre = null;
+
+        meilleureOffre = articleVendu.getListeEnchere().stream().max(Comparator.comparing(Enchere::getMontantEnchere)).get();
+        System.out.println(meilleureOffre.toString());
+
+        return meilleureOffre;
     }
 
     @Override

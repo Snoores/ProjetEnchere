@@ -16,6 +16,7 @@ public interface ManagerEnchere {
     List<Enchere> GetEnchereByNoArticleWithArticle(int noArticle, ArticleVendu articleVendu);
     List<Enchere> GetEnchereByNoUtilisateurWithUtilisateur(int noUtilisateur, Utilisateur utilisateur);
     List<Enchere> GetEnchereByNoUtilisateur(int noUtilisateur);
+    Enchere GetMeilleureOffre(ArticleVendu articleVendu);
 
     public List<Enchere> GetAllEnchere();
     public void CreateEnchere(Enchere enchere);
