@@ -230,3 +230,23 @@ ul.ul-my-profile{
 .btn-modifier-profiles {
 	margin-top: 50px
 }
+
+.check-filter {
+	margin-top: 30px;
+}
+
+.check-filter {
+	display: flex;
+}
+
+.col-md-4.col-check {
+	text-align: left;
+}
+
+.check-sous-option {
+    margin-left: 25px;
+}
+
+.form-check-label-vente {
+	opacity: 0.5;
+}

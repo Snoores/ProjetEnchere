@@ -26,6 +26,57 @@
 			  			<a class="btn btn-primary btn-search">Rechercher</a>
 			  		</div>
 			  	</div>
+			  <c:if test="${pageContext.session.getAttribute('user').noUtilisateur != null
+                && pageContext.session.getAttribute('session') == 'on'}">
+			  	<div class="check-filter">
+			  		<div class="col-md-4 col-check">
+			  			<div class="check-option-achat">
+			  				<input class="form-check-input check-input-achat" type="radio" value="achat" name="filter" checked >
+		                    <label class="form-check-label" for="achat-filter">
+		                        Achats
+		                    </label>
+							<div class="check-sous-option">
+				  				<input class="input-achat" type="checkbox" name="optAchatEnchO">
+								<label class="form-check-label-achat" for="optEnchO">Enchères ouvertes</label>
+							</div>
+							<div class="check-sous-option">
+				  				<input class="input-achat" type="checkbox" name="optAchatEnchEC">
+								<label class="form-check-label-achat" for="optEnchEC">Mes enchères en cours</label>
+							</div>
+                        	<div class="check-sous-option">
+                        		<input class="input-achat" type="checkbox" name="optAchatEnchR">
+								<label class="form-check-label-achat" for="optEnchR"> Mes enchères en remportées</label>
+                        	</div>
+			  			</div>
+			  		</div>
+			  		<div class="col-md-4 col-check">
+			  			<div class="check-option-vente">
+		  					<input class="form-check-input check-input-vente" type="radio" value="enchere" name="filter">
+		                    <label class="form-check-label" for="vente-filter" >
+		                        Mes ventes
+		                    </label>
+		                    <div class="check-sous-option">
+	                            <input class="input-vente" type="checkbox" name="opVentetEnchO" disabled>
+	                            <label class="form-check-label-vente">
+	                                Enchères ouvertes
+	                            </label>
+                        	</div>
+                        	<div class="check-sous-option">
+	                            <input class="input-vente" type="checkbox" name="opVentetEnchEC" disabled>
+	                            <label class="form-check-label-vente">
+	                                Mes enchères en cours
+	                            </label>
+                        	</div>
+                        	<div class="check-sous-option">
+	                            <input class="input-vente" type="checkbox" name="opVentetEnchR" disabled>
+	                            <label class="form-check-label-vente">
+	                                Mes enchères en remportées
+	                            </label>
+                        	</div>
+			  			</div>
+			  		</div>	
+			  	</div>
+			</c:if>
 			  	<div class="products">
 			  		<div class="container">
 			  			<div class="row">
@@ -58,7 +109,7 @@
 	</body>
 </html>
 <script>
-	$('.btn-search').on("click", function(e){
+	$('.btn-search').on("click", function(){
 		$(".product-identity").css("display","none");
 		
 		var search = $('#search-input').val();
@@ -77,5 +128,23 @@
 			$(".product-identity[class*="+search+"]").css("display","block");
 			$(".product-identity[class*="+categorie+"]").css("display","block");
 		}
+	});
+	
+	$('.check-input-achat').on("click", function(){
+		console.log("achat");
+		$('.input-vente').prop( "disabled", true );
+		$('.input-achat').prop( "disabled", false );
+		$('.input-vente').prop( "checked", false );
+		$('.form-check-label-achat').css("opacity","1");
+		$('.form-check-label-vente').css("opacity","0.5");
+	});
+	
+	$('.check-input-vente').on("click", function(){
+		console.log("vente");
+		$('.input-vente').prop( "disabled", false );
+		$('.input-achat').prop( "disabled", true );
+		$('.input-achat').prop( "checked", false );
+		$('.form-check-label-achat').css("opacity","0.5");
+		$('.form-check-label-vente').css("opacity","1");
 	});
 </script>
