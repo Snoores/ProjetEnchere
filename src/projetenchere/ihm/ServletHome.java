@@ -10,9 +10,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import projetenchere.bll.ManagerCategorie;
 import projetenchere.bll.ManagerEnchere;
 import projetenchere.bll.ManagerSingleton;
 import projetenchere.bll.ManagerUtilisateur;
+import projetenchere.bo.Categorie;
 import projetenchere.bo.Enchere;
 
 /**
@@ -27,8 +29,14 @@ public class ServletHome extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ManagerEnchere managerEnchere = ManagerSingleton.getManagerEnchere();
+		ManagerCategorie managerCategorie = ManagerSingleton.getManagerCategorie();
+
 		List<Enchere> encheres = managerEnchere.GetAllEnchere();
+		List<Categorie> categories = managerCategorie.GetAllCategorie();
+		
+		request.setAttribute("categories", categories);
 		request.setAttribute("encheres", encheres);
+		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/pages/home.jsp");
 		rd.forward(request, response);
 	}
