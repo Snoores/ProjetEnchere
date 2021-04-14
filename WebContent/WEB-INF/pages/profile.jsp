@@ -7,7 +7,7 @@
     <div class="bloc-profile">
 		<div class="container align-items-center">
 			<div class="col-md-12 col-center">
-	                <h3 class="h3-my-profile">Mon profile</h3>
+	                <h3 class="h3-my-profile">Mon profil</h3>
                 	<ul class="ul-my-profile">
                 		<li>Pseudo : ${requestScope.user_profile.pseudo}</li>
                 		<li>Nom : ${requestScope.user_profile.nom}</li>
@@ -19,10 +19,10 @@
                 		<li>Ville : ${requestScope.user_profile.ville}</li>
 						<li>Credit : ${requestScope.user_profile.credit}</li>
                 	</ul>
-				<c:if test="${requestScope.user_profile.noUtilisateur == sessionScope.user.noUtilisateur}">
+				<c:if test="${requestScope.user_profile.noUtilisateur == sessionScope.user.noUtilisateur && sessionScope.user.noUtilisateur != 0}">
 	                 <div class="col-12 d-flex justify-content-center mt-3">
-		  				<a href="${pageContext.request.contextPath}/modifier-profile" class="btn btn-secondary btn-modifier-profiles">Modifier</a>
-		  			</div>
+		  				<a href="${pageContext.request.contextPath}/modification_profile" class="btn btn-secondary btn-modifier-profiles">Modifier</a>
+		  			 </div>
 				</c:if>
 	        </div>
 	    </div>

@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,30 +26,32 @@ public class ServletTestBenj extends HttpServlet {
 
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Utilisateur utilisateur = new Utilisateur(1, "azer", "reg", "vrve", "tert@erigei.com", "0101010101", "azer", "32568", "zefaz", "aaaaaa", 2000, null, false);
-        Categorie categorie = new Categorie(2, "Vetements");
-
-        ArticleVendu articleVendu = new ArticleVendu(
-                12,
-                "Chaussure 3",
-                "Qui a trois pied ?",
-                LocalDate.of(2021, 1, 1),
-                LocalDate.of(2021, 1, 3),
-                6200,
-                1000244,
-                utilisateur,
-                categorie,
-                "EC",
-                new ArrayList<Enchere>(),
-                new Retrait());
-
-        Enchere enchere = new Enchere(
-                utilisateur,
-                articleVendu,
-                LocalDate.of(2021, 04, 9),
-                25000);
-        
-        Retrait retrait = new Retrait(articleVendu, "Rue du ballec", "43210", "Paris");
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/pages/modification_profil.jsp");
+		rd.forward(request, response);
+//        Utilisateur utilisateur = new Utilisateur(1, "azer", "reg", "vrve", "tert@erigei.com", "0101010101", "azer", "32568", "zefaz", "aaaaaa", 2000, null, false);
+//        Categorie categorie = new Categorie(2, "Vetements");
+//
+//        ArticleVendu articleVendu = new ArticleVendu(
+//                12,
+//                "Chaussure 3",
+//                "Qui a trois pied ?",
+//                LocalDate.of(2021, 1, 1),
+//                LocalDate.of(2021, 1, 3),
+//                6200,
+//                1000244,
+//                utilisateur,
+//                categorie,
+//                "EC",
+//                new ArrayList<Enchere>(),
+//                new Retrait());
+//
+//        Enchere enchere = new Enchere(
+//                utilisateur,
+//                articleVendu,
+//                LocalDate.of(2021, 04, 9),
+//                25000);
+//        
+//        Retrait retrait = new Retrait(articleVendu, "Rue du ballec", "43210", "Paris");
 
 
 //        DAOArticleVendu daoArticleVendu = DAOSingleton.getDAOArticleVendu();
@@ -68,17 +72,17 @@ public class ServletTestBenj extends HttpServlet {
 //            System.out.println(article.toString());
 //        }
 
-		ManagerUtilisateur managerUtilisateur = ManagerSingleton.getManagerUtilisateur();
+//		ManagerUtilisateur managerUtilisateur = ManagerSingleton.getManagerUtilisateur();
 //        try {
 //            managerUtilisateur.CreateUtilisateur(new Utilisateur ("cyper-password", "cyper", "prenom", "email", "telephone", "rue", "codePostal", "ville", "motDePasse", 0, false));
 //        } catch (NoSuchAlgorithmException e) {
 //            e.printStackTrace();
 //        }
-        try {
-            System.out.println(managerUtilisateur.CheckLoginEmail("cyper-password", "motDePasse").toString());
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            System.out.println(managerUtilisateur.CheckLoginEmail("cyper-password", "motDePasse").toString());
+//        } catch (NoSuchAlgorithmException e) {
+//            e.printStackTrace();
+//        }
 
 //        DAOEnchere daoEnchere = DAOSingleton.getDAOEnchere();
 //		System.out.println("Enchere by NoArticle");

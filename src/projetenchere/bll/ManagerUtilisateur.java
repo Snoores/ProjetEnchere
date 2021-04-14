@@ -7,7 +7,6 @@ import java.util.List;
 
 public interface ManagerUtilisateur {
 
-    void Logout();
     Utilisateur CheckLoginEmail(String login, String motDePasse) throws NoSuchAlgorithmException;
 
     Utilisateur GetUtilisateurByNoUtilisateur(int noUtilisateur);

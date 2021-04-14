@@ -8,6 +8,7 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 
@@ -28,16 +29,10 @@ public class ManagerUtilisateurImpl implements ManagerUtilisateur{
         motDePasse = Base64.getEncoder().encodeToString(hashedPassword);
         return motDePasse;
     }
-    
-    @Override
-    public void Logout() {
 
-    }
-    
     @Override
     public Utilisateur CheckLoginEmail(String login, String motDePasse) throws NoSuchAlgorithmException {
     	motDePasse = ChiffrerMotDePasse(motDePasse);
-        System.out.println(motDePasse);
         if(login.contains("@")) {
     		return daoUtilisateur.UtilisateurConnectionByEmail(login, motDePasse);
     	}
