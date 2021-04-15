@@ -108,7 +108,9 @@
 									        		<li>Retrait effectué</li>
 									        	</c:if>
 									        </ul>
-									        <a class="text-center" href="${pageContext.request.contextPath}/enchere?id=${enchere.articleVendu.noArticle}"><button class="btn btn-primary mb-3">Voir l'enchère</button></a>
+									        <c:if test="${pageContext.session.getAttribute('user').noUtilisateur != null && pageContext.session.getAttribute('session') == 'on'}">
+									        	<a class="text-center" href="${pageContext.request.contextPath}/enchere?id=${enchere.articleVendu.noArticle}"><button class="btn btn-primary mb-3">Voir l'enchère</button></a>
+									      	</c:if>
 									      </div>
 									    </div>
 									  </div>

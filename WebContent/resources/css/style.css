@@ -250,3 +250,21 @@ ul.ul-my-profile{
 .form-check-label-vente {
 	opacity: 0.5;
 }
+
+.bloc-vente .form-group.form.btn {
+    display: inline-flex;
+}
+
+.bloc-vente .form-group.form.btn a{
+   margin-left:30px;
+}
+
+.bloc-vente .retrait-article {
+	margin-top: 10px;
+	border: 1px solid;
+	padding: 15px;
+}
+
+/* .bloc-vente .form-group.form.btn button{
+   margin-left:50px;
+} */

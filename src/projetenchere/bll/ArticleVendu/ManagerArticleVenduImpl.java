@@ -17,8 +17,8 @@ public class ManagerArticleVenduImpl implements ManagerArticleVendu{
     }
 
     @Override
-    public void CreateArticleVendu(ArticleVendu article) {
-        daoArticleVendu.InsertArticleVendu(article);
+    public ArticleVendu CreateArticleVendu(ArticleVendu article) {
+        return daoArticleVendu.InsertArticleVendu(article);
     }
 
     @Override

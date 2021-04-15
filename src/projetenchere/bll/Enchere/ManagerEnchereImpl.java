@@ -70,11 +70,13 @@ public class ManagerEnchereImpl implements ManagerEnchere{
 
     @Override
     public Enchere GetMeilleureOffre(ArticleVendu articleVendu) { //TODO: transformer en String /!\Java Version/!\
-        Enchere meilleureOffre = null;
+        Enchere meilleureOffre = new Enchere();
         List<Enchere> listeEnchere = GetEnchereByNoArticle(articleVendu.getNoArticle());
 
-        meilleureOffre = listeEnchere.stream().max(Comparator.comparing(Enchere::getMontantEnchere)).get();
-
+        if(listeEnchere.size() > 0) {
+            meilleureOffre = listeEnchere.stream().max(Comparator.comparing(Enchere::getMontantEnchere)).get();
+        }
+        
         return meilleureOffre;
     }
 

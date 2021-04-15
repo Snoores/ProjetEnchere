@@ -14,12 +14,11 @@ public class ArticleVendu {
     private Utilisateur utilisateur;
     private Categorie categorie;
     private String etatVente;
-    private Retrait retrait;
 
     public ArticleVendu() {
     }
 
-    public ArticleVendu(String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres, int miseAPrix, int prixVente, Utilisateur utilisateur, Categorie categorie, String etatVente, Retrait retrait) {
+    public ArticleVendu(String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres, int miseAPrix, int prixVente, Utilisateur utilisateur, Categorie categorie, String etatVente) {
         this.nomArticle = nomArticle;
         this.description = description;
         this.dateDebutEncheres = dateDebutEncheres;
@@ -29,10 +28,20 @@ public class ArticleVendu {
         this.utilisateur = utilisateur;
         this.categorie = categorie;
         this.etatVente = etatVente;
-        this.retrait = retrait;
+    }
+    
+    public ArticleVendu(String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres, int miseAPrix, Utilisateur utilisateur, Categorie categorie, String etatVente) {
+        this.nomArticle = nomArticle;
+        this.description = description;
+        this.dateDebutEncheres = dateDebutEncheres;
+        this.dateFinEncheres = dateFinEncheres;
+        this.miseAPrix = miseAPrix;
+        this.utilisateur = utilisateur;
+        this.categorie = categorie;
+        this.etatVente = etatVente;
     }
 
-    public ArticleVendu(int noArticle, String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres, int miseAPrix, int prixVente, Utilisateur utilisateur, Categorie categorie, String etatVente, Retrait retrait) {
+    public ArticleVendu(int noArticle, String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres, int miseAPrix, int prixVente, Utilisateur utilisateur, Categorie categorie, String etatVente) {
         this.noArticle = noArticle;
         this.nomArticle = nomArticle;
         this.description = description;
@@ -43,7 +52,6 @@ public class ArticleVendu {
         this.utilisateur = utilisateur;
         this.categorie = categorie;
         this.etatVente = etatVente;
-        this.retrait = retrait;
     }
 
     public int getNoArticle() {
@@ -126,15 +134,6 @@ public class ArticleVendu {
         this.etatVente = etatVente;
     }
 
-    public Retrait getRetrait() {
-        return retrait;
-    }
-
-    public void setRetrait(Retrait retrait) {
-        this.retrait = retrait;
-    }
-
-
     @Override
     public String toString() {
         return "ArticleVendu{" +
@@ -147,8 +146,7 @@ public class ArticleVendu {
                 ", prixVente=" + prixVente +
                 ", utilisateur=" + utilisateur +
                 ", categorie=" + categorie +
-                ", etatVente='" + etatVente + '\'' +
-                ", retrait=" + retrait +
+                ", etatVente='" + etatVente + '\''+
                 '}';
     }
 }

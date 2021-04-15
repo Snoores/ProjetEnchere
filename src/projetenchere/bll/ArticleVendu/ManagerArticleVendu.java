@@ -10,7 +10,7 @@ import java.util.List;
 public interface ManagerArticleVendu {
 
     public List<ArticleVendu> GetAllArticleVendu();
-    public void CreateArticleVendu(ArticleVendu article);
+    public ArticleVendu CreateArticleVendu(ArticleVendu article);
     public void DeleteArticleVendu(ArticleVendu article);
     public void UpdateArticleVendu(ArticleVendu article);
 

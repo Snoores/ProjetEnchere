@@ -11,7 +11,7 @@ public interface ManagerRetrait {
 
 
     public List<Retrait> GetAllRetrait();
-    public void CreateRetrait(Retrait retrait);
+    public Retrait CreateRetrait(Retrait retrait);
     public void DeleteRetrait(Retrait retrait);
     public void UpdateRetrait(Retrait retrait);
 }

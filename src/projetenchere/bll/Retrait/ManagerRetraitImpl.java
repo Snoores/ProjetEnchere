@@ -20,8 +20,9 @@ public class ManagerRetraitImpl implements ManagerRetrait{
     }
 
     @Override
-    public void CreateRetrait(Retrait retrait) {
+    public Retrait CreateRetrait(Retrait retrait) {
         daoRetrait.InsertRetrait(retrait);
+        return retrait;
     }
 
     @Override

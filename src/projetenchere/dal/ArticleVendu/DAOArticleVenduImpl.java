@@ -157,7 +157,7 @@ public class DAOArticleVenduImpl implements DAOArticleVendu {
     }
 
     @Override
-    public void InsertArticleVendu(ArticleVendu articleVendu) {
+    public ArticleVendu InsertArticleVendu(ArticleVendu articleVendu) {
         try(Connection cnx = ConnectionProvider.getConnection()) {
             PreparedStatement pStmt = cnx.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);
 
@@ -172,16 +172,21 @@ public class DAOArticleVenduImpl implements DAOArticleVendu {
             pStmt.setString(9, articleVendu.getEtatVente()); //utilisateur
 
 
-            pStmt.executeUpdate();
+            int nbRows = pStmt.executeUpdate();
 
 
-            ResultSet rs = pStmt.getGeneratedKeys();
-            if(rs.next()) {
-            }
+            if (nbRows == 1) {
+				ResultSet rs = pStmt.getGeneratedKeys();
+				if (rs.next()) {
+					articleVendu.setNoArticle(rs.getInt(1));
+				}
+			}
 
         } catch (SQLException e) {
             System.err.println(e.getMessage());
         }
+        
+        return articleVendu;
 
     }
 
