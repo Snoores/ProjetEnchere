@@ -1,10 +1,10 @@
-package projetenchere.dal;
+package projetenchere.dal.ArticleVendu;
 
-import projetenchere.bll.ManagerCategorie;
-import projetenchere.bll.ManagerEnchere;
+import projetenchere.bll.Categorie.ManagerCategorie;
 import projetenchere.bll.ManagerSingleton;
-import projetenchere.bll.ManagerUtilisateur;
+import projetenchere.bll.Utilisateur.ManagerUtilisateur;
 import projetenchere.bo.*;
+import projetenchere.dal.ConnectionProvider;
 
 
 import java.sql.Connection;

@@ -1,8 +1,9 @@
-package projetenchere.dal;
+package projetenchere.dal.Retrait;
 
-import projetenchere.bll.ManagerArticleVendu;
+import projetenchere.bll.ArticleVendu.ManagerArticleVendu;
 import projetenchere.bll.ManagerSingleton;
 import projetenchere.bo.Retrait;
+import projetenchere.dal.ConnectionProvider;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

@@ -1,7 +1,7 @@
-package projetenchere.bll;
+package projetenchere.bll.Categorie;
 
 import projetenchere.bo.Categorie;
-import projetenchere.dal.DAOCategorie;
+import projetenchere.dal.Categorie.DAOCategorie;
 import projetenchere.dal.DAOSingleton;
 
 import java.util.List;

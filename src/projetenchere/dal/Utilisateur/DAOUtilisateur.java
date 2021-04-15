@@ -1,4 +1,4 @@
-package projetenchere.dal;
+package projetenchere.dal.Utilisateur;
 
 import projetenchere.bo.Utilisateur;
 

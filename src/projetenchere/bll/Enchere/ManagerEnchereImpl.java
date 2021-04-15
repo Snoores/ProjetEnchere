@@ -1,12 +1,12 @@
-package projetenchere.bll;
+package projetenchere.bll.Enchere;
 
 import projetenchere.bo.ArticleVendu;
 import projetenchere.bo.Enchere;
 import projetenchere.bo.Utilisateur;
-import projetenchere.dal.DAOArticleVendu;
-import projetenchere.dal.DAOEnchere;
+import projetenchere.dal.ArticleVendu.DAOArticleVendu;
+import projetenchere.dal.Enchere.DAOEnchere;
 import projetenchere.dal.DAOSingleton;
-import projetenchere.dal.DAOUtilisateur;
+import projetenchere.dal.Utilisateur.DAOUtilisateur;
 
 import java.time.LocalDate;
 import java.util.Comparator;
@@ -62,16 +62,6 @@ public class ManagerEnchereImpl implements ManagerEnchere{
     }
 
     @Override
-    public List<Enchere> GetEnchereByNoArticleWithArticle(int noArticle, ArticleVendu articleVendu) {
-        return daoEnchere.SelectEnchereByNoArticleWithArticle(noArticle, articleVendu);
-    }
-
-    @Override
-    public List<Enchere> GetEnchereByNoUtilisateurWithUtilisateur(int noUtilisateur, Utilisateur utilisateur) {
-        return daoEnchere.SelectEnchereByNoUtilisateurWithUtilisateur(noUtilisateur, utilisateur);
-    }
-
-    @Override
     public List<Enchere> GetEnchereByNoUtilisateur(int noUtilisateur) {
 
 
@@ -81,25 +71,34 @@ public class ManagerEnchereImpl implements ManagerEnchere{
     @Override
     public Enchere GetMeilleureOffre(ArticleVendu articleVendu) { //TODO: transformer en String /!\Java Version/!\
         Enchere meilleureOffre = null;
+        List<Enchere> listeEnchere = GetEnchereByNoArticle(articleVendu.getNoArticle());
 
-        meilleureOffre = articleVendu.getListeEnchere().stream().max(Comparator.comparing(Enchere::getMontantEnchere)).get();
-        System.out.println(meilleureOffre.toString());
+        meilleureOffre = listeEnchere.stream().max(Comparator.comparing(Enchere::getMontantEnchere)).get();
 
         return meilleureOffre;
     }
 
     @Override
     public List<Enchere> GetAllEnchere() {
-//        List<Enchere> listeEnchere = daoEnchere.SelectAllEnchere();//TODO: Debug - To Delete
-//        for (Enchere enchere : listeEnchere){//TODO: Debug - To Delete
-//            System.out.println("Debug in ManagerEnchereImpl l.69 \n" + enchere.toString());//TODO: Debug - To Delete
-//        }
         return daoEnchere.SelectAllEnchere();
     }
 
     @Override
-    public void CreateEnchere(Enchere enchere) { //TODO: Vérifier que l'ArticleVendu existe AVANT de faire une enchere
-        daoEnchere.InsertEnchere(enchere);
+    public void CreateEnchere(Enchere enchere) {
+        Boolean createdEnchere = false;
+        List<Enchere> listeEnchere = daoEnchere.SelectEnchereByNoArticle(enchere.getArticleVendu().getNoArticle());
+
+        for (Enchere ench : listeEnchere){
+            if (ench.getUtilisateur().getNoUtilisateur() == enchere.getUtilisateur().getNoUtilisateur()){
+                System.out.println("Condition OK");
+                daoEnchere.UpdateEnchere(enchere);
+                createdEnchere = true;
+                break;
+            }
+        }
+        if (createdEnchere == false){
+            daoEnchere.InsertEnchere(enchere);
+        }
     }
 
     @Override

@@ -1,10 +1,9 @@
-package projetenchere.bll;
+package projetenchere.bll.ArticleVendu;
 
 import projetenchere.bo.ArticleVendu;
 import projetenchere.bo.Categorie;
-import projetenchere.bo.Enchere;
 import projetenchere.bo.Utilisateur;
-import projetenchere.dal.DAOArticleVendu;
+import projetenchere.dal.ArticleVendu.DAOArticleVendu;
 import projetenchere.dal.DAOSingleton;
 
 import java.util.List;

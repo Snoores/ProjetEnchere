@@ -1,9 +1,7 @@
-package projetenchere.dal;
+package projetenchere.dal.Categorie;
 
-import projetenchere.bo.ArticleVendu;
 import projetenchere.bo.Categorie;
-import projetenchere.bo.Enchere;
-import projetenchere.bo.Utilisateur;
+import projetenchere.dal.ConnectionProvider;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

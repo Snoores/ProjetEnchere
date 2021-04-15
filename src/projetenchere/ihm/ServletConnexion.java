@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import projetenchere.bll.ManagerSingleton;
-import projetenchere.bll.ManagerUtilisateur;
+import projetenchere.bll.Utilisateur.ManagerUtilisateur;
 import projetenchere.bo.Utilisateur;
 
 /**

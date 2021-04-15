@@ -10,10 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import projetenchere.bll.ManagerCategorie;
-import projetenchere.bll.ManagerEnchere;
+import projetenchere.bll.Categorie.ManagerCategorie;
+import projetenchere.bll.Enchere.ManagerEnchere;
 import projetenchere.bll.ManagerSingleton;
-import projetenchere.bll.ManagerUtilisateur;
 import projetenchere.bo.Categorie;
 import projetenchere.bo.Enchere;
 

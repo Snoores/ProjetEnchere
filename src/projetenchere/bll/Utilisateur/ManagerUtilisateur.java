@@ -1,4 +1,4 @@
-package projetenchere.bll;
+package projetenchere.bll.Utilisateur;
 
 import projetenchere.bo.Utilisateur;
 

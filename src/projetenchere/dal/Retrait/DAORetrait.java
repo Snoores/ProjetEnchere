@@ -1,4 +1,4 @@
-package projetenchere.dal;
+package projetenchere.dal.Retrait;
 
 import projetenchere.bo.Retrait;
 

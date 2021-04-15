@@ -1,12 +1,8 @@
 package projetenchere.ihm;
 
 import projetenchere.bll.ManagerSingleton;
-import projetenchere.bll.ManagerUtilisateur;
-import projetenchere.bo.Retrait;
-import projetenchere.dal.DAOSingleton;
-import projetenchere.dal.DAORetrait;
+import projetenchere.bll.Utilisateur.ManagerUtilisateur;
 
-import javax.naming.Context;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;

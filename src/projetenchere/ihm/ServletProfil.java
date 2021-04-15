@@ -1,9 +1,7 @@
 package projetenchere.ihm;
 
-import projetenchere.bll.ManagerArticleVendu;
 import projetenchere.bll.ManagerSingleton;
-import projetenchere.bll.ManagerUtilisateur;
-import projetenchere.bo.ArticleVendu;
+import projetenchere.bll.Utilisateur.ManagerUtilisateur;
 import projetenchere.bo.Utilisateur;
 
 import java.io.IOException;

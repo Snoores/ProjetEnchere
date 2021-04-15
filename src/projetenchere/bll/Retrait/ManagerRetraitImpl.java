@@ -1,8 +1,8 @@
-package projetenchere.bll;
+package projetenchere.bll.Retrait;
 
 import projetenchere.bo.Retrait;
 import projetenchere.dal.DAOSingleton;
-import projetenchere.dal.DAORetrait;
+import projetenchere.dal.Retrait.DAORetrait;
 
 import java.util.List;
 

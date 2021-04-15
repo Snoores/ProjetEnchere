@@ -1,4 +1,4 @@
-package projetenchere.bll;
+package projetenchere.bll.ArticleVendu;
 
 import projetenchere.bo.ArticleVendu;
 import projetenchere.bo.Categorie;

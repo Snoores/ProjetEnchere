@@ -1,5 +1,16 @@
 package projetenchere.dal;
 
+import projetenchere.dal.ArticleVendu.DAOArticleVendu;
+import projetenchere.dal.ArticleVendu.DAOArticleVenduImpl;
+import projetenchere.dal.Categorie.DAOCategorie;
+import projetenchere.dal.Categorie.DAOCategorieImpl;
+import projetenchere.dal.Enchere.DAOEnchere;
+import projetenchere.dal.Enchere.DAOEnchereImpl;
+import projetenchere.dal.Retrait.DAORetrait;
+import projetenchere.dal.Retrait.DAORetraitImpl;
+import projetenchere.dal.Utilisateur.DAOUtilisateur;
+import projetenchere.dal.Utilisateur.DAOUtilisateurImpl;
+
 public class DAOSingleton {
 
     static DAORetrait daoRetrait;

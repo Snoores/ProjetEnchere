@@ -8,11 +8,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import projetenchere.bll.ManagerCategorie;
 import projetenchere.bll.ManagerSingleton;
-import projetenchere.bll.ManagerUtilisateur;
+import projetenchere.bll.Utilisateur.ManagerUtilisateur;
 import projetenchere.dal.DAOSingleton;
-import projetenchere.dal.DAOUtilisateur;
+import projetenchere.dal.Utilisateur.DAOUtilisateur;
 /**
  * Servlet implementation class ServletWilliam
  */

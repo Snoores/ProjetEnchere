@@ -1,14 +1,13 @@
-package projetenchere.bll;
+package projetenchere.bll.Utilisateur;
 
 import projetenchere.bo.Utilisateur;
 import projetenchere.dal.DAOSingleton;
-import projetenchere.dal.DAOUtilisateur;
+import projetenchere.dal.Utilisateur.DAOUtilisateur;
 
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 

@@ -1,9 +1,8 @@
 package projetenchere.ihm;
 
-import projetenchere.bll.ManagerArticleVendu;
-import projetenchere.bll.ManagerEnchere;
+import projetenchere.bll.ArticleVendu.ManagerArticleVendu;
+import projetenchere.bll.Enchere.ManagerEnchere;
 import projetenchere.bll.ManagerSingleton;
-import projetenchere.bll.ManagerUtilisateur;
 import projetenchere.bo.ArticleVendu;
 import projetenchere.bo.Enchere;
 import projetenchere.bo.Utilisateur;
@@ -25,7 +24,6 @@ public class ServletEnchere extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ManagerArticleVendu managerArticleVendu = ManagerSingleton.getManagerArticleVendu();
 	private ManagerEnchere managerEnchere = ManagerSingleton.getManagerEnchere();
-	private ManagerUtilisateur managerUtilisateur = ManagerSingleton.getManagerUtilisateur();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ArticleVendu article = managerArticleVendu.GetArticleVenduByNoArticle(Integer.parseInt(request.getParameter("id")));
@@ -44,31 +42,12 @@ public class ServletEnchere extends HttpServlet {
 		int noArticle = Integer.parseInt(request.getParameter("no_article"));
 		ArticleVendu article = managerArticleVendu.GetArticleVenduByNoArticle(noArticle);
 		Utilisateur utilisateur = (Utilisateur) request.getSession().getAttribute("user");
-		System.out.println(utilisateur.toString());
 		int proposition = Integer.parseInt(request.getParameter("proposition"));
 		
-//		Enchere enchere = new Enchere(utilisateur,article,LocalDate.now(),proposition);
-		Enchere newEnchere = null;
-		for(Enchere enchere : utilisateur.getListeEnchere()) {
-			System.out.println("fortest");
-			System.out.println(enchere.toString());
-			if(enchere.getArticleVendu().getNoArticle() == noArticle) {
-				System.out.println("iftest");
-				System.out.println(enchere.toString());
-				newEnchere = enchere;
-				newEnchere.setMontantEnchere(proposition);
-				System.out.println(newEnchere.toString());
-				break;
-			}
-		}
-		
-		if(newEnchere == null) {
-			managerEnchere.CreateEnchere(new Enchere(utilisateur,article,LocalDate.now(),proposition));
-		} else {
-			managerEnchere.UpdateEnchere(newEnchere);
-		}
-		
-		
+		Enchere enchere = new Enchere(utilisateur,article,LocalDate.now(),proposition);
+
+		managerEnchere.CreateEnchere(enchere);
+
 		response.sendRedirect(request.getContextPath() + "/enchere?id="+noArticle);
 	}
 

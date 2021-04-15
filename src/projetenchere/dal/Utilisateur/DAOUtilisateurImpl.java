@@ -1,13 +1,11 @@
-package projetenchere.dal;
+package projetenchere.dal.Utilisateur;
 
-import projetenchere.bll.ManagerEnchere;
+import projetenchere.bll.Enchere.ManagerEnchere;
 import projetenchere.bll.ManagerSingleton;
-import projetenchere.bo.ArticleVendu;
-import projetenchere.bo.Enchere;
 import projetenchere.bo.Utilisateur;
+import projetenchere.dal.ConnectionProvider;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

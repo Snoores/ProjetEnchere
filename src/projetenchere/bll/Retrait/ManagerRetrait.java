@@ -1,4 +1,4 @@
-package projetenchere.bll;
+package projetenchere.bll.Retrait;
 
 import projetenchere.bo.Enchere;
 import projetenchere.bo.Retrait;

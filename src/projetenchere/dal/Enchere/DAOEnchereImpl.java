@@ -1,11 +1,12 @@
-package projetenchere.dal;
+package projetenchere.dal.Enchere;
 
-import projetenchere.bll.ManagerArticleVendu;
+import projetenchere.bll.ArticleVendu.ManagerArticleVendu;
 import projetenchere.bll.ManagerSingleton;
-import projetenchere.bll.ManagerUtilisateur;
+import projetenchere.bll.Utilisateur.ManagerUtilisateur;
 import projetenchere.bo.ArticleVendu;
 import projetenchere.bo.Enchere;
 import projetenchere.bo.Utilisateur;
+import projetenchere.dal.ConnectionProvider;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -23,7 +24,7 @@ public class DAOEnchereImpl implements DAOEnchere{
 
     private final static String INSERT = "INSERT INTO ENCHERES (no_utilisateur,no_article,date_enchere,montant_enchere) VALUES(?,?,?,?)";
 
-    private final static String UPDATE = "UPDATE ENCHERES SET no_utilisateur=?,no_article=?,date_enchere=?,montant_enchere=? WHERE no_article=?";
+    private final static String UPDATE = "UPDATE ENCHERES SET no_utilisateur=?,no_article=?,date_enchere=?,montant_enchere=? WHERE no_article=? AND no_utilisateur=?";
 
     private final static String DELETE = "DELETE FROM ENCHERES WHERE no_utilisateur=? AND no_article=?";
 
@@ -150,6 +151,7 @@ public class DAOEnchereImpl implements DAOEnchere{
             pStmt.setDate(3, java.sql.Date.valueOf(enchere.getDateEnchere()));
             pStmt.setInt(4, enchere.getMontantEnchere());
             pStmt.setInt(5, enchere.getArticleVendu().getNoArticle());
+            pStmt.setInt(6, enchere.getUtilisateur().getNoUtilisateur()); //nom_article
 
             pStmt.executeUpdate();
 
