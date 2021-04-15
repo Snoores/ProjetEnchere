@@ -81,7 +81,7 @@
 			  		<div class="container">
 			  			<div class="row">
 			  				<c:forEach var="enchere" items="${encheres }">
-							  	<div class="col-md-6 product-identity ${fn:replace(enchere.articleVendu.nomArticle,' ', '_')} ${fn:replace(enchere.articleVendu.categorie.libelle,' ', '_')}">
+							  	<div class="col-md-6 product-identity category_${fn:replace(enchere.articleVendu.categorie.libelle,' ', '_').toLowerCase()} article_${fn:replace(enchere.articleVendu.nomArticle,' ', '_').toLowerCase()}">
 							  		<div class="wrapper">
 									    <div class="product-img">
 									      <img src="http://bit.ly/2tMBBTd" height="320" width="227">
@@ -119,6 +119,7 @@
 						</div>
 					</div>
 				 </div>
+				</div>
 			</div>
 		</div>
 	</body>
@@ -128,21 +129,32 @@
 		$(".product-identity").css("display","none");
 		
 		var search = $('#search-input').val();
-		search = search.replace(" ","_");
+		search = search.replace(" ","_").toLowerCase();
 		var categorie = $('.select-option').val();
-		categorie = categorie.replace(" ","_");
+		categorie = categorie.replace(" ","_").toLowerCase();
+
 		
-		console.log(search);
 		if(search == '' && categorie == ''){
 			$(".product-identity").css("display","block");
 		}else if(search != '' && categorie == ''){
-			$(".product-identity[class*="+search+"]").css("display","block");
+			$(".product-identity[class*=article_"+search+"]").css("display","block");
 		}else if(search == '' && categorie != ''){
-			$(".product-identity[class*="+categorie+"]").css("display","block");
+			$(".product-identity.category_"+categorie).css("display","block");
 		}else if(search != '' && categorie != ''){
-			$(".product-identity[class*="+search+"]").css("display","block");
-			$(".product-identity[class*="+categorie+"]").css("display","block");
+			$(".product-identity.category_"+categorie+"[class*=article_"+search+"]").css("display","block");
 		}
+
+
+		// if(search == '' && categorie == ''){
+		// 	$(".product-identity").css("display","block");
+		// }else if(search != '' && categorie == ''){
+		// 	$(".product-identity[class*="+search+"]").css("display","block");
+		// }else if(search == '' && categorie != ''){
+		// 	$(".product-identity[class*="+categorie+"]").css("display","block");
+		// }else if(search != '' && categorie != ''){
+		// 	$(".product-identity[class*="+search+"]").css("display","block");
+		// 	$(".product-identity[class*="+categorie+"]").css("display","block");
+		// }
 	});
 	
 	$('.check-input-achat').on("click", function(){

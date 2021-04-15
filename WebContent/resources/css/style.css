@@ -13,10 +13,6 @@ body{
 	text-align: center;
 }
 
-.navbar {
-	background-color: lightslategray;
-}
-
 .btn.btn-outline-success {
     color: white;
     border-color: white;
@@ -80,7 +76,9 @@ body{
     font-weight: 600;
     color: #fff;
     background-color: #0062cc;
-}2 .btnSubmit{
+}
+
+.btnSubmit{
     font-weight: 600;
     color: #0062cc;
     background-color: #fff;

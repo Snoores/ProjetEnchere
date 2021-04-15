@@ -59,17 +59,16 @@
                 <p class="font-weight-bold"> Retrait: </p>
             </div>
             <div class="col">
-                <c:if test="${not empty requestScope.article.retrait}">
+                <c:if test="${not empty requestScope.retrait}">
                     <div class="row">
-                        <p>${requestScope.article.retrait.rue}</p>
+                        <p>${requestScope.retrait.rue}</p>
                     </div>
                     <div class="row">
-                        <p>${requestScope.article.retrait.codePostal} ${requestScope.article.retrait.ville}</p>
-                        <p>${requestScope.article.retrait.codePostal} ${requestScope.article.retrait.ville}</p>
+                        <p>${requestScope.retrait.codePostal} ${requestScope.retrait.ville}</p>
                     </div>
                 </c:if>
 
-                <c:if test="${empty requestScope.article.retrait}">
+                <c:if test="${empty requestScope.retrait}">
                     <div class="row">
                         <p>${requestScope.article.utilisateur.rue}</p>
                     </div>

@@ -65,6 +65,7 @@ public class ServletVendre extends HttpServlet {
 		
 		
 		ArticleVendu articleVendu = new ArticleVendu(nomArticle,description,dateDebut,dateFin,miseAPrix,utilisateur,categorie,"CR");
+		System.out.println(articleVendu);
 		articleVendu = managerArticleVendu.CreateArticleVendu(articleVendu);
 		
 		Retrait retrait = new Retrait(articleVendu,rue,cp,ville);

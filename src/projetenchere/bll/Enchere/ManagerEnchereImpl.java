@@ -69,7 +69,7 @@ public class ManagerEnchereImpl implements ManagerEnchere{
     }
 
     @Override
-    public Enchere GetMeilleureOffre(ArticleVendu articleVendu) { //TODO: transformer en String /!\Java Version/!\
+    public Enchere GetMeilleureOffre(ArticleVendu articleVendu) {
         Enchere meilleureOffre = new Enchere();
         List<Enchere> listeEnchere = GetEnchereByNoArticle(articleVendu.getNoArticle());
 
@@ -90,12 +90,13 @@ public class ManagerEnchereImpl implements ManagerEnchere{
         Boolean createdEnchere = false;
         List<Enchere> listeEnchere = daoEnchere.SelectEnchereByNoArticle(enchere.getArticleVendu().getNoArticle());
 
-        for (Enchere ench : listeEnchere){
-            if (ench.getUtilisateur().getNoUtilisateur() == enchere.getUtilisateur().getNoUtilisateur()){
-                System.out.println("Condition OK");
-                daoEnchere.UpdateEnchere(enchere);
-                createdEnchere = true;
-                break;
+        if (listeEnchere.size() > 0) {
+            for (Enchere ench : listeEnchere) {
+                if (ench.getUtilisateur().getNoUtilisateur() == enchere.getUtilisateur().getNoUtilisateur()) {
+                    daoEnchere.UpdateEnchere(enchere);
+                    createdEnchere = true;
+                    break;
+                }
             }
         }
         if (createdEnchere == false){

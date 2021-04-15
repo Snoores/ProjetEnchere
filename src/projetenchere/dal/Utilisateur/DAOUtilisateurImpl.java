@@ -213,11 +213,8 @@ public class DAOUtilisateurImpl implements DAOUtilisateur{
 
     @Override
     public Utilisateur CreateUtilisateur(ResultSet rs) throws SQLException{
-		ManagerEnchere managerEnchere = ManagerSingleton.getManagerEnchere();
-
 
 		Utilisateur utilisateur = new Utilisateur();
-
 		utilisateur.setNoUtilisateur(rs.getInt("no_utilisateur"));
 		utilisateur.setPseudo(rs.getString("pseudo"));
 		utilisateur.setNom(rs.getString("nom"));
