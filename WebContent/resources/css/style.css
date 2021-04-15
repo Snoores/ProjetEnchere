@@ -263,6 +263,46 @@ ul.ul-my-profile{
 	padding: 15px;
 }
 
-/* .bloc-vente .form-group.form.btn button{
-   margin-left:50px;
-} */
+.bloc-modifier-profil img{
+	width: 90px;
+	height: 90px;
+	-webkit-border-radius: 100px;
+	-moz-border-radius: 100px;
+	border-radius: 100px;
+}
+
+.bloc-modifier-profil .col-modifier-profil {
+	display: flex;
+}
+
+.bloc-modifier-profil .col-form {
+	display: flex;
+	margin-left: 50px;
+}
+
+.bloc-modifier-profil .col-md-4.col-right {
+	margin-left: 10em;
+}
+
+.bloc-modifier-profil .img-prof {
+	text-align: center;
+}
+
+.bloc-modifier-profil ul.ul-profil {
+    margin-top: 30px;
+    margin-left: 40px;
+}
+
+.bloc-modifier-profil .form-group {
+    width: 150%;
+}
+
+.bloc-modifier-profil .col-btn{
+	display: inline-flex;
+	margin-left: 50px;
+	margin-top: 40px;
+}
+
+.bloc-modifier-profil a.btn.btn-danger.w-80 {
+    margin-left: 30px;
+}

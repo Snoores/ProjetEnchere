@@ -81,4 +81,9 @@ public class ManagerUtilisateurImpl implements ManagerUtilisateur{
     public void UpdateCreditUtilisateur(Utilisateur utilisateur, int newCredit) {
     	daoUtilisateur.UpdateCreditUtilisateur(utilisateur, newCredit);
     }
+    
+    @Override
+    public Utilisateur UpdateUtilisateurWithoutPassword(Utilisateur utilisateur){
+    	  return daoUtilisateur.UpdateUtilisateur(utilisateur);
+    	}
 }

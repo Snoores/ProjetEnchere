@@ -18,6 +18,7 @@ public interface ManagerUtilisateur {
     public void DeleteUtilisateur(Utilisateur utilisateur);
     public void UpdateUtilisateur(Utilisateur utilisateur) throws NoSuchAlgorithmException;
     public void UpdateCreditUtilisateur(Utilisateur utilisateur, int newCredit);
+    Utilisateur UpdateUtilisateurWithoutPassword(Utilisateur utilisateur);
 
     public String ChiffrerMotDePasse(String motDePasse) throws NoSuchAlgorithmException;
 }
