@@ -24,7 +24,7 @@ public class ManagerArticleVenduImpl implements ManagerArticleVendu{
     @Override
     public ArticleVendu CreateArticleVendu(ArticleVendu article) {
 
-        if((Integer) article.getPrixVente() == null){
+        if(article.getPrixVente() == 0){
             article.setPrixVente(article.getMiseAPrix());
         }
         article = daoArticleVendu.InsertArticleVendu(article);

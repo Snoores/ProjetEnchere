@@ -81,7 +81,7 @@
 			  		<div class="container">
 			  			<div class="row">
 			  				<c:forEach var="enchere" items="${encheres }">
-							  	<div class="col-md-6 product-identity category_${fn:replace(enchere.articleVendu.categorie.libelle,' ', '_').toLowerCase()} article_${fn:replace(enchere.articleVendu.nomArticle,' ', '_').toLowerCase()}">
+							  	<div class="col-md-6 product-identity state_${fn:replace(enchere.articleVendu.etatVente,' ', '_')} category_${fn:replace(enchere.articleVendu.categorie.libelle,' ', '_').toLowerCase()} article_${fn:replace(enchere.articleVendu.nomArticle,' ', '_').toLowerCase()}">
 							  		<div class="wrapper">
 									    <div class="product-img">
 									      <img src="http://bit.ly/2tMBBTd" height="320" width="227">
@@ -143,18 +143,6 @@
 		}else if(search != '' && categorie != ''){
 			$(".product-identity.category_"+categorie+"[class*=article_"+search+"]").css("display","block");
 		}
-
-
-		// if(search == '' && categorie == ''){
-		// 	$(".product-identity").css("display","block");
-		// }else if(search != '' && categorie == ''){
-		// 	$(".product-identity[class*="+search+"]").css("display","block");
-		// }else if(search == '' && categorie != ''){
-		// 	$(".product-identity[class*="+categorie+"]").css("display","block");
-		// }else if(search != '' && categorie != ''){
-		// 	$(".product-identity[class*="+search+"]").css("display","block");
-		// 	$(".product-identity[class*="+categorie+"]").css("display","block");
-		// }
 	});
 	
 	$('.check-input-achat').on("click", function(){
