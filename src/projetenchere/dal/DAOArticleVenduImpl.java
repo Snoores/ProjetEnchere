@@ -229,7 +229,6 @@ public class DAOArticleVenduImpl implements DAOArticleVendu {
 
         ManagerUtilisateur managerUtilisateur = ManagerSingleton.getManagerUtilisateur();
         ManagerCategorie managerCategorie = ManagerSingleton.getManagerCategorie();
-        ManagerEnchere managerEnchere = ManagerSingleton.getManagerEnchere();
 
         ArticleVendu articleVendu = new ArticleVendu();
         articleVendu.setNoArticle(rs.getInt("no_article"));
@@ -242,7 +241,6 @@ public class DAOArticleVenduImpl implements DAOArticleVendu {
         articleVendu.setCategorie(managerCategorie.GetCategorieByNoCategorie(rs.getInt("no_categorie")));
         articleVendu.setEtatVente(rs.getString("etat_vente"));
         articleVendu.setUtilisateur(managerUtilisateur.GetUtilisateurByNoUtilisateur(rs.getInt("no_utilisateur")));
-        articleVendu.setListeEnchere(managerEnchere.GetEnchereByNoArticleWithArticle(articleVendu.getNoArticle(), articleVendu));
 
         return articleVendu;
     }

@@ -16,8 +16,7 @@ public class ServletDeconnexion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getSession().setAttribute("session", "off");
-		request.getSession().setAttribute("user", null);
+		request.getSession().invalidate();
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/pages/deconnexion.jsp");
 		rd.forward(request, response);
 	}

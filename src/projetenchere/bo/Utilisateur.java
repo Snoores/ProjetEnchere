@@ -1,7 +1,5 @@
 package projetenchere.bo;
 
-import java.util.List;
-
 public class Utilisateur {
     private int noUtilisateur;
     private String pseudo;
@@ -14,43 +12,11 @@ public class Utilisateur {
     private String ville;
     private String motDePasse;
     private int credit;
-    private List<Enchere> listeEnchere;
     private boolean administrateur;
 
     public Utilisateur() {
     }
 
-    public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue, String codePostal, String ville, String motDePasse, int credit, List<Enchere> listeEnchere, boolean administrateur) {
-        this.pseudo = pseudo;
-        this.nom = nom;
-        this.prenom = prenom;
-        this.email = email;
-        this.telephone = telephone;
-        this.rue = rue;
-        this.codePostal = codePostal;
-        this.ville = ville;
-        this.motDePasse = motDePasse;
-        this.credit = credit;
-        this.listeEnchere = listeEnchere;
-        this.administrateur = administrateur;
-    }
-
-    public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, String email, String telephone, String rue, String codePostal, String ville, String motDePasse, int credit, List<Enchere> listeEnchere, boolean administrateur) {
-        this.noUtilisateur = noUtilisateur;
-        this.pseudo = pseudo;
-        this.nom = nom;
-        this.prenom = prenom;
-        this.email = email;
-        this.telephone = telephone;
-        this.rue = rue;
-        this.codePostal = codePostal;
-        this.ville = ville;
-        this.motDePasse = motDePasse;
-        this.credit = credit;
-        this.listeEnchere = listeEnchere;
-        this.administrateur = administrateur;
-    }
-    
     public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, String email, String telephone, String rue, String codePostal, String ville, String motDePasse, int credit, boolean administrateur) {
         this.noUtilisateur = noUtilisateur;
         this.pseudo = pseudo;
@@ -168,14 +134,6 @@ public class Utilisateur {
 		this.credit = credit;
 	}
 
-	public List<Enchere> getListeEnchere() {
-		return listeEnchere;
-	}
-
-	public void setListeEnchere(List<Enchere> listeEnchere) {
-		this.listeEnchere = listeEnchere;
-	}
-
 	public boolean isAdministrateur() {
 		return administrateur;
 	}
@@ -189,7 +147,6 @@ public class Utilisateur {
 		return "Utilisateur [noUtilisateur=" + noUtilisateur + ", pseudo=" + pseudo + ", nom=" + nom + ", prenom="
 				+ prenom + ", email=" + email + ", telephone=" + telephone + ", rue=" + rue + ", codePostal="
 				+ codePostal + ", ville=" + ville + ", motDePasse=" + motDePasse + ", credit=" + credit
-				+ ", listeEnchere=" + listeEnchere + ", administrateur="
 				+ administrateur + "]";
 	}
 

@@ -35,27 +35,13 @@ public class DAOUtilisateurImpl implements DAOUtilisateur{
 			pStmt.setString(2, motDePasse);
 			ResultSet rs = pStmt.executeQuery();
 			if(rs.next()) {
-				utilisateur.setNoUtilisateur(rs.getInt("no_utilisateur"));
-				utilisateur.setPseudo(rs.getString("pseudo"));
-				utilisateur.setNom(rs.getString("nom"));
-				utilisateur.setPrenom(rs.getString("prenom"));
-				utilisateur.setEmail(rs.getString("email"));
-				utilisateur.setTelephone(rs.getString("telephone"));
-				utilisateur.setRue(rs.getString("rue"));
-				utilisateur.setCodePostal(rs.getString("code_postal"));
-				utilisateur.setVille(rs.getString("ville"));
-				utilisateur.setMotDePasse(rs.getString("mot_de_passe"));
-				utilisateur.setCredit(rs.getInt("credit"));
-				List<Enchere> lste = new ArrayList<>();
-				utilisateur.setListeEnchere(lste);
-				utilisateur.setAdministrateur(rs.getBoolean("administrateur"));
-				return utilisateur;
+				utilisateur = CreateUtilisateur(rs);
 			}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return null;
+		return utilisateur;
     }
 
     @Override
@@ -67,27 +53,13 @@ public class DAOUtilisateurImpl implements DAOUtilisateur{
 			pStmt.setString(2, motDePasse);
 			ResultSet rs = pStmt.executeQuery();
 			if(rs.next()) {
-				utilisateur.setNoUtilisateur(rs.getInt("no_utilisateur"));
-				utilisateur.setPseudo(rs.getString("pseudo"));
-				utilisateur.setNom(rs.getString("nom"));
-				utilisateur.setPrenom(rs.getString("prenom"));
-				utilisateur.setEmail(rs.getString("email"));
-				utilisateur.setTelephone(rs.getString("telephone"));
-				utilisateur.setRue(rs.getString("rue"));
-				utilisateur.setCodePostal(rs.getString("code_postal"));
-				utilisateur.setVille(rs.getString("ville"));
-				utilisateur.setMotDePasse(rs.getString("mot_de_passe"));
-				utilisateur.setCredit(rs.getInt("credit"));
-				List<Enchere> lste = new ArrayList<>();
-				utilisateur.setListeEnchere(lste);
-				utilisateur.setAdministrateur(rs.getBoolean("administrateur"));
-				return utilisateur;
+				utilisateur = CreateUtilisateur(rs);
 			}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return null;
+		return utilisateur;
     }
 
     @Override
@@ -117,20 +89,7 @@ public class DAOUtilisateurImpl implements DAOUtilisateur{
 			pStmt.setString(1, email);
 			ResultSet rs = pStmt.executeQuery();
 			if(rs.next()) {
-				utilisateur.setNoUtilisateur(rs.getInt("no_utilisateur"));
-				utilisateur.setPseudo(rs.getString("pseudo"));
-				utilisateur.setNom(rs.getString("nom"));
-				utilisateur.setPrenom(rs.getString("prenom"));
-				utilisateur.setEmail(rs.getString("email"));
-				utilisateur.setTelephone(rs.getString("telephone"));
-				utilisateur.setRue(rs.getString("rue"));
-				utilisateur.setCodePostal(rs.getString("code_postal"));
-				utilisateur.setVille(rs.getString("ville"));
-				utilisateur.setMotDePasse(rs.getString("mot_de_passe"));
-				utilisateur.setCredit(rs.getInt("credit"));
-				List<Enchere> lste = new ArrayList<>();
-				utilisateur.setListeEnchere(lste);
-				utilisateur.setAdministrateur(rs.getBoolean("administrateur"));
+				utilisateur = CreateUtilisateur(rs);
 			}
 			
 		} catch (SQLException e) {
@@ -147,20 +106,7 @@ public class DAOUtilisateurImpl implements DAOUtilisateur{
 			pStmt.setString(1, pseudo);
 			ResultSet rs = pStmt.executeQuery();
 			if(rs.next()) {
-				utilisateur.setNoUtilisateur(rs.getInt("no_utilisateur"));
-				utilisateur.setPseudo(rs.getString("pseudo"));
-				utilisateur.setNom(rs.getString("nom"));
-				utilisateur.setPrenom(rs.getString("prenom"));
-				utilisateur.setEmail(rs.getString("email"));
-				utilisateur.setTelephone(rs.getString("telephone"));
-				utilisateur.setRue(rs.getString("rue"));
-				utilisateur.setCodePostal(rs.getString("code_postal"));
-				utilisateur.setVille(rs.getString("ville"));
-				utilisateur.setMotDePasse(rs.getString("mot_de_passe"));
-				utilisateur.setCredit(rs.getInt("credit"));
-				List<Enchere> lste = new ArrayList<>();
-				utilisateur.setListeEnchere(lste);
-				utilisateur.setAdministrateur(rs.getBoolean("administrateur"));
+				utilisateur = CreateUtilisateur(rs);
 			}
 			
 		} catch (SQLException e) {
@@ -177,21 +123,7 @@ public class DAOUtilisateurImpl implements DAOUtilisateur{
 			pStmt.setInt(1, noUtilisateur);
 			ResultSet rs = pStmt.executeQuery();
 			if(rs.next()) {
-				utilisateur.setNoUtilisateur(rs.getInt("no_utilisateur"));
-				utilisateur.setPseudo(rs.getString("pseudo"));
-				utilisateur.setNom(rs.getString("nom"));
-				utilisateur.setPrenom(rs.getString("prenom"));
-				utilisateur.setEmail(rs.getString("email"));
-				utilisateur.setTelephone(rs.getString("telephone"));
-				utilisateur.setRue(rs.getString("rue"));
-				utilisateur.setCodePostal(rs.getString("code_postal"));
-				utilisateur.setVille(rs.getString("ville"));
-				utilisateur.setMotDePasse(rs.getString("mot_de_passe"));
-				utilisateur.setCredit(rs.getInt("credit"));
-				List<Enchere> lste = new ArrayList<>();
-
-				utilisateur.setListeEnchere(lste);
-				utilisateur.setAdministrateur(rs.getBoolean("administrateur"));
+				utilisateur = CreateUtilisateur(rs);
 			}
 			
 		} catch (SQLException e) {
@@ -300,7 +232,6 @@ public class DAOUtilisateurImpl implements DAOUtilisateur{
 		utilisateur.setMotDePasse(rs.getString("mot_de_passe"));
 		utilisateur.setCredit(rs.getInt("credit"));
 		utilisateur.setAdministrateur(rs.getBoolean("administrateur"));
-		utilisateur.setListeEnchere(managerEnchere.GetEnchereByNoUtilisateurWithUtilisateur(utilisateur.getNoUtilisateur(), utilisateur));
 
 		return utilisateur;
 	}

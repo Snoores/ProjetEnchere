@@ -46,24 +46,6 @@ public class DAOEnchereImpl implements DAOEnchere{
     }
 
     @Override
-    public List<Enchere> SelectEnchereByNoArticleWithArticle(int noArticle, ArticleVendu articleVendu) {
-        List<Enchere> listeEnchere = new ArrayList<>();
-        try (Connection cnx = ConnectionProvider.getConnection()) {
-            PreparedStatement pstmt = cnx.prepareStatement(SELECT_BY_ARTICLE);
-            pstmt.setInt(1, noArticle);
-
-            ResultSet rs = pstmt.executeQuery();
-            while (rs.next()) {
-                listeEnchere.add(CreateNewEnchereWithArticle(rs, articleVendu));
-            }
-        } catch (SQLException e) {
-            System.err.println(e.getMessage());
-        }
-
-        return listeEnchere;
-    }
-
-    @Override
     public List<Enchere> SelectEnchereByNoUtilisateur(int noUtilisateur) {
         List<Enchere> listeEnchere = new ArrayList<>();
         try (Connection cnx = ConnectionProvider.getConnection()) {
@@ -73,24 +55,6 @@ public class DAOEnchereImpl implements DAOEnchere{
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 listeEnchere.add(CreateNewEnchere(rs));
-            }
-        } catch (SQLException e) {
-            System.err.println(e.getMessage());
-        }
-
-        return listeEnchere;
-    }
-
-    @Override
-    public List<Enchere> SelectEnchereByNoUtilisateurWithUtilisateur(int noUtilisateur, Utilisateur utilisateur) {
-        List<Enchere> listeEnchere = new ArrayList<>();
-        try (Connection cnx = ConnectionProvider.getConnection()) {
-            PreparedStatement pstmt = cnx.prepareStatement(SELECT_BY_UTILISATEUR);
-            pstmt.setInt(1, noUtilisateur);
-
-            ResultSet rs = pstmt.executeQuery();
-            while (rs.next()) {
-                listeEnchere.add(CreateNewEnchereWithUtilisateur(rs, utilisateur));
             }
         } catch (SQLException e) {
             System.err.println(e.getMessage());
@@ -219,34 +183,6 @@ public class DAOEnchereImpl implements DAOEnchere{
         enchere.setDateEnchere(rs.getDate("date_enchere").toLocalDate());
         enchere.setMontantEnchere(rs.getInt("montant_enchere"));
 
-        return enchere;
-    }
-
-    @Override
-    public Enchere CreateNewEnchereWithArticle(ResultSet rs, ArticleVendu articleVendu) throws SQLException {
-
-        ManagerUtilisateur managerUtilisateur = ManagerSingleton.getManagerUtilisateur();
-
-
-        Enchere enchere = new Enchere();
-        enchere.setArticleVendu(articleVendu);
-        enchere.setUtilisateur(managerUtilisateur.GetUtilisateurByNoUtilisateur(rs.getInt("no_utilisateur"))); //managerUtilisateur.GetUtilisateurByNoUtilisateur
-        enchere.setDateEnchere(rs.getDate("date_enchere").toLocalDate());
-        enchere.setMontantEnchere(rs.getInt("montant_enchere"));
-        return enchere;
-    }
-
-    @Override
-    public Enchere CreateNewEnchereWithUtilisateur(ResultSet rs, Utilisateur utilisateur) throws SQLException {
-    	System.out.println("daoEnchere");
-        ManagerArticleVendu managerArticleVendu = ManagerSingleton.getManagerArticleVendu();
-
-
-        Enchere enchere = new Enchere();
-        enchere.setArticleVendu(managerArticleVendu.GetArticleVenduByNoArticle(rs.getInt("no_article")));
-        enchere.setUtilisateur(utilisateur);
-        enchere.setDateEnchere(rs.getDate("date_enchere").toLocalDate());
-        enchere.setMontantEnchere(rs.getInt("montant_enchere"));
         return enchere;
     }
 }
