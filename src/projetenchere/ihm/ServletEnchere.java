@@ -25,8 +25,7 @@ public class ServletEnchere extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//ArticleVendu article = managerArticleVendu.GetArticleVenduByNoArticle((int) request.getAttribute("no_article"));
-		ArticleVendu article = managerArticleVendu.GetArticleVenduByNoArticle(12);
+		ArticleVendu article = managerArticleVendu.GetArticleVenduByNoArticle(Integer.parseInt(request.getParameter("id")));
 		Enchere meilleureOffre = managerEnchere.GetMeilleureOffre(article);
 
 		request.setAttribute("meilleure_offre", meilleureOffre);
