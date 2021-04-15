@@ -95,7 +95,20 @@
 												<fmt:formatDate value="${parsedDate}" var="newParsedDate" type="date" pattern="dd/MM/yyyy" />
 									        	<li>Fin de l'enchere: ${newParsedDate }</li>
 									        	<li>Vendeur: ${enchere.utilisateur.nom }</li>
+									        	<c:if test="${enchere.articleVendu.etatVente == 'CR'}">
+									        		<li>Enchère créée</li>
+									        	</c:if>
+									        	<c:if test="${enchere.articleVendu.etatVente == 'EC'}">
+									        		<li>Enchère en cours</li>
+									        	</c:if>
+									        	<c:if test="${enchere.articleVendu.etatVente == 'TE'}">
+									        		<li>Enchère terminée</li>
+									        	</c:if>
+									        	<c:if test="${enchere.articleVendu.etatVente == 'RE'}">
+									        		<li>Retrait effectué</li>
+									        	</c:if>
 									        </ul>
+									        <a class="text-center" href="${pageContext.request.contextPath}/enchere?id=${enchere.articleVendu.noArticle}"><button class="btn btn-primary mb-3">Voir l'enchère</button></a>
 									      </div>
 									    </div>
 									  </div>

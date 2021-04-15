@@ -238,7 +238,7 @@ public class DAOEnchereImpl implements DAOEnchere{
 
     @Override
     public Enchere CreateNewEnchereWithUtilisateur(ResultSet rs, Utilisateur utilisateur) throws SQLException {
-
+    	System.out.println("daoEnchere");
         ManagerArticleVendu managerArticleVendu = ManagerSingleton.getManagerArticleVendu();
 
 

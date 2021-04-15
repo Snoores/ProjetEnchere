@@ -225,6 +225,7 @@ public class DAOArticleVenduImpl implements DAOArticleVendu {
 
     @Override
     public ArticleVendu CreateArticleVendu(ResultSet rs) throws SQLException {
+    	System.out.println("daoArticle");
 
         ManagerUtilisateur managerUtilisateur = ManagerSingleton.getManagerUtilisateur();
         ManagerCategorie managerCategorie = ManagerSingleton.getManagerCategorie();
@@ -245,4 +246,5 @@ public class DAOArticleVenduImpl implements DAOArticleVendu {
 
         return articleVendu;
     }
+    
 }

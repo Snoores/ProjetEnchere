@@ -87,18 +87,24 @@
                 <p>${requestScope.article.utilisateur.nom}</p>
             </div>
         </div>
-        <div class="row">
-            <div class="col-6">
-                <p class="font-weight-bold"> Ma proposition: </p>
-            </div>
-            <div class="col">
-                <input id=montant type=number min="${requestScope.meilleure_offre.montantEnchere + 1}"
-                       max="${sessionScope.user.credit}" value="${requestScope.meilleure_offre.montantEnchere + 1}" size="5">
-            </div>
-            <div class="col">
-                <button type="button" class="btn btn-dark">Enchérir</button>
-            </div>
-        </div>
+        <form method="POST" action="${pageContext.request.contextPath}/enchere">
+	        <div class="row">
+	            <div class="col-md-6">
+	                <p class="font-weight-bold"> Ma proposition: </p>
+	            </div>
+	            <div class="col-md-6">
+	            	<input type="hidden" name="no_utilisateur" value="${pageContext.session.getAttribute('user').noUtilisateur}">
+	            	<input type="hidden" name="no_article" value="${requestScope.article.noArticle}">
+	                <input id=montant type=number min="${requestScope.meilleure_offre.montantEnchere + 1}"
+	                       max="${sessionScope.user.credit}" value="${requestScope.meilleure_offre.montantEnchere + 1}" size="5" name="proposition">
+	            </div>
+	        </div>
+	        <div class="row">
+            	 <div class="col">
+		            <button type="submit" class="btn btn-primary">Enchérir</button>
+		          </div>
+        	</div>
+	      </form>
         <div class="row">
         </div>
     </div>

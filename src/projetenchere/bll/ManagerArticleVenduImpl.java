@@ -56,4 +56,5 @@ public class ManagerArticleVenduImpl implements ManagerArticleVendu{
     public List<ArticleVendu> GetArticleVenduByUtilisateur(Utilisateur utilisateur) {
         return daoArticleVendu.SelectArticleVenduByUtilisateur(utilisateur);
     }
+    
 }
