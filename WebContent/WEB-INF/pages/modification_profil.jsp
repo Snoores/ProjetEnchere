@@ -62,7 +62,7 @@
 							</div>
 							<div class="col-btn">
 								<button type="submit" class="btn btn-primary w-80">Enregistrer</button>
-								<a class="btn btn-danger w-80" href="">Supprimer mon compte</a>
+								<a class="btn btn-danger w-80" href="${pageContext.request.contextPath}/suppression_compte">Supprimer mon compte</a>
 							</div>
 						</form>
 					</div>
