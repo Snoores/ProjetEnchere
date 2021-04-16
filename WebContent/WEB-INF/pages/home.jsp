@@ -37,15 +37,15 @@
 		                    </label>
 							<div class="check-sous-option">
 				  				<input class="input-achat" type="checkbox" name="optAchatEnchO">
-								<label class="form-check-label-achat" for="optEnchO">Enchères ouvertes</label>
+								<label class="form-check-label-achat optEnchO" for="optEnchO">Enchères ouvertes</label>
 							</div>
 							<div class="check-sous-option">
 				  				<input class="input-achat" type="checkbox" name="optAchatEnchEC">
-								<label class="form-check-label-achat" for="optEnchEC">Mes enchères en cours</label>
+								<label class="form-check-label-achat optEnchEC" for="optEnchEC">Mes enchères en cours</label>
 							</div>
                         	<div class="check-sous-option">
                         		<input class="input-achat" type="checkbox" name="optAchatEnchR">
-								<label class="form-check-label-achat" for="optEnchR"> Mes enchères en remportées</label>
+								<label class="form-check-label-achat optEnchR" for="optEnchR"> Mes enchères en remportées</label>
                         	</div>
 			  			</div>
 			  		</div>
@@ -81,7 +81,8 @@
 			  		<div class="container">
 			  			<div class="row">
 			  				<c:forEach var="enchere" items="${encheres }">
-							  	<div class="col-md-6 product-identity state_${fn:replace(enchere.articleVendu.etatVente,' ', '_')}
+							  	<div class="col-md-6 product-identity user_${fn:replace(enchere.articleVendu.utilisateur.noUtilisateur,' ', '_')}
+							  	state_${fn:replace(enchere.articleVendu.etatVente,' ', '_')}
 							  	category_${fn:replace(enchere.articleVendu.categorie.libelle,' ', '_').toLowerCase()}
 							  	article_${fn:replace(enchere.articleVendu.nomArticle,' ', '_').toLowerCase()}">
 							  		<div class="wrapper">
