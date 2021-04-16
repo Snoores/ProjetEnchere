@@ -1,7 +1,7 @@
-<nav class="navbar navbar-expand-md navbar-light mb-4 background-primary">
+<nav class="navbar navbar-expand-md navbar-light mb-4 border-bottom border-primary">
     <div class="container-fluid">
-        <a class="navbar-brand" href="${pageContext.request.contextPath}/accueil"><img class="img-brand"
-                                                                                       src="${pageContext.request.contextPath}/resources/img/testimg.png"></a>
+        <a class="navbar-brand" href="${pageContext.request.contextPath}/accueil"><img
+                                                                                       src="${pageContext.request.contextPath}/resources/img/testimg.png" height="64" width="64"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
                 aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

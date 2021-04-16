@@ -44,7 +44,7 @@ public class ServletConnexion extends HttpServlet {
 			e.printStackTrace();
 		}
 
-		if(utilisateur != null) {
+		if(utilisateur.getPseudo() != null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("session", "on");
 			session.setAttribute("user", utilisateur);
@@ -52,7 +52,8 @@ public class ServletConnexion extends HttpServlet {
 			System.out.println("urilisateur connecté");
 		}
 		else {
-			System.out.println("identifiants incorrecte");
+			//TODO: Popup echec
+			response.sendRedirect(request.getContextPath() + "/connexion");
 		}
 	}
 

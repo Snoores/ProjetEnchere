@@ -22,10 +22,8 @@ public class ManagerEnchereImpl implements ManagerEnchere{
         ArticleVendu article = daoArticleVendu.SelectArticleVenduByNoArticle(enchere.getArticleVendu().getNoArticle());
         if (LocalDate.now().isAfter(article.getDateFinEncheres())){
             Utilisateur utilisateur = daoUtilisateur.SelectUserByNoUtilisateur(enchere.getUtilisateur().getNoUtilisateur()); //TODO: Debug - To Delete
-            System.out.println("Debug in ManagerEnchereImpl l.24 \n" + utilisateur.toString()); //TODO: Debug - To Delete
             return daoUtilisateur.SelectUserByNoUtilisateur(enchere.getUtilisateur().getNoUtilisateur());
         }
-        System.out.println("Les encheres ne sont pas terminées. Date de fin :" + article.getDateFinEncheres());
         return null;
     }
 

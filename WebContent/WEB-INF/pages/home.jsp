@@ -81,7 +81,9 @@
 			  		<div class="container">
 			  			<div class="row">
 			  				<c:forEach var="enchere" items="${encheres }">
-							  	<div class="col-md-6 product-identity state_${fn:replace(enchere.articleVendu.etatVente,' ', '_')} category_${fn:replace(enchere.articleVendu.categorie.libelle,' ', '_').toLowerCase()} article_${fn:replace(enchere.articleVendu.nomArticle,' ', '_').toLowerCase()}">
+							  	<div class="col-md-6 product-identity state_${fn:replace(enchere.articleVendu.etatVente,' ', '_')}
+							  	category_${fn:replace(enchere.articleVendu.categorie.libelle,' ', '_').toLowerCase()}
+							  	article_${fn:replace(enchere.articleVendu.nomArticle,' ', '_').toLowerCase()}">
 							  		<div class="wrapper">
 									    <div class="product-img">
 									      <img src="http://bit.ly/2tMBBTd" height="320" width="227">
