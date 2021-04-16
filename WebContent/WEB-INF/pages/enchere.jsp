@@ -12,6 +12,12 @@
     </div>
     <div class="col-md-6 mt-2 px-5">
         <div class="row">
+        	<c:if test="${requestScope.resultat == 'gagner' }">
+        		<h2>Vous avez remporté la vente</h2>
+        	</c:if>
+        	<c:if test="${requestScope.resultat == 'perdu' }">
+        		<h2>Vous avez perdu la vente</h2>
+        	</c:if>
             <H3 class="font-weight-bold">${requestScope.article.nomArticle}</H3>
         </div>
         <div class="row">

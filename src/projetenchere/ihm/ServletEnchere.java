@@ -39,7 +39,21 @@ public class ServletEnchere extends HttpServlet {
 		if (retrait.getRue() != null && retrait.getVille() != null && retrait.getCodePostal() != null){
 			request.setAttribute("retrait", retrait);
 		}
+		
+		Utilisateur utilisateur = (Utilisateur) request.getSession().getAttribute("user");
+		ArticleVendu articleVendu= meilleureOffre.getArticleVendu();
+		LocalDate dateFin = articleVendu.getDateFinEncheres();
+		LocalDate dateAujourdhui = LocalDate.now();
+		
+		String resultat = null;
+		
+		if(meilleureOffre.getUtilisateur().getNoUtilisateur() == utilisateur.getNoUtilisateur() && dateAujourdhui.isAfter(dateFin)) {
+			resultat = "gagner";
+		} else {
+			resultat = "perdu";
+		}
 
+		request.setAttribute("resultat", resultat);
 
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/pages/enchere.jsp");
 		rd.forward(request, response);
